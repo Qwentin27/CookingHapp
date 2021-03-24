@@ -8,7 +8,7 @@ public class Recette {
 	private TypeRecette type;
 	private ArrayList<String> etapes;
 	private ArrayList<Ingredient> ingredients;
-	private int note;
+	private float note;
 	private int nombre_votants;
 	
 	public Recette(String nom, TypeRecette type, 
@@ -23,7 +23,7 @@ public class Recette {
 	
 	public Recette(String nom, TypeRecette type, 
 			ArrayList<String> etapes, ArrayList<Ingredient> ingredients,
-			int note, int nombre_votants) {
+			float note, int nombre_votants) {
 		this.nom = nom;
 		this.type = type;
 		this.etapes = etapes;
@@ -90,8 +90,8 @@ public class Recette {
 	}
 
 	public void ajoutIngredients(ArrayList<Ingredient> ingredients) {
-		for (Ingredient ingrediant : ingredients) {
-			this.ingredients.add(ingrediant);
+		for (Ingredient ingredient : ingredients) {
+			this.ingredients.add(ingredient);
 		}
 	}
 
@@ -103,19 +103,21 @@ public class Recette {
 		this.ingredients = ingredients;
 	}
 
-	public int getNote() {
+	public float getNote() {
 		return note;
 	}
+	
+	public void addNote(int note) {
+		this.note = (this.note+note)/(this.nombre_votants+1);
+		this.nombre_votants++;
+	}
 
-	public void setNote(int note) {
+	public void setNote(float note,int nombre_votants) {
 		this.note = note;
+		this.nombre_votants = nombre_votants;
 	}
 
 	public int getNombre_votants() {
 		return nombre_votants;
-	}
-
-	public void setNombre_votants(int nombre_votants) {
-		this.nombre_votants = nombre_votants;
 	}
 }
