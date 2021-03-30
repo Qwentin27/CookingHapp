@@ -17,8 +17,7 @@ public class Recette {
 		this.type = type;
 		this.etapes = etapes;
 		this.ingredients = ingredients;
-		this.setNote(0);
-		this.setNombre_votants(0);
+		this.setNote(0, nombre_votants);
 	}
 	
 	public Recette(String nom, TypeRecette type, 
@@ -28,8 +27,7 @@ public class Recette {
 		this.type = type;
 		this.etapes = etapes;
 		this.ingredients = ingredients;
-		this.setNote(note);
-		this.setNombre_votants(nombre_votants);
+		this.setNote(note, nombre_votants);
 	}
 
 	public String getNom() {
@@ -119,5 +117,9 @@ public class Recette {
 
 	public int getNombre_votants() {
 		return nombre_votants;
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 }
