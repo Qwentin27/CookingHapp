@@ -1,12 +1,15 @@
 package fr.cookinghapp;
 
 
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Vue extends Application{
 
@@ -33,11 +36,30 @@ public class Vue extends Application{
 		rectangle.setFill(Color.RED);
 		root.getChildren().add(rectangle);
 		
+		// transition d'opacité sur 2 secondes
+		FadeTransition ft = new FadeTransition(Duration.millis(2000), rectangle);
+		
+		// partir de 100% opaque vers 1% opacité 
+		
+		ft.setFromValue(1.0);
+		ft.setToValue(0.35);
+		
+		// à la fin de l'animation, retour de 0.01 vers 1.0
+		
+		ft.setAutoReverse(true);
+		
+		//répéter l'animation
+		
+		ft.setCycleCount(Timeline.INDEFINITE);
+		ft.play();
+		
+
+		
 		
 		//définir un rectangle a peu près centré SUR LA SCENE1
 		
 		Rectangle rectangle1 = new Rectangle(0, 0, 50, 50);
-		rectangle.setFill(Color.GREEN);
+		rectangle1.setFill(Color.GREEN);
 		root1.getChildren().add(rectangle1);
 		
 		//afficher le theatre
