@@ -49,6 +49,14 @@ public class SQL {
 		}
     }
     
+	/*
+	 * Fonction d'édition de la note de la recette sur la base de données
+	 * Paramètres:
+	 *   nom : le nom de la recette
+	 *   note : la nouvelle note de la recette
+	 *   nombre_votants : le nouveau nombre de votants de la recette
+	 * Sortie: aucune
+	 */
     public static void editNoteRecette(String nom, float note, int nombre_votants) {
     	try {
     		Map<String,Object> params = new LinkedHashMap<>();
@@ -65,6 +73,11 @@ public class SQL {
 		}
     }
     
+	/*
+	 * Fonction permettant de récupérer les recettes de la base de données
+	 * Paramètres: aucun
+	 * Sortie: Liste des recettes (pas triées)
+	 */
     public static ArrayList<Recette> listeRecettes() {
     	ArrayList<Recette> out = new ArrayList<Recette>();
     	for(String recetteStr : listeRecettesSQL()) {
@@ -85,6 +98,12 @@ public class SQL {
 		return out;
     }
     
+	/*
+	 * Fonction permettant de formater les ingrédients d'une chaine de caractères en liste d'ingrédients
+	 * Paramètres:
+	 *   ingredients : chaine de caratères contenant les ingrédients d'une recette
+	 * Sortie: Liste des ingrédients (pas triées)
+	 */
     private static ArrayList<Ingredient> formatageIngredientsEnArray(String ingredients) {
     	ArrayList<Ingredient> out = new ArrayList<Ingredient>();
     	for(String ing : ingredients.split("\\|")) {
@@ -97,6 +116,12 @@ public class SQL {
     	return out;
     }
     
+	/*
+	 * Fonction permettant de formater une liste d'ingrédients en chaine de caractères
+	 * Paramètres:
+	 *   ingredients : Liste d'ingrédients d'une recette
+	 * Sortie: Chaine de caratères des ingrédients (triées suivant l'insertion dans la liste)
+	 */
     private static String formatageIngredientsEnString(ArrayList<Ingredient> ingredients) {
     	String out = "";
     	int taille = ingredients.size()-1;
@@ -106,6 +131,12 @@ public class SQL {
     	return out;
     }
     
+	/*
+	 * Fonction permettant de formater les instructions d'une chaine de caractères en liste d'instructions
+	 * Paramètres:
+	 *   instructions : chaine de caratères contenant les instructions d'une recette
+	 * Sortie: Liste des instructions (triées suivant l'insertion dans la liste)
+	 */
     private static ArrayList<String> formatageInstructionsEnArray(String instructions) {
     	ArrayList<String> out = new ArrayList<String>();
     	for(String ins : instructions.split("\\|")) {
@@ -114,6 +145,12 @@ public class SQL {
     	return out;
     }
     
+	/*
+	 * Fonction permettant de formater une liste d'instructions en chaine de caractères
+	 * Paramètres:
+	 *   instructions : Liste de chaine de caratères contenant les instructions d'une recette
+	 * Sortie: Chaine de caratères des instructions (triées suivant l'insertion dans la liste)
+	 */
     private static String formatageInstructionsEnString(ArrayList<String> instructions) {
     	String out = "";
     	int taille = instructions.size()-1;
@@ -122,7 +159,17 @@ public class SQL {
     	}
     	return out;
     }
-
+    
+	/*
+	 * Fonction permettant d'envoyer une requete SQL via le script php edit_recettes.php
+	 * Fonctionnement:
+	 *    On encode les paramètres entrées au format d'une URL
+	 *    On se connecte à l'URL (ici: https://cookinghapp.crystalium.eu/edit_recettes.php) et on écrit les paramètres via la méthode POST
+	 *    Facultatif: On lit le résultat retourné et on l'affiche dans la console
+	 * Paramètres:
+	 *   params : Liste de couple nom du paramètre (clé), objet du paramètre (valeur)
+	 * Sortie: aucune
+	 */
     public static void requete(Map<String,Object> params) throws MalformedURLException, ProtocolException, IOException {
     	URL url = new URL("https://cookinghapp.crystalium.eu/edit_recettes.php");
 
@@ -146,8 +193,17 @@ public class SQL {
 
         for (int c; (c = in.read()) >= 0;)
             System.out.print((char)c);
+        System.out.println();
     }
     
+	/*
+	 * Fonction permettant de lire les recettes de la via le script php liste_recettes.php
+	 * Fonctionnement:
+	 *    On se connecte à l'URL (ici: https://cookinghapp.crystalium.eu/edit_recettes.php)
+	 *    On lit chaque ligne et on formate le résultat suivant le retour à la ligne <br>
+	 * Paramètres: aucun
+	 * Sortie: Liste des recettes (pas triées et formaté en chaines de caractères)
+	 */
     private static ArrayList<String> listeRecettesSQL() {
         HttpURLConnection con = null;
         ArrayList<String> content = new ArrayList<String>();
@@ -176,7 +232,5 @@ public class SQL {
         }
         
         return content;
-        //String[] liste = new String[content.size()];
-        //return content.toArray(liste);
     }
 }
