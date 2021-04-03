@@ -21,6 +21,17 @@ public class SQL {
     	editNoteRecette("Salade de pommes de terres", 3.5F, 2);
 	}
     
+	/*
+	 * Fonction d'ajout de recette à la base de données
+	 * Paramètres:
+	 *   nom : le nom de la recette
+	 *   type : le type de recette (Entrée/Plat/Dessert/Boisson)
+	 *   ingredients : liste des ingrédients de la recette, utilisez l'un des constructeurs suivant pour créer un ingrédient:
+	 *      new Ingredient(nom, quantite, mesure)
+	 *      new Ingredient(nom, quantite)
+	 *   instructions : liste d'instructions de la recette (liste de String)
+	 * Sortie: aucune
+	 */
     public static void ajoutRecette(String nom, TypeRecette type, ArrayList<Ingredient> ingredients, ArrayList<String> instructions) {
     	try {
     		Map<String,Object> params = new LinkedHashMap<>();
