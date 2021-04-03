@@ -29,6 +29,16 @@ public class Recette {
 		this.ingredients = ingredients;
 		this.setNote(note, nombre_votants);
 	}
+	
+	public Recette(String nom, int type,
+			ArrayList<Ingredient> ingredients, ArrayList<String> etapes, 
+			float note, int nombre_votants) throws MauvaisTypeException {
+		this.nom = nom;
+		setType(type);
+		this.etapes = etapes;
+		this.ingredients = ingredients;
+		this.setNote(note, nombre_votants);
+	}
 
 	public String getNom() {
 		return nom;
@@ -119,7 +129,23 @@ public class Recette {
 		return nombre_votants;
 	}
 	
-	public static void main(String[] args) {
-		
+	@Override
+	public String toString() {
+		String ingStr = "Ingrédients:";
+		if(this.ingredients.isEmpty())
+			ingStr = "Aucun ingrédient.";
+		else
+			for(Ingredient ing : this.ingredients) {
+				ingStr = ingStr + "\n - " + ing.toString();
+			}
+		String etapes = "Etapes de la recette:";
+		if(this.ingredients.isEmpty())
+			etapes = "Aucune étape.";
+		else
+			for(String e : this.etapes) {
+				etapes = etapes + "\n" + e;
+			}
+		return this.nom + " [" + this.type.name() + "] " + this.note + "(" + this.nombre_votants + ")\n"
+				+ ingStr + "\n" + etapes;
 	}
 }
