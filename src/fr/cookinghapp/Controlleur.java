@@ -1,10 +1,16 @@
 package fr.cookinghapp;
 
-public class Controlleur {
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+public class Controlleur {
 	
+	@FXML
+	public TextArea test;
+	
+	public void clic() {
+		System.out.println("Clic du bouton.");
+		test.setText("Nouveau texte");
 	}
 
 }
