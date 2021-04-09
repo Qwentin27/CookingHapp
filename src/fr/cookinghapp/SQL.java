@@ -15,10 +15,41 @@ import java.util.Map;
 
 public class SQL {
 	public static void main(String[] args) {
-    	editNoteRecette("Salade de pommes de terres", 4.5F, 3);
-    	for(Recette r : listeRecettes())
-    		System.out.println(r.toString());
-    	editNoteRecette("Salade de pommes de terres", 3.5F, 2);
+		
+		//TACOS INGREDIENT (Chloé)
+		//Ingredients
+		ArrayList<Ingredient> IngredientsTacos = new ArrayList<Ingredient>();
+		IngredientsTacos.add(new Ingredient("Galette de Tortilla", 1, ""));
+		IngredientsTacos.add(new Ingredient("Filet de Poulet", 1, ""));
+		IngredientsTacos.add(new Ingredient("Sauce au choix", 1, ""));
+		IngredientsTacos.add(new Ingredient("Frites", 1, ""));
+		IngredientsTacos.add(new Ingredient("Epices (sel, poivre, épices indiennes)", 3, ""));
+		IngredientsTacos.add(new Ingredient("Oignon", 1, ""));
+		IngredientsTacos.add(new Ingredient("Huile d'olives", 1, ""));
+		IngredientsTacos.add(new Ingredient("Laitue", 1, ""));
+		IngredientsTacos.add(new Ingredient("Sauce fromagère", 1, ""));
+
+		//Instructions
+		ArrayList<String> InstructionsTacos = new ArrayList<String>();
+		InstructionsTacos.add(new String("Découper votre filet de poulet en petit cube puis mélanger le avec les épices dans un bol"));
+		InstructionsTacos.add(new String("Emincer l'oignon et faites le revenir dans une poêle avec de l'huile d'olive" ));
+		InstructionsTacos.add(new String("Ajouter les cubes de poulets avec les oignons puis faites les revenir jusqu'à obtenir une couleur dorée"));
+		InstructionsTacos.add(new String("Retirer la préparation du feu et la tiédir"));
+		InstructionsTacos.add(new String("Chauffer l'appareil à Tacos ou une poêle"));
+		InstructionsTacos.add(new String("Déposer la galette de tortilla sur votre table puis étaler une sauce au choix (Blanche, Marocaine ou même Ketchup !)"));
+		InstructionsTacos.add(new String("Garnie la galette avec la préparation poulet/oignon, la laitue et les frites"));
+		InstructionsTacos.add(new String("Arroser la galette de sauce fromagère (sans modération !)"));
+		InstructionsTacos.add(new String("Refermer la tortilla"));
+		InstructionsTacos.add(new String("Cuire la tacos dans l'appareil ou la poêle"));
+		InstructionsTacos.add(new String("DEGUSTER !"));
+
+		
+		
+		//ROUGAIL INGREDIENT
+		ArrayList<Ingredient> IngredientsRougail = new ArrayList<Ingredient>();
+		IngredientsRougail.add(new Ingredient("Galette épaisse", 1, ""));
+		
+    	ajoutRecette("Tacos", TypeRecette.Plat, IngredientsTacos , InstructionsTacos);
 	}
     
 	/*
