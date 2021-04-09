@@ -2,7 +2,7 @@ package fr.cookinghapp;
 
 import java.util.ArrayList;
 
-public class Recette {
+public class Recette implements Comparable<Recette> {
 	
 	private String nom;
 	private TypeRecette type;
@@ -10,6 +10,8 @@ public class Recette {
 	private ArrayList<Ingredient> ingredients;
 	private float note;
 	private int nombre_votants;
+	private String urlImage;
+	private static int comparateur;
 	
 	public Recette(String nom, TypeRecette type, 
 			ArrayList<String> etapes, ArrayList<Ingredient> ingredients) {
@@ -18,6 +20,8 @@ public class Recette {
 		this.etapes = etapes;
 		this.ingredients = ingredients;
 		this.setNote(0, nombre_votants);
+		urlImage = "";
+		comparateur = 0;
 	}
 	
 	public Recette(String nom, TypeRecette type, 
@@ -28,6 +32,8 @@ public class Recette {
 		this.etapes = etapes;
 		this.ingredients = ingredients;
 		this.setNote(note, nombre_votants);
+		urlImage = "";
+		comparateur = 0;
 	}
 	
 	public Recette(String nom, int type,
@@ -38,6 +44,8 @@ public class Recette {
 		this.etapes = etapes;
 		this.ingredients = ingredients;
 		this.setNote(note, nombre_votants);
+		urlImage = "";
+		comparateur = 0;
 	}
 
 	public String getNom() {
@@ -128,6 +136,14 @@ public class Recette {
 	public int getNombre_votants() {
 		return nombre_votants;
 	}
+
+	public static int getComparator() {
+		return comparateur;
+	}
+
+	public static void setComparator(int comparator) {
+		comparateur = comparator;
+	}
 	
 	@Override
 	public String toString() {
@@ -147,5 +163,24 @@ public class Recette {
 			}
 		return this.nom + " [" + this.type.name() + "] " + this.note + "(" + this.nombre_votants + ")\n"
 				+ ingStr + "\n" + etapes;
+	}
+
+	@Override
+	public int compareTo(Recette r) {
+		switch (comparateur) {
+		case 1: //Comparaison par note
+			return Float.compare(this.note, r.note);
+		case 0: //Comparaison par nom
+		default:
+			return this.nom.compareTo(r.nom);
+		}
+	}
+
+	public boolean hasImage() {
+		return !this.urlImage.isEmpty();
+	}
+
+	public String getImage() {
+		return this.urlImage;
 	}
 }
