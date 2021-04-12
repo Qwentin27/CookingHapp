@@ -1,3 +1,39 @@
-.Title {
-    -fx-background-color : red;
+.Main {
+    -fx-background-color: rgb(141, 137, 137);
 }
+
+.Title {
+    -fx-font-size : 30px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.four_top {
+    -fx-background-color : rgb(141, 137, 137);
+}
+
+.four_bottom {
+    -fx-background-color : rgb(170, 32, 78);
+    
+    -fx-background-radius: 30 30 0 0 ;
+}
+
+.grille_four {
+    -fx-background-color : rgb(209, 208, 208);
+    -fx-border-radius: 10 ;
+    -fx-background-radius: 10 ;
+
+}
+
+.button_list {
+    -fx-background-color : rgb(209, 208, 208);
+    /* -fx-font-size : 10px; */
+    
+}
+
+.choice_button {
+    -fx-background-color : rgb(209, 208, 208);
+    -fx-border-width: 2;
+    -fx-background-radius: 10 10 0 0 ;
+   
+}
+
