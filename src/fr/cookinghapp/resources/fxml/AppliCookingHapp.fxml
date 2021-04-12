@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.Controleur">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.Controleur">
    <children>
-      <HBox layoutY="-2.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox id="four_top" layoutY="-2.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CookingHapp">
+            <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" text="CookingHapp">
                <font>
                   <Font size="30.0" />
                </font>
@@ -29,18 +29,18 @@
             </Button>
          </children>
       </HBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <VBox id="four_bottom" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
                <children>
-                  <MenuButton fx:id="main_menu" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" text="Entrée / Plat / Dessert ?" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
+                  <MenuButton id="choice_button" fx:id="main_menu" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" text="Entrée / Plat / Dessert ?" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
                     <items>
                       <MenuItem fx:id="main_select_entrees" mnemonicParsing="false" onAction="#clic_entrees" text="Les Entrées" />
                       <MenuItem fx:id="main_select_plats" mnemonicParsing="false" onAction="#clic_plats" text="Les Plats" />
                       <MenuItem fx:id="main_select_desserts" mnemonicParsing="false" onAction="#clic_desserts" text="Les Desserts" />
                     </items>
                   </MenuButton>
-                  <Button fx:id="chngmnt_sens" alignment="CENTER" mnemonicParsing="false" onAction="#clic_changement_sens" prefHeight="30.0" prefWidth="30.0" text="▲" />
+                  <Button id="defile_choice_button" fx:id="chngmnt_sens" alignment="CENTER" mnemonicParsing="false" onAction="#clic_changement_sens" prefHeight="30.0" prefWidth="30.0" text="▲" />
                </children>
             </HBox>
             <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="500.0" style="-fx-background-color: lightgray;">
