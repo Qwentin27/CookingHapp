@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -42,13 +41,10 @@
                   </LinearGradient>
                </fill>
             </Text>
-            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="24.0" scaleX="2.0" styleClass="button_list" stylesheets="@../../Style_home.css" text="Liste">
+            <Button id="button_list" mnemonicParsing="false" styleClass="button_list" text="Liste">
                <HBox.margin>
-                  <Insets left="218.0" top="16.0" />
+                  <Insets left="235.0" top="18.0" />
                </HBox.margin>
-               <rotationAxis>
-                  <Point3D />
-               </rotationAxis>
             </Button>
          </children>
       </HBox>
@@ -75,9 +71,9 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </HBox>
-            <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="246.0" prefWidth="567.0" styleClass="grille_four" stylesheets="@../../Style_home.css">
+            <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="206.0" prefWidth="560.0" styleClass="grille_four" stylesheets="@../../Style_home.css">
                <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="30.0" />
+                  <Insets left="20.0" right="20.0" top="48.0" />
                </VBox.margin>
             </VBox>
          </children>
