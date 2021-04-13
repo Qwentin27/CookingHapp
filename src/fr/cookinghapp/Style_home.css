@@ -1,3 +1,4 @@
+/* Style général du site */
 .Main {
     -fx-background-color: rgb(187, 185, 185);
 }
@@ -16,16 +17,18 @@
     -fx-background-radius: 30 30 0 0 ;
 }
 
+.button_list {
+    -fx-background-color : white;
+    -fx-background-radius: 10 ;
+}
+
+/* Scene home */
+/* menu des recettes sur la page principale */
 .grille_four {
     -fx-background-color : rgb(209, 208, 208);
     -fx-border-radius: 10 ;
     -fx-background-radius: 10 ;
 
-}
-
-.button_list {
-    -fx-background-color : white;
-    -fx-background-radius: 10 ;
 }
 
 .choice_button {
@@ -35,3 +38,23 @@
    
 }
 
+/* Scene ingrédients/recettes */
+.box_ingredients {
+    -fx-background-color : rgb(209, 208, 208);
+}
+
+/* boutons ajouter à la liste et recette */
+.button_addList {
+    -fx-background-color : rgb(209, 208, 208);
+    -fx-border-width: 2;
+    -fx-background-radius: 0 0 10 10 ;
+}
+
+.label_ingredients {
+    -fx-font-size : 15px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+.label_nomRecette {
+    -fx-font-size : 20px;
+    -fx-font-family: "Segoe UI Semibold";
+}
