@@ -107,11 +107,20 @@ public class SQL {
     	for(String ing : ingredients.split("\\|")) {
 	    	String[] ingredient = ing.split("\u2807");
 	    	if(ingredient.length<3)
-	    		out.add(new Ingredient(ingredient[0], Integer.parseInt(ingredient[1])));
+	    		out.add(new Ingredient(ingredient[0], parseFloat(ingredient[1])));
 	    	else
-	    		out.add(new Ingredient(ingredient[0], Integer.parseInt(ingredient[1]), ingredient[2]));
+	    		out.add(new Ingredient(ingredient[0], parseFloat(ingredient[1]), ingredient[2]));
     	}
     	return out;
+    }
+    
+    private static float parseFloat(String ratio) {
+        if (ratio.contains("/")) {
+            String[] rat = ratio.split("/");
+            return Float.parseFloat(rat[0]) / Float.parseFloat(rat[1]);
+        } else {
+            return Float.parseFloat(ratio);
+        }
     }
     
 	/*

@@ -3,15 +3,15 @@ package fr.cookinghapp;
 public class Ingredient {
 	
 	private String nom, mesure;
-	private int quantite;
+	private float quantite;
 	
-	public Ingredient(String nom, int quantite) {
+	public Ingredient(String nom, float quantite) {
 		this.nom = nom;
 		this.mesure = "";
 		this.quantite = quantite;
 	}
 	
-	public Ingredient(String nom, int quantite, String mesure) {
+	public Ingredient(String nom, float quantite, String mesure) {
 		this.nom = nom;
 		this.mesure = mesure;
 		this.quantite = quantite;
@@ -25,7 +25,7 @@ public class Ingredient {
 		this.nom = nom;
 	}
 
-	public int getQuantite() {
+	public float getQuantite() {
 		return quantite;
 	}
 
