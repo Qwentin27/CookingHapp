@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -35,7 +34,7 @@ public class Vue extends Application implements Observer {
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("CookingHapp.");
-		//primaryStage.getIcons().add(new Image("images/main_select/pot-chaud.png"));
+		primaryStage.getIcons().add(Resources.getImage("images/main_select/pot-chaud.png"));
 		primaryStage.show();
 		modele = new Modele();
 		modele.addObserver(this);
