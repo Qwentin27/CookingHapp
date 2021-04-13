@@ -2,17 +2,24 @@ package fr.cookinghapp;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Observable;
 
 import fr.cookinghapp.resources.Resources;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class Controleur extends Observable {
+	
+	@FXML
+	private AnchorPane rootPane;
+	// Variable privée permettant de changer la scène actuelle 
 	
 	@FXML
 	public MenuItem main_select_entrees;
@@ -28,6 +35,9 @@ public class Controleur extends Observable {
 	
 	@FXML
 	public Button chngmnt_sens;
+	
+	@FXML
+	public Button button_list;
 
 	private void setMainMenuImage(String image) {
 		try {
@@ -61,6 +71,12 @@ public class Controleur extends Observable {
 		else
 			chngmnt_sens.setText("\u25b2");
 		Vue.getModele().setSens();
+	}
+	
+	public void clic_liste() throws IOException{
+		// Changement de scene lors du clic
+		AnchorPane pane = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
+		rootPane.getChildren().setAll(pane);
 	}
 	
 }
