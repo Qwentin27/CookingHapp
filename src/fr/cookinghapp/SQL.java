@@ -11,6 +11,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class SQL {
@@ -72,31 +74,6 @@ public class SQL {
     }
     
 	/*
-	 * Fonction permettant de récupérer les recettes de la base de données
-	 * Paramètres: aucun
-	 * Sortie: Liste des recettes (pas triées)
-	 */
-    public static ArrayList<Recette> listeRecettes() {
-    	ArrayList<Recette> out = new ArrayList<Recette>();
-    	for(String recetteStr : listeRecettesSQL()) {
-    		String[] r = recetteStr.split("\\\u2016");
-    		Recette recette = null;
-    		try {
-				recette = new Recette(r[0].replaceAll("<br />", ""), Integer.parseInt(r[1]), r.length<5?(new ArrayList<Ingredient>()):formatageIngredientsEnArray(r[4]), r.length<6?(new ArrayList<String>()):formatageInstructionsEnArray(r[5]), Float.parseFloat(r[2]), Integer.parseInt(r[3]));
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (MauvaisTypeException e) {
-				e.printStackTrace();
-			}
-    		if(recette != null)
-    			out.add(recette);
-    		else
-    			System.out.println("La recette " + r[0] + " n'a pas été chargée!");
-    	}
-		return out;
-    }
-    
-	/*
 	 * Fonction permettant de formater les ingrédients d'une chaine de caractères en liste d'ingrédients
 	 * Paramètres:
 	 *   ingredients : chaine de caratères contenant les ingrédients d'une recette
@@ -107,20 +84,11 @@ public class SQL {
     	for(String ing : ingredients.split("\\|")) {
 	    	String[] ingredient = ing.split("\u2807");
 	    	if(ingredient.length<3)
-	    		out.add(new Ingredient(ingredient[0], parseFloat(ingredient[1])));
+	    		out.add(new Ingredient(ingredient[0], ingredient[1]));
 	    	else
-	    		out.add(new Ingredient(ingredient[0], parseFloat(ingredient[1]), ingredient[2]));
+	    		out.add(new Ingredient(ingredient[0], ingredient[1], ingredient[2]));
     	}
     	return out;
-    }
-    
-    private static float parseFloat(String ratio) {
-        if (ratio.contains("/")) {
-            String[] rat = ratio.split("/");
-            return Float.parseFloat(rat[0]) / Float.parseFloat(rat[1]);
-        } else {
-            return Float.parseFloat(ratio);
-        }
     }
     
 	/*
@@ -209,11 +177,11 @@ public class SQL {
 	 *    On se connecte à l'URL (ici: https://cookinghapp.crystalium.eu/edit_recettes.php)
 	 *    On lit chaque ligne et on formate le résultat suivant le retour à la ligne <br>
 	 * Paramètres: aucun
-	 * Sortie: Liste des recettes (pas triées et formaté en chaines de caractères)
+	 * Sortie: Liste des recettes triées
 	 */
-    private static ArrayList<String> listeRecettesSQL() {
+    public static List<Recette> listeRecettes() {
         HttpURLConnection con = null;
-        ArrayList<String> content = new ArrayList<String>();
+        LinkedList<Recette> content = new LinkedList<Recette>();
         try {
             URL url = new URL("https://cookinghapp.crystalium.eu/liste_recettes.php");
             con = (HttpURLConnection) url.openConnection();
@@ -228,8 +196,21 @@ public class SQL {
                 br.close();
                 if(!out.isEmpty()) {
                 	String[] liste = out.split("<br>");
-                	for(int i=0; i<liste.length; i++)
-                		content.add(liste[i].trim());
+                	for(int i=0; i<liste.length; i++) {
+                		String[] r = liste[i].trim().split("\\\u2016");
+	                	Recette recette = null;
+	            		try {
+	        				recette = new Recette(r[0].replaceAll("<br />", ""), Integer.parseInt(r[1]), r.length<5?(new ArrayList<Ingredient>()):formatageIngredientsEnArray(r[4]), r.length<6?(new ArrayList<String>()):formatageInstructionsEnArray(r[5]), Float.parseFloat(r[2]), Integer.parseInt(r[3]));
+	        			} catch (NumberFormatException e) {
+	        				e.printStackTrace();
+	        			} catch (MauvaisTypeException e) {
+	        				e.printStackTrace();
+	        			}
+	            		if(recette != null)
+	            			content.add(recette);
+	            		else
+	            			System.out.println("La recette " + r[0] + " n'a pas été chargée!");
+                	}
                 }
             }
         } catch (IOException e) {

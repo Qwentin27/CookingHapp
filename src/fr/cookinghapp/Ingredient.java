@@ -11,11 +11,32 @@ public class Ingredient {
 		this.quantite = quantite;
 	}
 	
+	public Ingredient(String nom, String quantiteFractionnaire) {
+		this.nom = nom;
+		this.mesure = "";
+		this.quantite = parseFloat(quantiteFractionnaire);
+	}
+	
 	public Ingredient(String nom, float quantite, String mesure) {
 		this.nom = nom;
 		this.mesure = mesure;
 		this.quantite = quantite;
 	}
+	
+	public Ingredient(String nom, String quantiteFractionnaire, String mesure) {
+		this.nom = nom;
+		this.mesure = mesure;
+		this.quantite = parseFloat(quantiteFractionnaire);
+	}
+	
+    private static float parseFloat(String ratio) {
+        if (ratio.contains("/")) {
+            String[] rat = ratio.split("/");
+            return Float.parseFloat(rat[0]) / Float.parseFloat(rat[1]);
+        } else {
+            return Float.parseFloat(ratio);
+        }
+    }
 
 	public String getNom() {
 		return nom;
