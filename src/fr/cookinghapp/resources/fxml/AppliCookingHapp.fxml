@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="Main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@../../Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.Controleur">
+<AnchorPane id="Main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Main" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.Controleur">
    <children>
-      <HBox id="four_top" layoutY="-2.0" prefHeight="460.0" prefWidth="1000.0" styleClass="four_top" stylesheets="@../../Style_home.css" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox id="four_top" layoutY="-2.0" prefHeight="460.0" prefWidth="1000.0" styleClass="four_top" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Title" text="CookingHapp.">
                <font>
@@ -41,7 +41,7 @@
                   </LinearGradient>
                </fill>
             </Text>
-            <Button id="button_list" mnemonicParsing="false" styleClass="button_list" text="Liste">
+            <Button id="button_list" mnemonicParsing="false" styleClass="button_list" onAction="#clic_liste" text="Liste">
                <HBox.margin>
                   <Insets left="235.0" top="18.0" />
                </HBox.margin>
@@ -71,7 +71,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </HBox>
-            <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="206.0" prefWidth="560.0" styleClass="grille_four" stylesheets="@../../Style_home.css">
+            <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="206.0" prefWidth="560.0" styleClass="grille_four">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="48.0" />
                </VBox.margin>

@@ -8,6 +8,8 @@ import java.util.Observable;
 import fr.cookinghapp.resources.Resources;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -75,8 +77,8 @@ public class Controleur extends Observable {
 	
 	public void clic_liste() throws IOException{
 		// Changement de scene lors du clic
-		AnchorPane pane = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
-		rootPane.getChildren().setAll(pane);
+		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
+		Vue.getAppStage().setScene(new Scene(page));
 	}
 	
 }

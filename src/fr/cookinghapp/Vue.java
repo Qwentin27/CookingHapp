@@ -17,6 +17,7 @@ public class Vue extends Application implements Observer {
 
 	private static Modele modele;
 	private static Scene scene;
+	private static Stage appStage;
 
 	public static Modele getModele() {
 		return modele;
@@ -36,6 +37,7 @@ public class Vue extends Application implements Observer {
 		primaryStage.setTitle("CookingHapp.");
 		primaryStage.getIcons().add(Resources.getImage("images/main_select/pot-chaud.png"));
 		primaryStage.show();
+		appStage = primaryStage;
 		modele = new Modele();
 		modele.addObserver(this);
 	}
@@ -49,6 +51,10 @@ public class Vue extends Application implements Observer {
 			for(Button b : (ArrayList<Button>) arg)
 				liste.getChildren().add(b);
 		}
+	}
+
+	public static Stage getAppStage() {
+		return appStage;
 	}
 
 }
