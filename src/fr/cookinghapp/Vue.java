@@ -25,7 +25,6 @@ public class Vue extends Application implements Observer {
 
 	public static void main(String[] args) {
 		launch(args);
-
 	}
 	
 	//affiche un menu simple		
@@ -34,7 +33,7 @@ public class Vue extends Application implements Observer {
 		scene = new Scene(page);
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
-		primaryStage.setTitle("CookingHapp.");
+		primaryStage.setTitle("CookingHapp");
 		primaryStage.getIcons().add(Resources.getImage("images/main_select/pot-chaud.png"));
 		primaryStage.show();
 		appStage = primaryStage;

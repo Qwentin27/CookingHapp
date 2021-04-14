@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -26,26 +27,33 @@ public class Modele extends Observable {
 	}
 
 	public void selectionType(TypeRecette type) {
-		liste.clear();
-		for(Recette r : getRecettes(type)) {
-			Button b = new Button(getNoteToString(r.getNote()) + " (" + r.getNombre_votants() + ") " + r.getNom());
-			b.setBorder(Border.EMPTY);
-			b.setAlignment(Pos.CENTER_LEFT);
-			b.setPrefWidth(560);
-			b.setPrefHeight(Button.USE_COMPUTED_SIZE);
-			ImageView img;
-			if(r.hasImage())
-				img = new ImageView(r.getImage());
-			else
-				img = new ImageView("https://static.thenounproject.com/png/340719-200.png");
-	        img.setPreserveRatio(true);
-	        img.setFitHeight(15);
-	        img.setFitWidth(15);
-			b.setGraphic(img);
-			liste.add(b);
-		}
-		this.setChanged();
-		this.notifyObservers(liste);
+		Modele m = Vue.getModele();
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				liste.clear();
+				for(Recette r : getRecettes(type)) {
+					Button b = new Button(getNoteToString(r.getNote()) + " (" + r.getNombre_votants() + ") " + r.getNom());
+					b.setBorder(Border.EMPTY);
+					b.setAlignment(Pos.CENTER_LEFT);
+					b.setPrefWidth(560);
+					b.setPrefHeight(Button.USE_COMPUTED_SIZE);
+					ImageView img;
+					if(r.hasImage())
+						img = new ImageView(r.getImage());
+					else
+						img = new ImageView("https://static.thenounproject.com/png/340719-200.png");
+					img.setPreserveRatio(true);
+					img.setFitHeight(15);
+					img.setFitWidth(15);
+					b.setGraphic(img);
+					liste.add(b);
+				}
+				m.setChanged();
+				m.notifyObservers(liste);
+			}
+		});
 	}
 	
 	public void setSens() {
