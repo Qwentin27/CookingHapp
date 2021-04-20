@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -73,19 +72,15 @@
                   </Label>
                   <HBox prefHeight="223.0" prefWidth="329.0">
                      <children>
-                        <VBox id="box_ingredients" prefHeight="212.0" prefWidth="239.0" styleClass="box_ingredients">
-                           <HBox.margin>
-                              <Insets left="20.0" top="10.0" />
-                           </HBox.margin>
-                           <children>
-                              <ScrollBar orientation="VERTICAL" prefHeight="213.0" prefWidth="18.0">
-                                 <VBox.margin>
-                                    <Insets left="221.0" />
-                                 </VBox.margin>
-                              </ScrollBar>
-                           </children>
-                        </VBox>
+                        <ScrollPane prefHeight="223.0" prefWidth="241.0">
+                           <content>
+                              <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="267.0" prefWidth="239.0" styleClass="grille_four" />
+                           </content>
+                        </ScrollPane>
                      </children>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
                   </HBox>
                   <HBox prefHeight="38.0" prefWidth="242.0">
                      <children>
@@ -143,11 +138,11 @@
                                     <Insets left="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <BottomNavigationButton styleClass="button_addList" stylesheets="@Style_home.css" text="Valider">
+                              <Button mnemonicParsing="false" styleClass="button_addList" text="Valider">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
-                              </BottomNavigationButton>
+                              </Button>
                            </children>
                            <VBox.margin>
                               <Insets />
