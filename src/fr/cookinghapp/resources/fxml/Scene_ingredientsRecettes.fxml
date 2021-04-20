@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -72,9 +73,9 @@
                   </Label>
                   <HBox prefHeight="223.0" prefWidth="329.0">
                      <children>
-                        <ScrollPane prefHeight="223.0" prefWidth="241.0">
+                        <ScrollPane prefHeight="223.0" prefWidth="241.0" styleClass="four_bottom">
                            <content>
-                              <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="267.0" prefWidth="239.0" styleClass="grille_four" />
+                              <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="267.0" prefWidth="239.0" styleClass="box_ingredients" />
                            </content>
                         </ScrollPane>
                      </children>
@@ -123,26 +124,25 @@
                         </Label>
                         <HBox prefHeight="46.0" prefWidth="164.0" style="-fx-alignment: center;">
                            <children>
-                              <Button mnemonicParsing="false" styleClass="button_addList" text="-">
+                              <ToggleButton mnemonicParsing="false" styleClass="button_addList" text="-">
                                  <HBox.margin>
                                     <Insets right="15.0" />
                                  </HBox.margin>
-                              </Button>
+                              </ToggleButton>
                               <Label text="0" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
                               </Label>
-                              <Button mnemonicParsing="false" styleClass="button_addList" text="+">
+                              <ToggleButton mnemonicParsing="false" styleClass="button_addList" text="+">
                                  <HBox.margin>
-                                    <Insets left="15.0" />
+                                    <Insets right="15.0" />
                                  </HBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" styleClass="button_addList" text="Valider">
-                                 <HBox.margin>
-                                    <Insets left="15.0" />
-                                 </HBox.margin>
-                              </Button>
+                              </ToggleButton>
+                              <ToggleButton mnemonicParsing="false" styleClass="button_addList" text="Valider" />
                            </children>
                            <VBox.margin>
                               <Insets />
