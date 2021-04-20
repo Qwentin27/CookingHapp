@@ -41,17 +41,21 @@ public class Modele extends Observable {
 					b.setPrefWidth(560);
 					b.setPrefHeight(Button.USE_COMPUTED_SIZE);
 					try {
-					ImageView img;
-					if(r.hasImage())
-						img = new ImageView(r.getImage());
-					else
-						img = new ImageView(Resources.getImage("images/main_select/no-picture.png"));
-					img.setPreserveRatio(true);
-					img.setFitHeight(15);
-					img.setFitWidth(15);
-					b.setGraphic(img);
+						ImageView img;
+						if(r.hasImage())
+							try {
+								img = new ImageView(r.getImage());
+							}
+							catch(IllegalArgumentException e) {
+								img = new ImageView(Resources.getImage("images/main_select/no-picture.png"));
+							}
+						else
+							img = new ImageView(Resources.getImage("images/main_select/no-picture.png"));
+						img.setPreserveRatio(true);
+						img.setFitHeight(15);
+						img.setFitWidth(15);
+						b.setGraphic(img);
 					} catch (FileNotFoundException e) {
-						e.printStackTrace();
 					}
 					liste.add(b);
 				}

@@ -17,8 +17,16 @@ import java.util.TreeSet;
 
 public class SQL {
 	public static void main(String[] args) {
-		for(Recette r : SQL.listeRecettes())
+		List<Recette> recettes = SQL.listeRecettes();
+		System.out.println("Entrées:");
+		for(Recette r : recettes)
+			if(r.getType().equals(TypeRecette.Entrée)) System.out.println(r.toString());
+		System.out.println("Plats:");
+		for(Recette r : recettes)
 			if(r.getType().equals(TypeRecette.Plat)) System.out.println(r.toString());
+		System.out.println("Desserts:");
+		for(Recette r : recettes)
+			if(r.getType().equals(TypeRecette.Dessert)) System.out.println(r.toString());
 	}
     
 	/*
@@ -32,13 +40,14 @@ public class SQL {
 	 *   instructions : liste d'instructions de la recette (liste de String)
 	 * Sortie: aucune
 	 */
-    public static void ajoutRecette(String nom, TypeRecette type, ArrayList<Ingredient> ingredients, ArrayList<String> instructions) {
+    public static void ajoutRecette(String nom, TypeRecette type, ArrayList<Ingredient> ingredients, ArrayList<String> instructions, String urlImage) {
     	try {
     		Map<String,Object> params = new LinkedHashMap<>();
             params.put("nom", nom);
             params.put("type", type.getValue());
             params.put("ingredients", formatageIngredientsEnString(ingredients));
             params.put("instructions", formatageInstructionsEnString(instructions));
+            params.put("url_image", urlImage);
 			requete(params);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -183,35 +192,35 @@ public class SQL {
 	 * Sortie: Liste des recettes triées
 	 */
     public static List<Recette> listeRecettes() {
-        HttpURLConnection con = null;
-        TreeSet<Recette> content = new TreeSet<Recette>();
-        try {
-            URL url = new URL("https://cookinghapp.crystalium.eu/liste_recettes.php");
-            con = (HttpURLConnection) url.openConnection();
+    	HttpURLConnection con = null;
+    	TreeSet<Recette> content = new TreeSet<Recette>();
+    	try {
+    		URL url = new URL("https://cookinghapp.crystalium.eu/liste_recettes.php");
+    		con = (HttpURLConnection) url.openConnection();
 
-            try (Scanner br = new Scanner(new InputStreamReader(con.getInputStream())).useDelimiter("\\s*<br>\\s*")) {
-                while (br.hasNext()) {
-                	String recep = br.next();
-	                if(!recep.isEmpty()) {
-	                		String[] r = recep.trim().split("\\\u2016");
-		                	Recette recette = null;
-		            		try {
-		        				recette = new Recette(r[0].replaceAll("<br />", ""), Integer.parseInt(r[1]), r.length<5?(new ArrayList<Ingredient>()):formatageIngredientsEnArray(r[4]), r.length<6?(new ArrayList<String>()):formatageInstructionsEnArray(r[5]), Float.parseFloat(r[2]), Integer.parseInt(r[3]));
-		        			} catch (NumberFormatException e) {
-		        				e.printStackTrace();
-		        			} catch (MauvaisTypeException e) {
-		        				e.printStackTrace();
-		        			}
-		            		if(recette != null)
-		            			content.add(recette);
-		            		else
-		            			System.out.println("La recette " + r[0] + " n'a pas été chargée!");
-	                }
-                }
-                br.close();
-            }
-        } catch (IOException e) {
-			e.printStackTrace();
+    		try (Scanner br = new Scanner(new InputStreamReader(con.getInputStream())).useDelimiter("\\s*<br>\\s*")) {
+    			while (br.hasNext()) {
+    				String recep = br.next();
+    				if(!recep.isEmpty()) {
+    					String[] r = recep.trim().split("\\\u2016");
+    					Recette recette = null;
+    					try {
+    						recette = new Recette(r[0].replaceAll("<br />", ""), Integer.parseInt(r[1]), r.length<5?(new ArrayList<Ingredient>()):formatageIngredientsEnArray(r[4]), r.length<6?(new ArrayList<String>()):formatageInstructionsEnArray(r[5]), Float.parseFloat(r[2]), Integer.parseInt(r[3]), r.length<7?(""):r[6]);
+    					} catch (NumberFormatException e) {
+    						e.printStackTrace();
+    					} catch (MauvaisTypeException e) {
+    						e.printStackTrace();
+    					}
+    					if(recette != null)
+    						content.add(recette);
+    					else
+    						System.out.println("La recette " + r[0] + " n'a pas été chargée!");
+    				}
+    			}
+    			br.close();
+    		}
+    	} catch (IOException e) {
+    		e.printStackTrace();
 		}
         
         return new ArrayList<Recette>(content);

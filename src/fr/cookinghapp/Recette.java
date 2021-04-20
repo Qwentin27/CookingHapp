@@ -14,37 +14,40 @@ public class Recette implements Comparable<Recette> {
 	private static int comparateur;
 	
 	public Recette(String nom, TypeRecette type, 
-			ArrayList<String> etapes, ArrayList<Ingredient> ingredients) {
+			ArrayList<String> etapes, ArrayList<Ingredient> ingredients,
+			String urlImage) {
 		this.nom = nom;
 		this.type = type;
 		this.etapes = etapes;
 		this.ingredients = ingredients;
 		this.setNote(0, nombre_votants);
-		urlImage = "";
+		this.urlImage = urlImage;
 		comparateur = 0;
 	}
 	
 	public Recette(String nom, TypeRecette type, 
 			ArrayList<String> etapes, ArrayList<Ingredient> ingredients,
-			float note, int nombre_votants) {
+			float note, int nombre_votants,
+			String urlImage) {
 		this.nom = nom;
 		this.type = type;
 		this.etapes = etapes;
 		this.ingredients = ingredients;
 		this.setNote(note, nombre_votants);
-		urlImage = "";
+		this.urlImage = urlImage;
 		comparateur = 0;
 	}
 	
 	public Recette(String nom, int type,
 			ArrayList<Ingredient> ingredients, ArrayList<String> etapes, 
-			float note, int nombre_votants) throws MauvaisTypeException {
+			float note, int nombre_votants,
+			String urlImage) throws MauvaisTypeException {
 		this.nom = nom;
 		setType(type);
 		this.etapes = etapes;
 		this.ingredients = ingredients;
 		this.setNote(note, nombre_votants);
-		urlImage = "";
+		this.urlImage = urlImage;
 		comparateur = 0;
 	}
 
