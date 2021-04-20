@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -75,6 +77,13 @@
                            <HBox.margin>
                               <Insets left="20.0" top="10.0" />
                            </HBox.margin>
+                           <children>
+                              <ScrollBar orientation="VERTICAL" prefHeight="213.0" prefWidth="18.0">
+                                 <VBox.margin>
+                                    <Insets left="221.0" />
+                                 </VBox.margin>
+                              </ScrollBar>
+                           </children>
                         </VBox>
                      </children>
                   </HBox>
@@ -97,14 +106,57 @@
                   </HBox>
                </children>
             </VBox>
-            <ImageView fitHeight="320.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@resources/images/main_select/karp.png" />
-               </image>
-               <HBox.margin>
-                  <Insets right="15.0" top="20.0" />
-               </HBox.margin>
-            </ImageView>
+            <VBox prefHeight="340.0" prefWidth="265.0">
+               <children>
+                  <ImageView fitHeight="237.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@../images/main_select/karp.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label style="-fx-alignment: center;" text="Note" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="110.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="46.0" prefWidth="164.0" style="-fx-alignment: center;">
+                           <children>
+                              <Button mnemonicParsing="false" styleClass="button_addList" text="-">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Label text="0" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" styleClass="button_addList" text="+">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <BottomNavigationButton styleClass="button_addList" stylesheets="@Style_home.css" text="Valider">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </BottomNavigationButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>
