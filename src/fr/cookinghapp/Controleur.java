@@ -76,9 +76,11 @@ public class Controleur extends Observable {
 	}
 	
 	public void clic_liste() throws IOException{
-		// Changement de scene lors du clic
-		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
+		// Changement de scene lors du clic -> vers Liste
+		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_Liste.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
 	}
+	
+	
 	
 }
