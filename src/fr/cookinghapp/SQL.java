@@ -3,7 +3,6 @@ package fr.cookinghapp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -11,9 +10,10 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeSet;
 
 public class SQL {
 	public static void main(String[] args) {
@@ -83,10 +83,13 @@ public class SQL {
     	ArrayList<Ingredient> out = new ArrayList<Ingredient>();
     	for(String ing : ingredients.split("\\|")) {
 	    	String[] ingredient = ing.split("\u2807");
-	    	if(ingredient.length<3)
-	    		out.add(new Ingredient(ingredient[0], ingredient[1]));
-	    	else
-	    		out.add(new Ingredient(ingredient[0], ingredient[1], ingredient[2]));
+	    	try {
+		    	if(ingredient.length<3)
+		    		out.add(new Ingredient(ingredient[0], ingredient[1]));
+		    	else
+		    		out.add(new Ingredient(ingredient[0], ingredient[1], ingredient[2]));
+		    	}
+	    	catch(ArrayIndexOutOfBoundsException e) {}
     	}
     	return out;
     }
@@ -164,7 +167,7 @@ public class SQL {
         conn.setDoOutput(true);
         conn.getOutputStream().write(postDataBytes);
 
-        Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
         for (int c; (c = in.read()) >= 0;)
             System.out.print((char)c);
@@ -181,44 +184,36 @@ public class SQL {
 	 */
     public static List<Recette> listeRecettes() {
         HttpURLConnection con = null;
-        LinkedList<Recette> content = new LinkedList<Recette>();
+        TreeSet<Recette> content = new TreeSet<Recette>();
         try {
             URL url = new URL("https://cookinghapp.crystalium.eu/liste_recettes.php");
             con = (HttpURLConnection) url.openConnection();
 
-            String out = "";
-
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                	out += line;
+            try (Scanner br = new Scanner(new InputStreamReader(con.getInputStream())).useDelimiter("\\s*<br>\\s*")) {
+                while (br.hasNext()) {
+                	String recep = br.next();
+	                if(!recep.isEmpty()) {
+	                		String[] r = recep.trim().split("\\\u2016");
+		                	Recette recette = null;
+		            		try {
+		        				recette = new Recette(r[0].replaceAll("<br />", ""), Integer.parseInt(r[1]), r.length<5?(new ArrayList<Ingredient>()):formatageIngredientsEnArray(r[4]), r.length<6?(new ArrayList<String>()):formatageInstructionsEnArray(r[5]), Float.parseFloat(r[2]), Integer.parseInt(r[3]));
+		        			} catch (NumberFormatException e) {
+		        				e.printStackTrace();
+		        			} catch (MauvaisTypeException e) {
+		        				e.printStackTrace();
+		        			}
+		            		if(recette != null)
+		            			content.add(recette);
+		            		else
+		            			System.out.println("La recette " + r[0] + " n'a pas été chargée!");
+	                }
                 }
                 br.close();
-                if(!out.isEmpty()) {
-                	String[] liste = out.split("<br>");
-                	for(int i=0; i<liste.length; i++) {
-                		String[] r = liste[i].trim().split("\\\u2016");
-	                	Recette recette = null;
-	            		try {
-	        				recette = new Recette(r[0].replaceAll("<br />", ""), Integer.parseInt(r[1]), r.length<5?(new ArrayList<Ingredient>()):formatageIngredientsEnArray(r[4]), r.length<6?(new ArrayList<String>()):formatageInstructionsEnArray(r[5]), Float.parseFloat(r[2]), Integer.parseInt(r[3]));
-	        			} catch (NumberFormatException e) {
-	        				e.printStackTrace();
-	        			} catch (MauvaisTypeException e) {
-	        				e.printStackTrace();
-	        			}
-	            		if(recette != null)
-	            			content.add(recette);
-	            		else
-	            			System.out.println("La recette " + r[0] + " n'a pas été chargée!");
-                	}
-                }
             }
         } catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-            con.disconnect();
-        }
+		}
         
-        return content;
+        return new ArrayList<Recette>(content);
     }
 }

@@ -1,5 +1,6 @@
 package fr.cookinghapp;
 
+import java.io.FileNotFoundException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -7,7 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
-import javafx.application.Platform;
+import fr.cookinghapp.resources.Resources;
+import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -28,10 +30,9 @@ public class Modele extends Observable {
 
 	public void selectionType(TypeRecette type) {
 		Modele m = Vue.getModele();
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() {
 				liste.clear();
 				for(Recette r : getRecettes(type)) {
 					Button b = new Button(getNoteToString(r.getNote()) + " (" + r.getNombre_votants() + ") " + r.getNom());
@@ -39,21 +40,29 @@ public class Modele extends Observable {
 					b.setAlignment(Pos.CENTER_LEFT);
 					b.setPrefWidth(560);
 					b.setPrefHeight(Button.USE_COMPUTED_SIZE);
+					try {
 					ImageView img;
 					if(r.hasImage())
 						img = new ImageView(r.getImage());
 					else
-						img = new ImageView("https://static.thenounproject.com/png/340719-200.png");
+						img = new ImageView(Resources.getImage("images/main_select/no-picture.png"));
 					img.setPreserveRatio(true);
 					img.setFitHeight(15);
 					img.setFitWidth(15);
 					b.setGraphic(img);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
 					liste.add(b);
 				}
-				m.setChanged();
-				m.notifyObservers(liste);
-			}
-		});
+				return null;
+            }
+        };
+        task.setOnSucceeded(taskFinishEvent -> {
+			m.setChanged();
+			m.notifyObservers(liste);
+        });
+        new Thread(task).start();
 	}
 	
 	public void setSens() {
@@ -79,8 +88,6 @@ public class Modele extends Observable {
 			if(r.getType().equals(type)) out.add(r);
 		if(sens)
 			Collections.sort(out, Collections.reverseOrder());
-		else
-			Collections.sort(out);
 		return out;
 	}
 }
