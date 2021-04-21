@@ -40,11 +40,12 @@ public class SQL {
 	 *   instructions : liste d'instructions de la recette (liste de String)
 	 * Sortie: aucune
 	 */
-    public static void ajoutRecette(String nom, TypeRecette type, ArrayList<Ingredient> ingredients, ArrayList<String> instructions, String urlImage) {
+    public static void ajoutRecette(String nom, TypeRecette type, int nbPersonnes, ArrayList<Ingredient> ingredients, ArrayList<String> instructions, String urlImage) {
     	try {
     		Map<String,Object> params = new LinkedHashMap<>();
             params.put("nom", nom);
             params.put("type", type.getValue());
+            params.put("nb_personnes", nbPersonnes);
             params.put("ingredients", formatageIngredientsEnString(ingredients));
             params.put("instructions", formatageInstructionsEnString(instructions));
             params.put("url_image", urlImage);
@@ -205,7 +206,10 @@ public class SQL {
     					String[] r = recep.trim().split("\\\u2016");
     					Recette recette = null;
     					try {
-    						recette = new Recette(r[0].replaceAll("<br />", ""), Integer.parseInt(r[1]), r.length<5?(new ArrayList<Ingredient>()):formatageIngredientsEnArray(r[4]), r.length<6?(new ArrayList<String>()):formatageInstructionsEnArray(r[5]), Float.parseFloat(r[2]), Integer.parseInt(r[3]), r.length<7?(""):r[6]);
+    						recette = new Recette(r[0].replaceAll("<br />", ""), Integer.parseInt(r[1]), Integer.parseInt(r[4]),
+    										r.length<6?(new ArrayList<Ingredient>()):formatageIngredientsEnArray(r[5]), r.length<7?(new ArrayList<String>()):formatageInstructionsEnArray(r[6]),
+    										Float.parseFloat(r[2]), Integer.parseInt(r[3]),
+    										r.length<8?(""):r[7]);
     					} catch (NumberFormatException e) {
     						e.printStackTrace();
     					} catch (MauvaisTypeException e) {

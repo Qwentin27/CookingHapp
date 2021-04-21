@@ -1,31 +1,29 @@
 package fr.cookinghapp;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Recette implements Comparable<Recette> {
 	
 	private String nom;
 	private TypeRecette type;
+	private int nbPersonnes;
 	private ArrayList<String> etapes;
 	private ArrayList<Ingredient> ingredients;
 	private float note;
 	private int nombre_votants;
 	private String urlImage;
 	private static int comparateur;
+	private static DecimalFormat df;
 	
-	public Recette(String nom, TypeRecette type, 
+	public Recette(String nom, TypeRecette type, int nbPersonnes,
 			ArrayList<String> etapes, ArrayList<Ingredient> ingredients,
 			String urlImage) {
-		this.nom = nom;
-		this.type = type;
-		this.etapes = etapes;
-		this.ingredients = ingredients;
-		this.setNote(0, nombre_votants);
-		this.urlImage = urlImage;
-		comparateur = 0;
+		this(nom, type, nbPersonnes, etapes, ingredients, 0, 0, urlImage);
 	}
 	
-	public Recette(String nom, TypeRecette type, 
+	public Recette(String nom, TypeRecette type, int nbPersonnes,
 			ArrayList<String> etapes, ArrayList<Ingredient> ingredients,
 			float note, int nombre_votants,
 			String urlImage) {
@@ -36,19 +34,28 @@ public class Recette implements Comparable<Recette> {
 		this.setNote(note, nombre_votants);
 		this.urlImage = urlImage;
 		comparateur = 0;
+		if(df == null) {
+			df = new DecimalFormat("#.#");
+			df.setRoundingMode(RoundingMode.CEILING);
+		}
 	}
 	
-	public Recette(String nom, int type,
+	public Recette(String nom, int type, int nbPersonnes,
 			ArrayList<Ingredient> ingredients, ArrayList<String> etapes, 
 			float note, int nombre_votants,
 			String urlImage) throws MauvaisTypeException {
 		this.nom = nom;
 		setType(type);
+		this.nbPersonnes = nbPersonnes;
 		this.etapes = etapes;
 		this.ingredients = ingredients;
 		this.setNote(note, nombre_votants);
 		this.urlImage = urlImage;
 		comparateur = 0;
+		if(df == null) {
+			df = new DecimalFormat("#.##");
+			df.setRoundingMode(RoundingMode.CEILING);
+		}
 	}
 
 	public String getNom() {
@@ -104,8 +111,16 @@ public class Recette implements Comparable<Recette> {
 		this.etapes = etapes;
 	}
 
+	public ArrayList<Ingredient> getIngredients(int nbPersonnes) {
+		ArrayList<Ingredient> out = new ArrayList<Ingredient>();
+		for (Ingredient ing : ingredients) {
+			out.add(new Ingredient(ing.getNom(), df.format(((float)(ing.getQuantite()*nbPersonnes))/((float)this.nbPersonnes)), ing.getMesure()));
+		}
+		return out;
+	}
+
 	public ArrayList<Ingredient> getIngredients() {
-		return ingredients;
+		return this.ingredients;
 	}
 
 	public void ajoutIngredients(ArrayList<Ingredient> ingredients) {
@@ -150,15 +165,19 @@ public class Recette implements Comparable<Recette> {
 	
 	@Override
 	public String toString() {
+		return this.toString(-1);
+	}
+	
+	public String toString(int nbPersonnes) {
 		String ingStr = "Ingrédients:";
 		if(this.ingredients.isEmpty())
 			ingStr = "Aucun ingrédient.";
 		else
-			for(Ingredient ing : this.ingredients) {
+			for(Ingredient ing : (nbPersonnes==-1?getIngredients():getIngredients(nbPersonnes))) {
 				ingStr = ingStr + "\n - " + ing.toString();
 			}
 		String etapes = "Etapes de la recette:";
-		if(this.ingredients.isEmpty())
+		if(this.etapes.isEmpty())
 			etapes = "Aucune étape.";
 		else
 			for(String e : this.etapes) {
@@ -185,5 +204,11 @@ public class Recette implements Comparable<Recette> {
 
 	public String getImage() {
 		return this.urlImage;
+	}
+	
+	public static void main(String[] args) {
+		Recette r = SQL.listeRecettes().get(0);
+		System.out.println(r.toString());
+		System.out.println(r.toString(10));
 	}
 }
