@@ -15,13 +15,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 
 public class Controleur extends Observable {
-	
-	@FXML
-	private AnchorPane rootPane;
-	// Variable privée permettant de changer la scène actuelle 
 	
 	@FXML
 	public MenuItem main_select_entrees;
