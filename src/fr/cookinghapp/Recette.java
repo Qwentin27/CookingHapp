@@ -1,7 +1,5 @@
 package fr.cookinghapp;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Recette implements Comparable<Recette> {
@@ -15,7 +13,6 @@ public class Recette implements Comparable<Recette> {
 	private int nombre_votants;
 	private String urlImage;
 	private static int comparateur;
-	private static DecimalFormat df;
 	
 	public Recette(String nom, TypeRecette type, int nbPersonnes,
 			ArrayList<String> etapes, ArrayList<Ingredient> ingredients,
@@ -34,10 +31,6 @@ public class Recette implements Comparable<Recette> {
 		this.setNote(note, nombre_votants);
 		this.urlImage = urlImage;
 		comparateur = 0;
-		if(df == null) {
-			df = new DecimalFormat("#.#");
-			df.setRoundingMode(RoundingMode.CEILING);
-		}
 	}
 	
 	public Recette(String nom, int type, int nbPersonnes,
@@ -52,10 +45,6 @@ public class Recette implements Comparable<Recette> {
 		this.setNote(note, nombre_votants);
 		this.urlImage = urlImage;
 		comparateur = 0;
-		if(df == null) {
-			df = new DecimalFormat("#.##");
-			df.setRoundingMode(RoundingMode.CEILING);
-		}
 	}
 
 	public String getNom() {
@@ -114,7 +103,7 @@ public class Recette implements Comparable<Recette> {
 	public ArrayList<Ingredient> getIngredients(int nbPersonnes) {
 		ArrayList<Ingredient> out = new ArrayList<Ingredient>();
 		for (Ingredient ing : ingredients) {
-			out.add(new Ingredient(ing.getNom(), df.format(((float)(ing.getQuantite()*nbPersonnes))/((float)this.nbPersonnes)), ing.getMesure()));
+			out.add(new Ingredient(ing.getNom(), Vue.getDf().format(((float)(ing.getQuantite()*nbPersonnes))/((float)this.nbPersonnes)), ing.getMesure()));
 		}
 		return out;
 	}
@@ -139,6 +128,11 @@ public class Recette implements Comparable<Recette> {
 
 	public float getNote() {
 		return note;
+	}
+
+	public String formatNote() {
+		if(note - Math.round(note) > 0) return Vue.getDf().format(note);
+		return "" + Math.round(note);
 	}
 	
 	public void addNote(int note) {

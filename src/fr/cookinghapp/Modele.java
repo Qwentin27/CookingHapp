@@ -1,8 +1,7 @@
 package fr.cookinghapp;
 
 import java.io.FileNotFoundException;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,21 +9,26 @@ import java.util.Observable;
 
 import fr.cookinghapp.resources.Resources;
 import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 public class Modele extends Observable {
 	
-	private DecimalFormat df;
 	private boolean sens;
 	private List<Button> liste;
 
 	public Modele() {
 		sens = false;
-		df = new DecimalFormat("#.#");
-		df.setRoundingMode(RoundingMode.CEILING);
 		liste = new ArrayList<Button>();
 	}
 
@@ -57,6 +61,31 @@ public class Modele extends Observable {
 						b.setGraphic(img);
 					} catch (FileNotFoundException e) {
 					}
+					b.setOnAction((e) -> {
+						try {
+							Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
+							Vue.getAppStage().setScene(new Scene(page));
+							Scene scene = Vue.getAppStage().getScene();
+							Label nom = (Label) scene.lookup("#nom_recette");
+							nom.setText(r.getNom());
+							VBox liste = (VBox) scene.lookup("#box_ingredients");
+							liste.setAlignment(Pos.TOP_LEFT); //TODO A rajouter dans le fichier Scene_ingredientsRecettes.fxml
+							liste.getChildren().clear(); //Facultatif, mais permet d'être sûr que la liste d'ingrédients est vide au départ
+							for(Ingredient ing : r.getIngredients()) {
+								CheckBox cb = new CheckBox(ing.toString());
+								cb.setTextAlignment(TextAlignment.LEFT);
+								liste.getChildren().add(cb);
+							}
+							Label noteTexte = (Label) scene.lookup("#note_texte");
+							noteTexte.setText(r.formatNote());
+							if(r.hasImage()) {
+								ImageView img = (ImageView) scene.lookup("#image_recette");
+								img.setImage(new Image(r.getImage()));
+							}
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+					});
 					liste.add(b);
 				}
 				return null;
@@ -82,7 +111,7 @@ public class Modele extends Observable {
 			if(note >= (1+i)) out += "\u2605";
 			else out += "\u2606";
 		}
-		out+=(note==Math.round(note)?"   ":"")+"["+df.format(note)+"]";
+		out+=(note==Math.round(note)?"   ":"")+"["+Vue.getDf().format(note)+"]";
 		return out;
 	}
 

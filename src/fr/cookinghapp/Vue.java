@@ -1,5 +1,7 @@
 package fr.cookinghapp;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -18,12 +20,23 @@ public class Vue extends Application implements Observer {
 	private static Modele modele;
 	private static Scene scene;
 	private static Stage appStage;
+	private static DecimalFormat df;
+
+	public static DecimalFormat getDf() {
+		return df;
+	}
 
 	public static Modele getModele() {
 		return modele;
 	}
 
+	public static Stage getAppStage() {
+		return appStage;
+	}
+
 	public static void main(String[] args) {
+		df = new DecimalFormat("#.##");
+		df.setRoundingMode(RoundingMode.CEILING);
 		launch(args);
 	}
 	
@@ -50,10 +63,6 @@ public class Vue extends Application implements Observer {
 			for(Button b : (ArrayList<Button>) arg)
 				liste.getChildren().add(b);
 		}
-	}
-
-	public static Stage getAppStage() {
-		return appStage;
 	}
 
 }

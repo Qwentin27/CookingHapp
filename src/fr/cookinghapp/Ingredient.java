@@ -50,6 +50,11 @@ public class Ingredient {
 		return quantite;
 	}
 
+	public String formatQuantite() {
+		if(quantite - Math.round(quantite) > 0) return Vue.getDf().format(quantite);
+		return "" + Math.round(quantite);
+	}
+
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
 	}
@@ -65,8 +70,8 @@ public class Ingredient {
 	@Override
 	public String toString() {
 		if(quantite == 0) return nom;
-		if(mesure.isEmpty()) return quantite + " " + nom;
-		if(nom.charAt(0) == 'h') return quantite + " " + mesure + " d'" + nom;
-		return quantite + " " + mesure + " de " + nom;
+		if(mesure.isEmpty()) return formatQuantite() + " " + nom;
+		if(nom.charAt(0) == 'h') return formatQuantite() + " " + mesure + " d'" + nom;
+		return formatQuantite() + " " + mesure + " de " + nom;
 	}
 }

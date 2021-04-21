@@ -55,7 +55,7 @@
          <children>
             <VBox prefHeight="340.0" prefWidth="335.0">
                <children>
-                  <Label styleClass="label_nomRecette" text="MAGICARPE A LA CREME" textFill="WHITE">
+                  <Label fx:id="nom_recette" styleClass="label_nomRecette" text="MAGICARPE A LA CREME" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -75,7 +75,7 @@
                      <children>
                         <ScrollPane prefHeight="223.0" prefWidth="241.0" styleClass="four_bottom">
                            <content>
-                              <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="267.0" prefWidth="239.0" styleClass="box_ingredients" />
+                              <VBox fx:id="box_ingredients" alignment="TOP_CENTER" prefHeight="267.0" prefWidth="239.0" styleClass="box_ingredients" />
                            </content>
                         </ScrollPane>
                      </children>
@@ -104,7 +104,7 @@
             </VBox>
             <VBox prefHeight="340.0" prefWidth="265.0">
                <children>
-                  <ImageView fitHeight="237.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image_recette" fitHeight="237.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -124,12 +124,12 @@
                         </Label>
                         <HBox prefHeight="46.0" prefWidth="164.0" style="-fx-alignment: center;">
                            <children>
-                              <ToggleButton mnemonicParsing="false" styleClass="button_addList" text="-">
+                              <ToggleButton fx:id="note_moins" mnemonicParsing="false" styleClass="button_addList" text="-">
                                  <HBox.margin>
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </ToggleButton>
-                              <Label text="0" textFill="WHITE">
+                              <Label fx:id="note_texte" text="0" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -137,12 +137,12 @@
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </Label>
-                              <ToggleButton mnemonicParsing="false" styleClass="button_addList" text="+">
+                              <ToggleButton fx:id="note_plus" mnemonicParsing="false" styleClass="button_addList" text="+">
                                  <HBox.margin>
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </ToggleButton>
-                              <ToggleButton mnemonicParsing="false" styleClass="button_addList" text="Valider" />
+                              <ToggleButton fx:id="note_valider" mnemonicParsing="false" styleClass="button_addList" text="Valider" />
                            </children>
                            <VBox.margin>
                               <Insets />
