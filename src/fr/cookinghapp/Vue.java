@@ -61,14 +61,13 @@ public class Vue extends Application implements Observer {
 		modele.addObserver(this);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg instanceof ArrayList) {
 			VBox liste = (VBox) scene.lookup("#recettes_vbox");
 			liste.getChildren().clear();
-			for(Button b : (ArrayList<Button>) arg)
-				liste.getChildren().add(b);
+			for(Object b : (ArrayList<?>)arg)
+				liste.getChildren().add((Button)b);
 		}
 		else if(arg instanceof Recette) {
 			Recette r = (Recette) arg;
@@ -84,6 +83,7 @@ public class Vue extends Application implements Observer {
 				for(Ingredient ing : r.getIngredients()) {
 					CheckBox cb = new CheckBox(ing.toString());
 					cb.setTextAlignment(TextAlignment.LEFT);
+					cb.getStyleClass().add("box_ingredients");
 					liste.getChildren().add(cb);
 				}
 				Label noteTexte = (Label) scene.lookup("#note_texte");
