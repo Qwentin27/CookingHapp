@@ -15,6 +15,12 @@ import javafx.scene.layout.Border;
 
 public class Modele extends Observable {
 	
+	private Recette recetteVisionnee;
+	
+	public Recette getRecetteVisionnee() {
+		return recetteVisionnee;
+	}
+
 	private boolean sens;
 	private List<Button> liste;
 
@@ -53,8 +59,9 @@ public class Modele extends Observable {
 					} catch (FileNotFoundException e) {
 					}
 					b.setOnAction((e) -> {
+						recetteVisionnee = r;
 						m.setChanged();
-						m.notifyObservers(r);
+						m.notifyObservers(recetteVisionnee);
 					});
 					liste.add(b);
 				}

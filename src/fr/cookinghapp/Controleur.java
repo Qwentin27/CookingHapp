@@ -43,7 +43,7 @@ public class Controleur extends Observable {
 	        img.setFitWidth(24);
 			main_menu.setGraphic(img);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -70,7 +70,7 @@ public class Controleur extends Observable {
 		Vue.getModele().setSens();
 	}
 	
-	public void clic_liste() throws IOException{
+	public void clic_liste_menu() throws IOException{
 		// Changement de scene lors du clic -> vers Liste
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_Liste.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));

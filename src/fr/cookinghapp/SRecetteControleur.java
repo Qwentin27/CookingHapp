@@ -1,7 +1,6 @@
 package fr.cookinghapp;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Observable;
 
 import fr.cookinghapp.resources.Resources;
@@ -10,17 +9,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
+
 
 public class SRecetteControleur extends Observable{
 	
 	@FXML
-	public Button button_list;
+	public Button button_list_recette;
 	
-	public void clic_liste() throws IOException{
+	@FXML
+	public Button button_recette_recette;
+	
+	public void clic_liste_recette() throws IOException{
 		
 		// Changement de scene lors du clic -> vers Liste
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_Liste.fxml"));
@@ -28,34 +27,21 @@ public class SRecetteControleur extends Observable{
 	}
 	
 	public void clic_note_plus() { // Incrémentation de la note associée à la recette
-		
+		//TODO test <= 5
 	}
 	
 	public void clic_note_moins() { // Décrémentation de la note associée à la recette
-		
+		//TODO test >= 0
 	}
 	
 	public void clic_valider() { // Validation de la note
-		
+		//TODO envoyer à l'SQL
 	}
 	
-	public void clic_recette() { // Affichage de la recette associée
+	public void clic_recette_recette() throws IOException{ // Affichage de la recette associée
 		
-		Scene scene = Vue.getAppStage().getScene();
-		Label nom = (Label) scene.lookup("#titre");
-		nom.setText("Etapes :");
-		VBox liste = (VBox) scene.lookup("#box_ingredients");
-		liste.getChildren().clear();
+		Vue.getSmodele().setRecette(Vue.getModele().getRecetteVisionnee());
 		
-		/*
-		for(Etape step : r.getEtapes()) {
-			Label etape = step.toString();
-			//CheckBox cb = new CheckBox(step.toString());
-			cb.setTextAlignment(TextAlignment.LEFT);
-			cb.getStyleClass().add("box_ingredients");
-			liste.getChildren().add(etape);
-		}
-		*/
 	}
 	
 	public void clic_ajouter_liste() { // Ajout des ingrédients a la liste de course
