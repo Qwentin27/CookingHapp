@@ -1,5 +1,6 @@
 package fr.cookinghapp;
 
+
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -16,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -83,15 +86,21 @@ public class Vue extends Application implements Observer {
 			Recette r = (Recette) arg;
 			if(o instanceof SRecetteModele) {
 				Scene scene = Vue.getAppStage().getScene();
+				ScrollPane sp = (ScrollPane) scene.lookup("#scroll_ingredients");
+				sp.setHbarPolicy(ScrollBarPolicy.NEVER);
+				sp.setPrefHeight(ScrollPane.USE_COMPUTED_SIZE);
 				Label nom = (Label) scene.lookup("#titre");
 				nom.setText("Etapes :");
 				VBox liste = (VBox) scene.lookup("#box_ingredients");
 				liste.setAlignment(Pos.TOP_LEFT);
 				liste.getChildren().clear();
 				for(String e : r.getEtapes()) {
-					Text t = new Text(e);
+					Text t = new Text(e + "\n");
+					t.setWrappingWidth(liste.getWidth()-12);
+					t.setFocusTraversable(false);
 					liste.getChildren().add(t);
 				}
+				
 			}
 			
 			else {
@@ -104,11 +113,15 @@ public class Vue extends Application implements Observer {
 					VBox liste = (VBox) scene.lookup("#box_ingredients");
 					liste.setAlignment(Pos.TOP_LEFT); //TODO A rajouter dans le fichier Scene_ingredientsRecettes.fxml
 					liste.getChildren().clear(); //Facultatif, mais permet d'être sûr que la liste d'ingrédients est vide au départ
+					ScrollPane sp = (ScrollPane) scene.lookup("#scroll_ingredients");
+					sp.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+					sp.setPrefHeight(ScrollPane.USE_COMPUTED_SIZE);
 					for(Ingredient ing : r.getIngredients()) {
 						CheckBox cb = new CheckBox(ing.toString());
 						cb.setTextAlignment(TextAlignment.LEFT);
 						cb.getStyleClass().add("box_ingredients");
 						liste.getChildren().add(cb);
+						
 					}
 					Label noteTexte = (Label) scene.lookup("#note_texte");
 					noteTexte.setText("3");
