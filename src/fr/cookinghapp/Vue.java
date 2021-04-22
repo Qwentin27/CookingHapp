@@ -19,15 +19,18 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Vue extends Application implements Observer {
 
 	private static Modele modele;
+	private static SRecetteModele smodele;
 	private static Scene scene;
 	private static Stage appStage;
 	private static DecimalFormat df;
+	public static Vue vue;
 
 	public static DecimalFormat getDf() {
 		return df;
@@ -49,6 +52,7 @@ public class Vue extends Application implements Observer {
 	
 	//affiche un menu simple		
 	public void start(Stage primaryStage) throws Exception {
+		vue = this;
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
 		scene = new Scene(page);
 		primaryStage.setScene(scene);
@@ -59,6 +63,12 @@ public class Vue extends Application implements Observer {
 		appStage = primaryStage;
 		modele = new Modele();
 		modele.addObserver(this);
+		smodele = new SRecetteModele();
+		smodele.addObserver(this);
+	}
+
+	public static SRecetteModele getSmodele() {
+		return smodele;
 	}
 
 	@Override
@@ -71,31 +81,49 @@ public class Vue extends Application implements Observer {
 		}
 		else if(arg instanceof Recette) {
 			Recette r = (Recette) arg;
-			try {
-				Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
-				Vue.getAppStage().setScene(new Scene(page));
+			if(o instanceof SRecetteModele) {
 				Scene scene = Vue.getAppStage().getScene();
-				Label nom = (Label) scene.lookup("#nom_recette");
-				nom.setText(r.getNom());
+				Label nom = (Label) scene.lookup("#titre");
+				nom.setText("Etapes :");
 				VBox liste = (VBox) scene.lookup("#box_ingredients");
-				liste.setAlignment(Pos.TOP_LEFT); //TODO A rajouter dans le fichier Scene_ingredientsRecettes.fxml
-				liste.getChildren().clear(); //Facultatif, mais permet d'être sûr que la liste d'ingrédients est vide au départ
-				for(Ingredient ing : r.getIngredients()) {
-					CheckBox cb = new CheckBox(ing.toString());
-					cb.setTextAlignment(TextAlignment.LEFT);
-					cb.getStyleClass().add("box_ingredients");
-					liste.getChildren().add(cb);
+				liste.setAlignment(Pos.TOP_LEFT);
+				liste.getChildren().clear();
+				for(String e : r.getEtapes()) {
+					Text t = new Text(e);
+					liste.getChildren().add(t);
 				}
-				Label noteTexte = (Label) scene.lookup("#note_texte");
-				noteTexte.setText(r.formatNote());
-				if(r.hasImage()) {
-					ImageView img = (ImageView) scene.lookup("#image_recette");
-					img.setImage(new Image(r.getImage()));
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
 			}
+			
+			else {
+				try {
+					Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
+					Vue.getAppStage().setScene(new Scene(page));
+					Scene scene = Vue.getAppStage().getScene();
+					Label nom = (Label) scene.lookup("#nom_recette");
+					nom.setText(r.getNom());
+					VBox liste = (VBox) scene.lookup("#box_ingredients");
+					liste.setAlignment(Pos.TOP_LEFT); //TODO A rajouter dans le fichier Scene_ingredientsRecettes.fxml
+					liste.getChildren().clear(); //Facultatif, mais permet d'être sûr que la liste d'ingrédients est vide au départ
+					for(Ingredient ing : r.getIngredients()) {
+						CheckBox cb = new CheckBox(ing.toString());
+						cb.setTextAlignment(TextAlignment.LEFT);
+						cb.getStyleClass().add("box_ingredients");
+						liste.getChildren().add(cb);
+					}
+					Label noteTexte = (Label) scene.lookup("#note_texte");
+					noteTexte.setText("3");
+					if(r.hasImage()) {
+						ImageView img = (ImageView) scene.lookup("#image_recette");
+						img.setImage(new Image(r.getImage()));
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			
 		}
+		
 	}
 
 }
