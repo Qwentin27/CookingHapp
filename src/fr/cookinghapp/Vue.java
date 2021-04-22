@@ -21,6 +21,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -114,13 +115,18 @@ public class Vue extends Application implements Observer {
 					liste.setAlignment(Pos.TOP_LEFT); //TODO A rajouter dans le fichier Scene_ingredientsRecettes.fxml
 					liste.getChildren().clear(); //Facultatif, mais permet d'être sûr que la liste d'ingrédients est vide au départ
 					ScrollPane sp = (ScrollPane) scene.lookup("#scroll_ingredients");
-					sp.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+					sp.setHbarPolicy(ScrollBarPolicy.NEVER);
 					sp.setPrefHeight(ScrollPane.USE_COMPUTED_SIZE);
 					for(Ingredient ing : r.getIngredients()) {
-						CheckBox cb = new CheckBox(ing.toString());
-						cb.setTextAlignment(TextAlignment.LEFT);
-						cb.getStyleClass().add("box_ingredients");
-						liste.getChildren().add(cb);
+						Text t = new Text(ing.toString() + "\n");
+                        t.setTextAlignment(TextAlignment.LEFT);
+                        t.setWrappingWidth(liste.getWidth()-42);
+                        t.getStyleClass().add("box_ingredients");
+                        CheckBox cb = new CheckBox();
+                        cb.setAlignment(Pos.CENTER_RIGHT);
+                        cb.getStyleClass().add("box_ingredients");
+                        HBox hb = new HBox(cb, t);
+                        liste.getChildren().add(hb);
 						
 					}
 					Label noteTexte = (Label) scene.lookup("#note_texte");
