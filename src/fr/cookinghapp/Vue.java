@@ -35,6 +35,8 @@ public class Vue extends Application implements Observer {
 	private static Stage appStage;
 	private static DecimalFormat df;
 	public static Vue vue;
+	public static int main_note = 3;
+
 
 	public static DecimalFormat getDf() {
 		return df;
@@ -62,7 +64,7 @@ public class Vue extends Application implements Observer {
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("CookingHapp");
-		primaryStage.getIcons().add(Resources.getImage("images/main_select/pot-chaud.png"));
+		//primaryStage.getIcons().add(Resources.getImage("images/main_select/pot-chaud.png"));
 		primaryStage.show();
 		appStage = primaryStage;
 		modele = new Modele();
@@ -130,7 +132,7 @@ public class Vue extends Application implements Observer {
 						
 					}
 					Label noteTexte = (Label) scene.lookup("#note_texte");
-					noteTexte.setText("3");
+					noteTexte.setText(String.valueOf(main_note));
 					if(r.hasImage()) {
 						ImageView img = (ImageView) scene.lookup("#image_recette");
 						img.setImage(new Image(r.getImage()));
