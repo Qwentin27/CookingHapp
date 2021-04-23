@@ -38,8 +38,8 @@ public class SRecetteControleur extends Observable{
 		if (Vue.main_note < 5) {
 			Vue.main_note++;
 		}
-		System.out.println(Vue.main_note);
-		
+		//System.out.println(Vue.main_note);
+		Vue.noteTexte.setText(String.valueOf(Vue.main_note));
 		
 	}
 	
@@ -48,7 +48,8 @@ public class SRecetteControleur extends Observable{
 		if (Vue.main_note > 0) {
 			Vue.main_note--;
 		}
-		System.out.println(Vue.main_note);
+		//System.out.println(Vue.main_note);
+		Vue.noteTexte.setText(String.valueOf(Vue.main_note));
 	}
 	
 	public void clic_valider() { // Validation de la note

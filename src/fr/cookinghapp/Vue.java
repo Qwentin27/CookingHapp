@@ -36,7 +36,7 @@ public class Vue extends Application implements Observer {
 	private static DecimalFormat df;
 	public static Vue vue;
 	public static int main_note = 3;
-
+	public static Label noteTexte;
 
 	public static DecimalFormat getDf() {
 		return df;
@@ -131,7 +131,7 @@ public class Vue extends Application implements Observer {
                         liste.getChildren().add(hb);
 						
 					}
-					Label noteTexte = (Label) scene.lookup("#note_texte");
+					noteTexte = (Label) scene.lookup("#note_texte");
 					noteTexte.setText(String.valueOf(main_note));
 					if(r.hasImage()) {
 						ImageView img = (ImageView) scene.lookup("#image_recette");
