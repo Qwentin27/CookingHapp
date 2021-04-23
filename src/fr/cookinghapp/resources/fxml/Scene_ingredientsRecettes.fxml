@@ -124,7 +124,7 @@
                         </Label>
                         <HBox prefHeight="46.0" prefWidth="164.0" style="-fx-alignment: center;">
                            <children>
-                              <ToggleButton fx:id="note_moins" mnemonicParsing="false" styleClass="button_addList" text="-">
+                              <ToggleButton fx:id="note_moins" mnemonicParsing="false" onAction="#clic_note_moins" styleClass="button_addList" text="-">
                                  <HBox.margin>
                                     <Insets right="15.0" />
                                  </HBox.margin>
@@ -137,7 +137,7 @@
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </Label>
-                              <ToggleButton fx:id="note_plus" mnemonicParsing="false" styleClass="button_addList" text="+">
+                              <ToggleButton fx:id="note_plus" mnemonicParsing="false" onAction="#clic_note_plus" styleClass="button_addList" text="+">
                                  <HBox.margin>
                                     <Insets right="15.0" />
                                  </HBox.margin>
