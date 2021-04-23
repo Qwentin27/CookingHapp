@@ -26,6 +26,9 @@ public class SRecetteControleur extends Observable{
 	@FXML
 	public ToggleButton note_moins;
 	
+	@FXML
+	public ToggleButton note_valider;
+	
 	public void clic_liste_recette() throws IOException{
 		
 		// Changement de scene lors du clic -> vers Liste
@@ -34,26 +37,33 @@ public class SRecetteControleur extends Observable{
 	}
 	
 	public void clic_note_plus() { // Incrémentation de la note associée à la recette
-		//TODO test <= 5
+
 		if (Vue.main_note < 5) {
 			Vue.main_note++;
 		}
 		//System.out.println(Vue.main_note);
-		Vue.noteTexte.setText(String.valueOf(Vue.main_note));
+		Vue.noteTexte.setText(String.valueOf(Vue.main_note)); // concaténer avec un "/5"
+		
+		// ACUTALISATION DE LA VUE A METTRE UNIQUEMENT DANS LA VUE
 		
 	}
 	
 	public void clic_note_moins() { // Décrémentation de la note associée à la recette
-		//TODO test >= 0
+
 		if (Vue.main_note > 0) {
 			Vue.main_note--;
 		}
 		//System.out.println(Vue.main_note);
-		Vue.noteTexte.setText(String.valueOf(Vue.main_note));
+		Vue.noteTexte.setText(String.valueOf(Vue.main_note)); // concaténer avec un "/5"
+		
+		// ACUTALISATION DE LA VUE A METTRE UNIQUEMENT DANS LA VUE
 	}
 	
 	public void clic_valider() { // Validation de la note
 		//TODO envoyer à l'SQL
+		
+		Vue.getModele().getRecetteVisionnee().addNote(Vue.main_note);
+		
 	}
 	
 	public void clic_recette_recette() throws IOException{ // Affichage de la recette associée

@@ -132,7 +132,7 @@ public class Vue extends Application implements Observer {
 						
 					}
 					noteTexte = (Label) scene.lookup("#note_texte");
-					noteTexte.setText(String.valueOf(main_note));
+					noteTexte.setText(String.valueOf(main_note)); // concaténer avec un "/5"
 					if(r.hasImage()) {
 						ImageView img = (ImageView) scene.lookup("#image_recette");
 						img.setImage(new Image(r.getImage()));
