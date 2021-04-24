@@ -23,7 +23,6 @@ public class SListeControleur extends Observable {
 		// Changement de scene lors du clic -> vers Liste
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
-		Vue.getModele().addObserver(Vue.vue);
 	}
 	
 	public void clic_recette_liste() throws IOException{ // Affichage de la recette correspondante

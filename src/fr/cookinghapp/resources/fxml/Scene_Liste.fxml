@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SListeControleur">
    <children>
-      <HBox id="four_top" layoutX="10.0" layoutY="8.0" prefHeight="460.0" prefWidth="1000.0" styleClass="four_top" stylesheets="@resources/fxml/Style_home.css" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox id="four_top" layoutX="10.0" layoutY="8.0" prefHeight="460.0" prefWidth="1000.0" styleClass="four_top" stylesheets="@Style_home.css" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Title" text="CookingHapp.">
                <font>
@@ -85,7 +85,7 @@
                   </VBox>
                </children>
             </HBox>
-            <Pane prefHeight="340.0" prefWidth="260.0" styleClass="grille_four" stylesheets="@resources/fxml/Style_home.css">
+            <Pane prefHeight="340.0" prefWidth="260.0" styleClass="grille_four" stylesheets="@Style_home.css">
                <HBox.margin>
                   <Insets bottom="15.0" left="25.0" top="15.0" />
                </HBox.margin>

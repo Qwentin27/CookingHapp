@@ -21,6 +21,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -30,10 +31,8 @@ public class Vue extends Application implements Observer {
 
 	private static Modele modele;
 	private static SRecetteModele smodele;
-	private static Scene scene;
 	private static Stage appStage;
 	private static DecimalFormat df;
-	public static Vue vue;
 
 	public static DecimalFormat getDf() {
 		return df;
@@ -55,10 +54,8 @@ public class Vue extends Application implements Observer {
 	
 	//affiche un menu simple		
 	public void start(Stage primaryStage) throws Exception {
-		vue = this;
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
-		scene = new Scene(page);
-		primaryStage.setScene(scene);
+		primaryStage.setScene(new Scene(page));
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("CookingHapp");
 		primaryStage.getIcons().add(Resources.getImage("images/main_select/pot-chaud.png"));
@@ -76,6 +73,7 @@ public class Vue extends Application implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		Scene scene = Vue.getAppStage().getScene();
 		if(arg instanceof ArrayList) {
 			VBox liste = (VBox) scene.lookup("#recettes_vbox");
 			liste.getChildren().clear();
@@ -85,7 +83,6 @@ public class Vue extends Application implements Observer {
 		else if(arg instanceof Recette) {
 			Recette r = (Recette) arg;
 			if(o instanceof SRecetteModele) {
-				Scene scene = Vue.getAppStage().getScene();
 				ScrollPane sp = (ScrollPane) scene.lookup("#scroll_ingredients");
 				sp.setHbarPolicy(ScrollBarPolicy.NEVER);
 				sp.setPrefHeight(ScrollPane.USE_COMPUTED_SIZE);
@@ -98,6 +95,7 @@ public class Vue extends Application implements Observer {
 					Text t = new Text(e + "\n");
 					t.setWrappingWidth(liste.getWidth()-12);
 					t.setFocusTraversable(false);
+					t.getStyleClass().add("box_ingredients");
 					liste.getChildren().add(t);
 				}
 				
@@ -107,21 +105,25 @@ public class Vue extends Application implements Observer {
 				try {
 					Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
 					Vue.getAppStage().setScene(new Scene(page));
-					Scene scene = Vue.getAppStage().getScene();
+					scene = Vue.getAppStage().getScene();
 					Label nom = (Label) scene.lookup("#nom_recette");
 					nom.setText(r.getNom());
 					VBox liste = (VBox) scene.lookup("#box_ingredients");
 					liste.setAlignment(Pos.TOP_LEFT); //TODO A rajouter dans le fichier Scene_ingredientsRecettes.fxml
 					liste.getChildren().clear(); //Facultatif, mais permet d'être sûr que la liste d'ingrédients est vide au départ
 					ScrollPane sp = (ScrollPane) scene.lookup("#scroll_ingredients");
-					sp.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+					sp.setHbarPolicy(ScrollBarPolicy.NEVER);
 					sp.setPrefHeight(ScrollPane.USE_COMPUTED_SIZE);
 					for(Ingredient ing : r.getIngredients()) {
-						CheckBox cb = new CheckBox(ing.toString());
-						cb.setTextAlignment(TextAlignment.LEFT);
+						Text t = new Text(ing.toString() + "\n");
+						t.setTextAlignment(TextAlignment.LEFT);
+						t.setWrappingWidth(liste.getWidth()-42);
+						t.getStyleClass().add("box_ingredients");
+						CheckBox cb = new CheckBox();
+						cb.setAlignment(Pos.CENTER_RIGHT);
 						cb.getStyleClass().add("box_ingredients");
-						liste.getChildren().add(cb);
-						
+						HBox hb = new HBox(cb, t);
+						liste.getChildren().add(hb);
 					}
 					Label noteTexte = (Label) scene.lookup("#note_texte");
 					noteTexte.setText("3");
