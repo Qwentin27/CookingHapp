@@ -1,6 +1,7 @@
 package fr.cookinghapp;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -60,7 +61,10 @@ public class Vue extends Application implements Observer {
 		primaryStage.setScene(new Scene(page));
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("CookingHapp");
-		//primaryStage.getIcons().add(Resources.getImage("images/main_select/pot-chaud.png"));
+		try {
+			primaryStage.getIcons().add(Resources.getImage("images/main_select/pot-chaud.png"));
+		}
+		catch (FileNotFoundException e) {}
 		primaryStage.show();
 		appStage = primaryStage;
 		modele = new Modele();
