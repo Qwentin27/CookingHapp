@@ -26,9 +26,6 @@ public class SListeControleur extends Observable {
 	}
 	
 	public void clic_recette_liste() throws IOException{ // Affichage de la recette correspondante
-		
-		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
-		Vue.getAppStage().setScene(new Scene(page));
-		
+		Vue.getModele().passageListeVersRecette();
 	}
 }

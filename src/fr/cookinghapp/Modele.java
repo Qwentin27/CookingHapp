@@ -28,6 +28,12 @@ public class Modele extends Observable {
 		sens = false;
 		liste = new ArrayList<Button>();
 	}
+	
+	public void passageListeVersRecette() {
+		Modele m = Vue.getModele();
+		m.setChanged();
+		m.notifyObservers(recetteVisionnee);
+	}
 
 	public void selectionType(TypeRecette type) {
 		Modele m = Vue.getModele();
