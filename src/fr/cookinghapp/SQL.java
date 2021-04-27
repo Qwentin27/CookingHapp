@@ -177,11 +177,11 @@ public class SQL {
         conn.setDoOutput(true);
         conn.getOutputStream().write(postDataBytes);
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+       /* BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
         for (int c; (c = in.read()) >= 0;)
             System.out.print((char)c);
-        System.out.println();
+        System.out.println(); */
     }
     
 	/*

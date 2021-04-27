@@ -153,7 +153,7 @@ public class Vue extends Application implements Observer {
 			
 		}
 		else if(arg instanceof Object[]) {
-			float note = (Integer) ((Object []) arg) [0];
+			float note = (float) ((Object []) arg) [0];
 			int nombreVotants = (Integer) ((Object []) arg) [1];
 			Label noteGlobale = (Label) scene.lookup("#noteGlobale");
 			noteGlobale.setText("Note : " + note + " (" + nombreVotants + ")");
