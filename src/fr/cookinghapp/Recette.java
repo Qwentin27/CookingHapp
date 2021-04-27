@@ -2,6 +2,8 @@ package fr.cookinghapp;
 
 import java.util.ArrayList;
 
+import javafx.concurrent.Task;
+
 public class Recette implements Comparable<Recette> {
 	
 	private String nom;
@@ -138,7 +140,15 @@ public class Recette implements Comparable<Recette> {
 	public void addNote(int note) {
 		this.note = ((this.note)*this.nombre_votants+note)/(this.nombre_votants+1);
 		this.nombre_votants++;
-		SQL.editNoteRecette(this.nom, this.note, this.nombre_votants);
+    	Recette r = this;
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() {
+        		SQL.editNoteRecette(r.nom, r.note, r.nombre_votants);
+				return null;
+            }
+        };
+        new Thread(task).start();
 	}
 
 	public void setNote(float note,int nombre_votants) {

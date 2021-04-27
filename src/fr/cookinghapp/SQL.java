@@ -18,15 +18,13 @@ import java.util.TreeSet;
 public class SQL {
 	public static void main(String[] args) {
 		List<Recette> recettes = SQL.listeRecettes();
-		System.out.println("Entrées:");
-		for(Recette r : recettes)
-			if(r.getType().equals(TypeRecette.Entrée)) System.out.println(r.toString());
-		System.out.println("Plats:");
-		for(Recette r : recettes)
-			if(r.getType().equals(TypeRecette.Plat)) System.out.println(r.toString());
-		System.out.println("Desserts:");
-		for(Recette r : recettes)
-			if(r.getType().equals(TypeRecette.Dessert)) System.out.println(r.toString());
+		Recette r = recettes.get(0);
+		System.out.println(r.getNote() + " " + r.getNombre_votants());
+		r.addNote(0);
+		editNoteRecette(r.getNom(), r.getNote(), r.compareTo(r));
+		recettes = SQL.listeRecettes();
+		r = recettes.get(0);
+		System.out.println(r.getNote() + " " + r.getNombre_votants());
 	}
     
 	/*
@@ -176,12 +174,12 @@ public class SQL {
         conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
         conn.setDoOutput(true);
         conn.getOutputStream().write(postDataBytes);
-
-       /* BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+        
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
         for (int c; (c = in.read()) >= 0;)
             System.out.print((char)c);
-        System.out.println(); */
+        System.out.println();
     }
     
 	/*
