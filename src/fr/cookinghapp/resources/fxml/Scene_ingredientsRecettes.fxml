@@ -146,7 +146,7 @@
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </ToggleButton>
-                              <ToggleButton fx:id="note_valider" mnemonicParsing="false" styleClass="button_addList" text="Valider" />
+                              <ToggleButton fx:id="note_valider" mnemonicParsing="false" onAction="#clic_valider" styleClass="button_addList" text="Valider" />
                            </children>
                            <VBox.margin>
                               <Insets />
