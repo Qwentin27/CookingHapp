@@ -40,7 +40,7 @@ public class SRecetteControleur extends Observable{
 		
 		int note = Vue.getSmodele().getMain_note();
 		if (note < 5) {
-			Vue.getSmodele().setMain_note(note++);
+			Vue.getSmodele().setMain_note(note+1);
 		}
 		
 		//System.out.println(Vue.main_note);
@@ -55,7 +55,7 @@ public class SRecetteControleur extends Observable{
 		
 		int note = Vue.getSmodele().getMain_note();
 		if (note > 0) {
-			Vue.getSmodele().setMain_note(note--);
+			Vue.getSmodele().setMain_note(note-1);
 		}
 		
 		//System.out.println(Vue.main_note);
