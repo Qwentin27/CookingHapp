@@ -74,7 +74,7 @@
                                     <Insets left="55.0" top="8.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button_recette" fx:id="button_recette1" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clic_recette_liste" styleClass="button_addList" stylesheets="@Style_home.css" text="Supprimer ">
+                              <Button id="button_recette" fx:id="button_recette1" contentDisplay="RIGHT" mnemonicParsing="false" styleClass="button_addList" stylesheets="@Style_home.css" text="Supprimer ">
                                  <HBox.margin>
                                     <Insets left="40.0" top="8.0" />
                                  </HBox.margin>
