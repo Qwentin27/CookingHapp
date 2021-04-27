@@ -138,6 +138,7 @@ public class Recette implements Comparable<Recette> {
 	public void addNote(int note) {
 		this.note = (this.note+note)/(this.nombre_votants+1);
 		this.nombre_votants++;
+		SQL.editNoteRecette(this.nom, this.note, this.nombre_votants);
 	}
 
 	public void setNote(float note,int nombre_votants) {
