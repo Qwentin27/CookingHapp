@@ -94,6 +94,8 @@ public class Vue extends Application implements Observer {
 				sp.setPrefHeight(ScrollPane.USE_COMPUTED_SIZE);
 				Label nom = (Label) scene.lookup("#titre");
 				nom.setText("Etapes :");
+				Button ajouterListe = (Button) scene.lookup("#ajouter_liste");
+				ajouterListe.setText("Ingrédients");
 				VBox liste = (VBox) scene.lookup("#box_ingredients");
 				liste.setAlignment(Pos.TOP_LEFT);
 				liste.getChildren().clear();
