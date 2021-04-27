@@ -42,8 +42,10 @@ public class SRecetteControleur extends Observable{
 		if (note < 5) {
 			Vue.getSmodele().setMain_note(note++);
 		}
+		
 		//System.out.println(Vue.main_note);
-		Vue.noteTexte.setText(String.valueOf(Vue.getSmodele().getMain_note())); // concaténer avec un "/5"
+		
+		// concaténer avec un "/5"
 		
 		// ACUTALISATION DE LA VUE A METTRE UNIQUEMENT DANS LA VUE
 		
@@ -55,8 +57,10 @@ public class SRecetteControleur extends Observable{
 		if (note > 0) {
 			Vue.getSmodele().setMain_note(note--);
 		}
+		
 		//System.out.println(Vue.main_note);
-		Vue.noteTexte.setText(String.valueOf(Vue.getSmodele().getMain_note())); // concaténer avec un "/5"
+		
+		// concaténer avec un "/5"
 		
 		// ACUTALISATION DE LA VUE A METTRE UNIQUEMENT DANS LA VUE
 	}
@@ -64,7 +68,7 @@ public class SRecetteControleur extends Observable{
 	public void clic_valider() { // Validation de la note
 		//TODO envoyer à l'SQL
 		
-		Vue.getModele().getRecetteVisionnee().addNote(Vue.main_note);
+		//Vue.getModele().getRecetteVisionnee().addNote(Vue.main_note);
 		
 	}
 	
