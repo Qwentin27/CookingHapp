@@ -85,6 +85,10 @@ public class Vue extends Application implements Observer {
 			for(Object b : (ArrayList<?>)arg)
 				liste.getChildren().add((Button)b);
 		}
+		else if(arg instanceof Integer) {
+			noteTexte = (Label) scene.lookup("#note_texte");
+			noteTexte.setText(arg+""); // concaténer avec un "/5"
+		}
 		else if(arg instanceof Recette) {
 			Recette r = (Recette) arg;
 			if(o instanceof SRecetteModele) {
