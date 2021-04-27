@@ -37,24 +37,26 @@ public class SRecetteControleur extends Observable{
 	}
 	
 	public void clic_note_plus() { // Incrémentation de la note associée à la recette
-
-		if (Vue.main_note < 5) {
-			Vue.main_note++;
+		
+		int note = Vue.getSmodele().getMain_note();
+		if (note < 5) {
+			Vue.getSmodele().setMain_note(note++);
 		}
 		//System.out.println(Vue.main_note);
-		Vue.noteTexte.setText(String.valueOf(Vue.main_note)); // concaténer avec un "/5"
+		Vue.noteTexte.setText(String.valueOf(Vue.getSmodele().getMain_note())); // concaténer avec un "/5"
 		
 		// ACUTALISATION DE LA VUE A METTRE UNIQUEMENT DANS LA VUE
 		
 	}
 	
 	public void clic_note_moins() { // Décrémentation de la note associée à la recette
-
-		if (Vue.main_note > 0) {
-			Vue.main_note--;
+		
+		int note = Vue.getSmodele().getMain_note();
+		if (note > 0) {
+			Vue.getSmodele().setMain_note(note--);
 		}
 		//System.out.println(Vue.main_note);
-		Vue.noteTexte.setText(String.valueOf(Vue.main_note)); // concaténer avec un "/5"
+		Vue.noteTexte.setText(String.valueOf(Vue.getSmodele().getMain_note())); // concaténer avec un "/5"
 		
 		// ACUTALISATION DE LA VUE A METTRE UNIQUEMENT DANS LA VUE
 	}
@@ -74,6 +76,9 @@ public class SRecetteControleur extends Observable{
 	
 	public void clic_ajouter_liste() { // Ajout des ingrédients a la liste de course
 		
+		// le bouton se transforme en bouton ingrédients lorsque la recette est affichée
+		// faire un test : si text == ingrédients --> telle fonction
+		// 				   sinon --> fonction différente
 	}
 
 }
