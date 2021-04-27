@@ -68,7 +68,8 @@ public class SRecetteControleur extends Observable{
 	public void clic_valider() { // Validation de la note
 		//TODO envoyer à l'SQL
 		
-		//Vue.getModele().getRecetteVisionnee().addNote(Vue.main_note);
+		Vue.getModele().getRecetteVisionnee().addNote(Vue.getSmodele().getMain_note());
+		Vue.getModele().reactuNote();
 		
 	}
 	
