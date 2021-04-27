@@ -118,7 +118,7 @@
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label style="-fx-alignment: center;" text="Note" textFill="WHITE">
+                        <Label fx:id="noteGlobale" style="-fx-alignment: center;" text="Note" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>

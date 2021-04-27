@@ -89,6 +89,7 @@ public class Vue extends Application implements Observer {
 			noteTexte = (Label) scene.lookup("#note_texte");
 			noteTexte.setText(arg+""); // concaténer avec un "/5"
 		}
+		
 		else if(arg instanceof Recette) {
 			Recette r = (Recette) arg;
 			if(o instanceof SRecetteModele) {
@@ -138,6 +139,8 @@ public class Vue extends Application implements Observer {
 					}
 					noteTexte = (Label) scene.lookup("#note_texte");
 					noteTexte.setText(String.valueOf(Vue.getSmodele().getMain_note())); // concaténer avec un "/5"
+					Label noteGlobale = (Label) scene.lookup("#noteGlobale");
+					noteGlobale.setText("Note :" + r.getNote() + " (" + r.getNombre_votants() + ")");
 					if(r.hasImage()) {
 						ImageView img = (ImageView) scene.lookup("#image_recette");
 						img.setImage(new Image(r.getImage()));
@@ -146,10 +149,15 @@ public class Vue extends Application implements Observer {
 					e1.printStackTrace();
 				}
 			}
-			
+		
 			
 		}
-		
+		else if(arg instanceof Object[]) {
+			float note = (Integer) ((Object []) arg) [0];
+			int nombreVotants = (Integer) ((Object []) arg) [1];
+			Label noteGlobale = (Label) scene.lookup("#noteGlobale");
+			noteGlobale.setText("Note : " + note + " (" + nombreVotants + ")");
+		}
 	}
 
 }
