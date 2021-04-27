@@ -18,6 +18,8 @@ public class SListeControleur extends Observable {
 	@FXML
 	public Button button_recette;
 	
+	// Faire le bouton supprimer 
+	
 	public void clic_menu() throws IOException{
 		
 		// Changement de scene lors du clic -> vers Liste
