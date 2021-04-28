@@ -82,11 +82,13 @@ public class Controleur extends Observable {
 		}
 	}
 	public void clic_changement_sens() {
-		if(chngmnt_sens.getText().equals("\u25b2"))
-			chngmnt_sens.setText("\u25bc");
-		else
-			chngmnt_sens.setText("\u25b2");
-		Vue.getModele().setSens();
+		if(!antiDoubleClic) {
+			if(chngmnt_sens.getText().equals("\u25b2"))
+				chngmnt_sens.setText("\u25bc");
+			else
+				chngmnt_sens.setText("\u25b2");
+			Vue.getModele().setSens();
+		}
 	}
 	
 	public void clic_liste_menu() throws IOException{
