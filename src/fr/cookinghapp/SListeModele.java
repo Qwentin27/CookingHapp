@@ -7,6 +7,12 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import javafx.scene.control.Button;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 
 public class SListeModele extends Observable{
 	
@@ -45,9 +51,10 @@ public class SListeModele extends Observable{
 	}
 	
 	public void ouvertureListeIngredients() {
-		TreeSet<Button> buttons = new TreeSet<Button>();
+		ArrayList<Button> buttons = new ArrayList<Button>();
 		for (String k : listeIngredients.keySet()) {
 			Button b = new Button(k);
+			b.setBorder(new Border(new BorderStroke(Color.rgb(187, 185, 185), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 			b.setOnAction((e) -> {
 				reactListeIngredients(k);
 			});
@@ -60,12 +67,12 @@ public class SListeModele extends Observable{
 	public void reactListeIngredients(String nomRecette) {
 		if(listeIngredients.containsKey(nomRecette)) {
 			Iterator<String> it = listeIngredients.keySet().iterator();
-			TreeSet<Ingredient> liste = null;
+			ArrayList<Ingredient> liste = null;
 			if(it.hasNext()) {
 				do {
 					String k = it.next();
 					if(k.equals(nomRecette))
-						liste = listeIngredients.get(k);
+						liste = new ArrayList<Ingredient>(listeIngredients.get(k));
 				}while(it.hasNext() && liste == null);
 				System.out.println(nomRecette + ":");
 				for(Ingredient ing : liste)
