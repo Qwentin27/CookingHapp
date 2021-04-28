@@ -17,8 +17,8 @@ public class SListeModele extends Observable{
 		if(listeIngredients.containsKey(nomRecette)) {
 			TreeSet<Ingredient> lIngredients = listeIngredients.get(nomRecette);
 			for (Ingredient ingredient : ingredients) {
+				float quantiteIng = 0;
 				if(lIngredients.contains(ingredient)) {
-					float quantiteIng = 0;
 					ArrayList<Ingredient> toRemove = new ArrayList<Ingredient>();
 					for (Ingredient ing : lIngredients) {
 						if(ing.equals(ingredient)) {
@@ -27,9 +27,8 @@ public class SListeModele extends Observable{
 						}
 					}
 					lIngredients.removeAll(toRemove);
-					ingredient.setQuantite(ingredient.getQuantite()+quantiteIng);
 				}
-				lIngredients.add(ingredient);
+				lIngredients.add(new Ingredient(ingredient.getNom(), ingredient.getQuantite()+quantiteIng, ingredient.getMesure()));
 			}
 			listeIngredients.replace(nomRecette, lIngredients);
 		}
