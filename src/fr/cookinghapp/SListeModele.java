@@ -1,9 +1,12 @@
 package fr.cookinghapp;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+import javafx.scene.control.Button;
 
 public class SListeModele extends Observable{
 	
@@ -40,4 +43,37 @@ public class SListeModele extends Observable{
 				System.out.println("\t" + ing.toString());
 		}
 	}
+	
+	public void ouvertureListeIngredients() {
+		TreeSet<Button> buttons = new TreeSet<Button>();
+		for (String k : listeIngredients.keySet()) {
+			Button b = new Button(k);
+			b.setOnAction((e) -> {
+				reactListeIngredients(k);
+			});
+			buttons.add(b);
+		}
+		this.setChanged();
+		this.notifyObservers(buttons);
+	}
+	
+	public void reactListeIngredients(String nomRecette) {
+		if(listeIngredients.containsKey(nomRecette)) {
+			Iterator<String> it = listeIngredients.keySet().iterator();
+			TreeSet<Ingredient> liste = null;
+			if(it.hasNext()) {
+				do {
+					String k = it.next();
+					if(k.equals(nomRecette))
+						liste = listeIngredients.get(k);
+				}while(it.hasNext() && liste == null);
+				System.out.println(nomRecette + ":");
+				for(Ingredient ing : liste)
+					System.out.println("\t" + ing.toString());
+				this.setChanged();
+				this.notifyObservers(liste);
+			}
+		}
+	}
+	
 }

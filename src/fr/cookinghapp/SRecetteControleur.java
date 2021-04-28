@@ -41,6 +41,7 @@ public class SRecetteControleur extends Observable{
 		// Changement de scene lors du clic -> vers Liste
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_Liste.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
+		Vue.getLmodele().ouvertureListeIngredients();
 	}
 	
 	public void clic_note_plus() { // Incrémentation de la note associée à la recette
