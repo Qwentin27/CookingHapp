@@ -69,7 +69,7 @@ public class SRecetteControleur extends Observable{
 		//TODO envoyer à l'SQL
 		
 		Vue.getModele().getRecetteVisionnee().addNote(Vue.getSmodele().getMain_note());
-		Vue.getSmodele().reactuNote(Vue.getModele().getRecetteVisionnee().getNote(), Vue.getModele().getRecetteVisionnee().getNombre_votants());
+		Vue.getSmodele().reactuNote(Vue.getModele().getRecetteVisionnee());
 		
 	}
 	

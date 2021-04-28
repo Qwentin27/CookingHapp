@@ -74,7 +74,7 @@
             </HBox>
             <ScrollPane prefHeight="200.0" prefWidth="508.0" styleClass="four_bottom">
                <content>
-                  <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="206.0" prefWidth="561.0" styleClass="grille_four" />
+                  <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="206.0" prefWidth="555.0" styleClass="grille_four" />
                </content>
                <VBox.margin>
                   <Insets left="15.0" right="15.0" top="20.0" />

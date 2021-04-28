@@ -131,10 +131,30 @@ public class Recette implements Comparable<Recette> {
 	public float getNote() {
 		return note;
 	}
-
+/*
 	public String formatNote() {
 		if(note - Math.round(note) > 0) return Vue.getDf().format(note);
 		return "" + Math.round(note);
+	}*/
+	
+	public String getNoteToEtoiles() {
+		String out = "";
+		for(int i=0; i<5; i++) {
+			if(note >= (1+i)) out += "\u2605";
+			else out += "\u2606";
+		}
+		return out;
+	}
+	
+	public String getNoteToString() {
+		return (note==Math.round(note)?Math.round(note):Vue.getDf().format(note))+"/5";
+	}
+	
+	public String getVotantsToString() {
+		if(nombre_votants >= 1000000000) return nombre_votants/1000000000 + "Mi";
+		if(nombre_votants >= 1000000) return nombre_votants/1000000 + "M";
+		if(nombre_votants >= 1000) return nombre_votants/1000 + "k";
+		return nombre_votants+"";
 	}
 	
 	public void addNote(int note) {
@@ -209,11 +229,5 @@ public class Recette implements Comparable<Recette> {
 
 	public String getImage() {
 		return this.urlImage;
-	}
-	
-	public static void main(String[] args) {
-		Recette r = SQL.listeRecettes().get(0);
-		System.out.println(r.toString());
-		System.out.println(r.toString(10));
 	}
 }

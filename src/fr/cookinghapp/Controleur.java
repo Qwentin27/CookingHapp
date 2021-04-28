@@ -36,6 +36,16 @@ public class Controleur extends Observable {
 	@FXML
 	public Button button_list;
 
+	private static boolean antiDoubleClic;
+	
+	public static void setAntiDoubleClic(boolean valeur) {
+		antiDoubleClic = valeur;
+	}
+
+	public Controleur() {
+		antiDoubleClic = false;
+	}
+
 	private void setMainMenuImage(String image) {
 		try {
 			ImageView img = new ImageView(new Image(new FileInputStream(Resources.getResource("images/main_select/"+image).getFile())));
@@ -48,19 +58,28 @@ public class Controleur extends Observable {
 	}
 
 	public void clic_entrees() {
-		setMainMenuImage("entree.png");
-		main_menu.setText(main_select_entrees.getText());
-		Vue.getModele().selectionType(TypeRecette.Entrée);
+		if(!antiDoubleClic) {
+			antiDoubleClic = true;
+			setMainMenuImage("entree.png");
+			main_menu.setText(main_select_entrees.getText());
+			Vue.getModele().selectionType(TypeRecette.Entrée);
+		}
 	}
 	public void clic_plats() {
-		setMainMenuImage("plat.png");
-		main_menu.setText(main_select_plats.getText());
-		Vue.getModele().selectionType(TypeRecette.Plat);
+		if(!antiDoubleClic) {
+			antiDoubleClic = true;
+			setMainMenuImage("plat.png");
+			main_menu.setText(main_select_plats.getText());
+			Vue.getModele().selectionType(TypeRecette.Plat);
+		}
 	}
 	public void clic_desserts() {
-		setMainMenuImage("dessert.png");
-		main_menu.setText(main_select_desserts.getText());
-		Vue.getModele().selectionType(TypeRecette.Dessert);
+		if(!antiDoubleClic) {
+			antiDoubleClic = true;
+			setMainMenuImage("dessert.png");
+			main_menu.setText(main_select_desserts.getText());
+			Vue.getModele().selectionType(TypeRecette.Dessert);
+		}
 	}
 	public void clic_changement_sens() {
 		if(chngmnt_sens.getText().equals("\u25b2"))

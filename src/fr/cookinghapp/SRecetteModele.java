@@ -28,8 +28,11 @@ public class SRecetteModele extends Observable{
 	}
 
 	public void reactuNote(float note, int nombreVotants) {
+	}
+
+	public void reactuNote(Recette recetteVisionnee) {
 		this.setChanged();
-		this.notifyObservers(new Object[] {note, nombreVotants});
+		this.notifyObservers(new String[] {recetteVisionnee.getNoteToString(), recetteVisionnee.getNoteToString()});
 	}
 	
 	

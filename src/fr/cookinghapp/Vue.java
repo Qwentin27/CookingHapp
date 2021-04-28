@@ -81,15 +81,26 @@ public class Vue extends Application implements Observer {
 		Scene scene = Vue.getAppStage().getScene();
 		if(arg instanceof ArrayList) {
 			VBox liste = (VBox) scene.lookup("#recettes_vbox");
-			liste.getChildren().clear();
-			for(Object b : (ArrayList<?>)arg)
-				liste.getChildren().add((Button)b);
+			if(liste != null) {
+				liste.getChildren().clear();
+				for(Object hb : (ArrayList<?>)arg)
+					liste.getChildren().add((HBox)hb);
+			}
 		}
 		else if(arg instanceof Integer) {
 			noteTexte = (Label) scene.lookup("#note_texte");
 			noteTexte.setText(arg+""); // concaténer avec un "/5"
 		}
-		
+		else if(arg instanceof String) {
+			VBox liste = (VBox) scene.lookup("#recettes_vbox");
+			if(liste != null) {
+				liste.getChildren().clear();
+				Text t = new Text((String) arg);
+				t.setFocusTraversable(false);
+				t.getStyleClass().add("grille_four");
+				liste.getChildren().add(t);
+			}
+		}
 		else if(arg instanceof Recette) {
 			Recette r = (Recette) arg;
 			if(o instanceof SRecetteModele) {
@@ -140,7 +151,7 @@ public class Vue extends Application implements Observer {
 					noteTexte = (Label) scene.lookup("#note_texte");
 					noteTexte.setText(String.valueOf(Vue.getSmodele().getMain_note())); // concaténer avec un "/5"
 					Label noteGlobale = (Label) scene.lookup("#noteGlobale");
-					noteGlobale.setText("Note :" + r.getNote() + " (" + r.getNombre_votants() + ")");
+					noteGlobale.setText("Note : " + r.getNoteToString() + " (" + r.getNombre_votants() + ")");
 					if(r.hasImage()) {
 						ImageView img = (ImageView) scene.lookup("#image_recette");
 						img.setImage(new Image(r.getImage()));
@@ -152,11 +163,10 @@ public class Vue extends Application implements Observer {
 		
 			
 		}
-		else if(arg instanceof Object[]) {
-			float note = (float) ((Object []) arg) [0];
-			int nombreVotants = (Integer) ((Object []) arg) [1];
+		else if(arg instanceof String[]) {
+			String[] n = (String []) arg;
 			Label noteGlobale = (Label) scene.lookup("#noteGlobale");
-			noteGlobale.setText("Note : " + note + " (" + nombreVotants + ")");
+			noteGlobale.setText("Note : " + n[0] + " (" + n[1] + ")");
 		}
 	}
 

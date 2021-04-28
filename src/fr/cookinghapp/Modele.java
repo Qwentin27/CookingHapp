@@ -8,10 +8,20 @@ import java.util.Observable;
 
 import fr.cookinghapp.resources.Resources;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 
 public class Modele extends Observable {
 	
@@ -22,11 +32,11 @@ public class Modele extends Observable {
 	}
 
 	private boolean sens;
-	private List<Button> liste;
+	private List<HBox> liste;
 
 	public Modele() {
 		sens = false;
-		liste = new ArrayList<Button>();
+		liste = new ArrayList<HBox>();
 	}
 	
 	public void passageListeVersRecette() {
@@ -42,13 +52,28 @@ public class Modele extends Observable {
             public Void call() {
 				liste.clear();
 				for(Recette r : getRecettes(type)) {
-					Button b = new Button(getNoteToString(r.getNote()) + " (" + r.getNombre_votants() + ") " + r.getNom());
+					Button b = new Button(r.getNom());
 					b.setBorder(Border.EMPTY);
 					b.setAlignment(Pos.CENTER_LEFT);
-					b.setPrefWidth(560);
+					b.setPrefWidth(310);
 					b.setPrefHeight(Button.USE_COMPUTED_SIZE);
+					Button image = new Button();
+					image.setAlignment(Pos.CENTER_RIGHT);
+					image.setPrefWidth(20);
+					Button noteEtoile = new Button(r.getNoteToEtoiles());
+					noteEtoile.setAlignment(Pos.CENTER_LEFT);
+					noteEtoile.setTextAlignment(TextAlignment.LEFT);
+					noteEtoile.setPrefWidth(85);
+					Button note = new Button(r.getNoteToString());
+					note.setAlignment(Pos.CENTER_LEFT);
+					note.setTextAlignment(TextAlignment.LEFT);
+					note.setPrefWidth(70);
+					Button nbVotants = new Button("(" + r.getVotantsToString() + ")");
+					nbVotants.setAlignment(Pos.CENTER_LEFT);
+					nbVotants.setTextAlignment(TextAlignment.LEFT);
+					nbVotants.setPrefWidth(70);
+					ImageView img;
 					try {
-						ImageView img;
 						if(r.hasImage())
 							try {
 								img = new ImageView(r.getImage());
@@ -59,26 +84,40 @@ public class Modele extends Observable {
 						else
 							img = new ImageView(Resources.getImage("images/main_select/no-picture.png"));
 						img.setPreserveRatio(true);
-						img.setFitHeight(15);
 						img.setFitWidth(15);
-						b.setGraphic(img);
+						image.setGraphic(img);
 					} catch (FileNotFoundException e) {
 					}
-					b.setOnAction((e) -> {
-						recetteVisionnee = r;
-						m.setChanged();
-						m.notifyObservers(recetteVisionnee);
-					});
-					liste.add(b);
+					EventHandler<ActionEvent> action = new EventHandler<ActionEvent>() {
+						@Override
+						public void handle(ActionEvent event) {
+							recetteVisionnee = r;
+							m.setChanged();
+							m.notifyObservers(recetteVisionnee);
+						}
+					};
+					image.setOnAction(action);
+					b.setOnAction(action);
+					noteEtoile.setOnAction(action);
+					note.setOnAction(action);
+					nbVotants.setOnAction(action);
+					HBox hb = new HBox(5, image, b, noteEtoile, note, nbVotants);
+					hb.setBorder(new Border(new BorderStroke(Color.rgb(187, 185, 185), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+					hb.setPrefWidth(555);
+					hb.setPadding(new Insets(0, 0, 5, 0));
+					liste.add(hb);
 				}
 				return null;
             }
         };
         task.setOnSucceeded(taskFinishEvent -> {
+        	Controleur.setAntiDoubleClic(false);
 			m.setChanged();
 			m.notifyObservers(liste);
         });
         new Thread(task).start();
+		m.setChanged();
+		m.notifyObservers("Chargement des recettes en cours...");
 	}
 	
 	public void setSens() {
@@ -86,16 +125,6 @@ public class Modele extends Observable {
 		Collections.reverse(liste);
 		this.setChanged();
 		this.notifyObservers(liste);
-	}
-	
-	private String getNoteToString(float note) {
-		String out = "";
-		for(int i=0; i<5; i++) {
-			if(note >= (1+i)) out += "\u2605";
-			else out += "\u2606";
-		}
-		out+=(note==Math.round(note)?"   ":"")+"["+Vue.getDf().format(note)+"]";
-		return out;
 	}
 
 	private List<Recette> getRecettes(TypeRecette type) {
