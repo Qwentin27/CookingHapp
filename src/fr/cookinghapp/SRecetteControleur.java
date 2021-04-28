@@ -36,9 +36,13 @@ public class SRecetteControleur extends Observable{
 	@FXML
 	public ToggleButton note_valider;
 	
+	@FXML
+	public Button ajouter_liste;
+	
 	public void clic_liste_recette() throws IOException{
 		
 		// Changement de scene lors du clic -> vers Liste
+		
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_Liste.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
 		Vue.getLmodele().ouvertureListeIngredients();
@@ -51,11 +55,8 @@ public class SRecetteControleur extends Observable{
 			Vue.getSmodele().setMain_note(note+1);
 		}
 		
-		//System.out.println(Vue.main_note);
-		
 		// concaténer avec un "/5"
-		
-		// ACUTALISATION DE LA VUE A METTRE UNIQUEMENT DANS LA VUE
+
 		
 	}
 	
@@ -66,14 +67,12 @@ public class SRecetteControleur extends Observable{
 			Vue.getSmodele().setMain_note(note-1);
 		}
 		
-		//System.out.println(Vue.main_note);
-		
 		// concaténer avec un "/5"
-		
-		// ACUTALISATION DE LA VUE A METTRE UNIQUEMENT DANS LA VUE
+
 	}
 	
 	public void clic_valider() { // Validation de la note
+		
 		//TODO envoyer à l'SQL
 		
 		Vue.getModele().getRecetteVisionnee().addNote(Vue.getSmodele().getMain_note());
@@ -87,25 +86,38 @@ public class SRecetteControleur extends Observable{
 		
 	}
 	
-	public void clic_ajouter_liste() { // Ajout des ingrédients a la liste de course
-		TreeSet<Ingredient> ingredientsSelectionnes = new TreeSet<Ingredient>();
-		Recette r = Vue.getModele().getRecetteVisionnee();
-		ArrayList<Ingredient> ingredients = r.getIngredients();
-		Scene scene = Vue.getAppStage().getScene();
-		VBox liste = (VBox) scene.lookup("#box_ingredients");
-		int i = 0;
-		for (Node node : liste.getChildren()) {
-			if(node instanceof HBox) {
-				ObservableList<Node> ing = ((HBox)node).getChildren();
-				if(ing.get(0) instanceof CheckBox) {
-					if(((CheckBox) ing.get(0)).isSelected()) {
-						ingredientsSelectionnes.add(ingredients.get(i));
+	public void clic_ajouter_liste() throws IOException{ // Ajout des ingrédients à la liste de course
+		
+		// si texte == "ajouter à la liste"
+		// else : texte == "ingrédients"
+
+		if(ajouter_liste.getText() == "Ajouter à la liste") {
+			
+			TreeSet<Ingredient> ingredientsSelectionnes = new TreeSet<Ingredient>();
+			Recette r = Vue.getModele().getRecetteVisionnee();
+			ArrayList<Ingredient> ingredients = r.getIngredients();
+			Scene scene = Vue.getAppStage().getScene();
+			VBox liste = (VBox) scene.lookup("#box_ingredients");
+			int i = 0;
+			for (Node node : liste.getChildren()) {
+				if(node instanceof HBox) {
+					ObservableList<Node> ing = ((HBox)node).getChildren();
+					if(ing.get(0) instanceof CheckBox) {
+						if(((CheckBox) ing.get(0)).isSelected()) {
+							ingredientsSelectionnes.add(ingredients.get(i));
+						}
 					}
 				}
+				i++;
 			}
-			i++;
+			Vue.getLmodele().ajoutIngredient(r.getNom(), ingredientsSelectionnes);
 		}
-		Vue.getLmodele().ajoutIngredient(r.getNom(), ingredientsSelectionnes);
+		else if (ajouter_liste.getText() == "Ingrédients"){
+			
+			Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
+			Vue.getAppStage().setScene(new Scene(page));
+		}
+		
 		// le bouton se transforme en bouton ingrédients lorsque la recette est affichée
 		// faire un test : si text == ingrédients --> telle fonction
 		// 				   sinon --> fonction différente
