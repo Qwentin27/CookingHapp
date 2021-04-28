@@ -1,6 +1,6 @@
 package fr.cookinghapp;
 
-public class Ingredient {
+public class Ingredient implements Comparable<Ingredient> {
 	
 	private String nom, mesure;
 	private float quantite;
@@ -55,7 +55,7 @@ public class Ingredient {
 		return "" + Math.round(quantite);
 	}
 
-	public void setQuantite(int quantite) {
+	public void setQuantite(float quantite) {
 		this.quantite = quantite;
 	}
 	
@@ -73,5 +73,19 @@ public class Ingredient {
 		if(mesure.isEmpty()) return formatQuantite() + " " + nom;
 		if(nom.charAt(0) == 'h') return formatQuantite() + " " + mesure + " d'" + nom;
 		return formatQuantite() + " " + mesure + " de " + nom;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Ingredient) {
+			Ingredient ing = (Ingredient) obj;
+			return ing.getNom().equals(nom) && ing.getMesure().equals(mesure);
+		}
+		return false;
+	}
+
+	@Override
+	public int compareTo(Ingredient ing) {
+		return this.nom.compareTo(ing.nom);
 	}
 }

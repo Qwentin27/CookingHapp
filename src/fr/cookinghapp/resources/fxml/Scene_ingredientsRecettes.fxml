@@ -86,7 +86,7 @@
                   </HBox>
                   <HBox prefHeight="38.0" prefWidth="242.0">
                      <children>
-                        <Button fx:id="ajouter_liste" mnemonicParsing="false" styleClass="button_addList" stylesheets="@Style_home.css" text="Ajouter à la liste">
+                        <Button fx:id="ajouter_liste" mnemonicParsing="false" onAction="#clic_ajouter_liste" styleClass="button_addList" stylesheets="@Style_home.css" text="Ajouter à la liste">
                            <HBox.margin>
                               <Insets left="40.0" top="8.0" />
                            </HBox.margin>

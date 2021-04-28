@@ -32,6 +32,7 @@ public class Vue extends Application implements Observer {
 
 	private static Modele modele;
 	private static SRecetteModele smodele;
+	private static SListeModele lmodele;
 	private static Stage appStage;
 	private static DecimalFormat df;
 	public static Label noteTexte;
@@ -42,6 +43,14 @@ public class Vue extends Application implements Observer {
 
 	public static Modele getModele() {
 		return modele;
+	}
+
+	public static SRecetteModele getSmodele() {
+		return smodele;
+	}
+
+	public static SListeModele getLmodele() {
+		return lmodele;
 	}
 
 	public static Stage getAppStage() {
@@ -70,10 +79,8 @@ public class Vue extends Application implements Observer {
 		modele.addObserver(this);
 		smodele = new SRecetteModele();
 		smodele.addObserver(this);
-	}
-
-	public static SRecetteModele getSmodele() {
-		return smodele;
+		lmodele = new SListeModele();
+		lmodele.addObserver(this);
 	}
 
 	@Override

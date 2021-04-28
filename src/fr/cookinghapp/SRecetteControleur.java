@@ -1,15 +1,22 @@
 package fr.cookinghapp;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
+import java.util.TreeSet;
 
 import fr.cookinghapp.resources.Resources;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 public class SRecetteControleur extends Observable{
@@ -80,7 +87,24 @@ public class SRecetteControleur extends Observable{
 	}
 	
 	public void clic_ajouter_liste() { // Ajout des ingrédients a la liste de course
-		
+		TreeSet<Ingredient> ingredientsSelectionnes = new TreeSet<Ingredient>();
+		Recette r = Vue.getModele().getRecetteVisionnee();
+		ArrayList<Ingredient> ingredients = r.getIngredients();
+		Scene scene = Vue.getAppStage().getScene();
+		VBox liste = (VBox) scene.lookup("#box_ingredients");
+		int i = 0;
+		for (Node node : liste.getChildren()) {
+			if(node instanceof HBox) {
+				ObservableList<Node> ing = ((HBox)node).getChildren();
+				if(ing.get(0) instanceof CheckBox) {
+					if(((CheckBox) ing.get(0)).isSelected()) {
+						ingredientsSelectionnes.add(ingredients.get(i));
+					}
+				}
+			}
+			i++;
+		}
+		Vue.getLmodele().ajoutIngredient(r.getNom(), ingredientsSelectionnes);
 		// le bouton se transforme en bouton ingrédients lorsque la recette est affichée
 		// faire un test : si text == ingrédients --> telle fonction
 		// 				   sinon --> fonction différente
