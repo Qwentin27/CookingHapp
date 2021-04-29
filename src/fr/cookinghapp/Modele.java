@@ -40,9 +40,8 @@ public class Modele extends Observable {
 	}
 	
 	public void passageListeVersRecette() {
-		Modele m = Vue.getModele();
-		m.setChanged();
-		m.notifyObservers(recetteVisionnee);
+		this.setChanged();
+		this.notifyObservers(recetteVisionnee);
 	}
 
 	public void selectionType(TypeRecette type) {
