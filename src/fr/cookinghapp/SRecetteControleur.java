@@ -114,8 +114,7 @@ public class SRecetteControleur extends Observable{
 		}
 		else if (ajouter_liste.getText().equals("Ingrédients")){
 			
-			Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
-			Vue.getAppStage().setScene(new Scene(page));
+			Vue.getModele().passageListeVersRecette();
 		}
 		
 		// le bouton se transforme en bouton ingrédients lorsque la recette est affichée

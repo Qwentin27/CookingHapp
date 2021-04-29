@@ -93,7 +93,9 @@ public class Vue extends Application implements Observer {
 						VBox liste = (VBox) scene.lookup("#liste_courses_recettes");
 						liste.getChildren().clear();
 						for (Object bouton : (ArrayList<?>)arg) {
-							liste.getChildren().add((Button) bouton);
+							Button b = (Button) bouton;
+							b.setPrefWidth(liste.getPrefWidth());
+							liste.getChildren().add(b);
 						}
 					}
 					else {
