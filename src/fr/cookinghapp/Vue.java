@@ -87,12 +87,39 @@ public class Vue extends Application implements Observer {
 	public void update(Observable o, Object arg) {
 		Scene scene = Vue.getAppStage().getScene();
 		if(arg instanceof ArrayList) {
-			VBox liste = (VBox) scene.lookup("#recettes_vbox");
-			if(liste != null) {
-				liste.getChildren().clear();
-				for(Object hb : (ArrayList<?>)arg)
-					liste.getChildren().add((HBox)hb);
+			if (o instanceof SListeModele) {
+				if(!((ArrayList<?>)arg).isEmpty()) {
+					if(((ArrayList<?>)arg).get(0) instanceof Button) {
+						VBox liste = (VBox) scene.lookup("#liste_courses_recettes");
+						liste.getChildren().clear();
+						for (Object bouton : (ArrayList<?>)arg) {
+							liste.getChildren().add((Button) bouton);
+						}
+					}
+					else {
+						VBox liste = (VBox) scene.lookup("#liste_courses_ingredients");
+						liste.getChildren().clear();
+						for (Object ingredient : (ArrayList<?>)arg) {
+							Ingredient ing = (Ingredient) ingredient;
+							Text t = new Text(ing.toString() + "\n");
+							t.setWrappingWidth(liste.getWidth()-12);
+							t.setFocusTraversable(false);
+							t.getStyleClass().add("box_ingredients");
+							liste.getChildren().add(t);
+						}
+					}
+				}
 			}
+			
+			else {
+				VBox liste = (VBox) scene.lookup("#recettes_vbox");
+				if(liste != null) {
+					liste.getChildren().clear();
+					for(Object hb : (ArrayList<?>)arg)
+						liste.getChildren().add((HBox)hb);
+				}
+			}	
+			
 		}
 		else if(arg instanceof Integer) {
 			noteTexte = (Label) scene.lookup("#note_texte");
@@ -175,6 +202,7 @@ public class Vue extends Application implements Observer {
 			Label noteGlobale = (Label) scene.lookup("#noteGlobale");
 			noteGlobale.setText("Note : " + n[0] + " (" + n[1] + ")");
 		}
+		
 	}
 
 }

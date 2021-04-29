@@ -95,6 +95,7 @@ public class Controleur extends Observable {
 		// Changement de scene lors du clic -> vers Liste
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_Liste.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
+		Vue.getLmodele().ouvertureListeIngredients();
 	}
 	
 	
