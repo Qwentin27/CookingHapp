@@ -35,7 +35,6 @@ public class Vue extends Application implements Observer {
 	private static SListeModele lmodele;
 	private static Stage appStage;
 	private static DecimalFormat df;
-	public static Label noteTexte;
 
 	public static DecimalFormat getDf() {
 		return df;
@@ -124,7 +123,7 @@ public class Vue extends Application implements Observer {
 			
 		}
 		else if(arg instanceof Integer) {
-			noteTexte = (Label) scene.lookup("#note_texte");
+			Label noteTexte = (Label) scene.lookup("#note_texte");
 			noteTexte.setText(arg+""); // concaténer avec un "/5"
 		}
 		else if(arg instanceof String) {
@@ -184,7 +183,7 @@ public class Vue extends Application implements Observer {
 						HBox hb = new HBox(cb, t);
 						liste.getChildren().add(hb);
 					}
-					noteTexte = (Label) scene.lookup("#note_texte");
+					Label noteTexte = (Label) scene.lookup("#note_texte");
 					noteTexte.setText(String.valueOf(Vue.getSmodele().getMain_note())); // concaténer avec un "/5"
 					Label noteGlobale = (Label) scene.lookup("#noteGlobale");
 					noteGlobale.setText("Note : " + r.getNoteToString() + " (" + r.getNombre_votants() + ")");
