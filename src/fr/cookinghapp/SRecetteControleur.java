@@ -104,18 +104,23 @@ public class SRecetteControleur extends Observable{
 			Scene scene = Vue.getAppStage().getScene();
 			VBox liste = (VBox) scene.lookup("#box_ingredients");
 			int i = 0;
+			boolean all = true;
 			for (Node node : liste.getChildren()) {
 				if(node instanceof HBox) {
 					ObservableList<Node> ing = ((HBox)node).getChildren();
 					if(ing.get(0) instanceof CheckBox) {
 						if(((CheckBox) ing.get(0)).isSelected()) {
+							all = false;
 							ingredientsSelectionnes.add(ingredients.get(i));
 						}
 					}
 				}
 				i++;
 			}
-			Vue.getLmodele().ajoutIngredient(r.getNom(), ingredientsSelectionnes);
+			if(all)
+				Vue.getLmodele().ajoutIngredient(r.getNom(), new TreeSet<Ingredient>(ingredients));
+			else
+				Vue.getLmodele().ajoutIngredient(r.getNom(), ingredientsSelectionnes);
 		}
 		else if (ajouter_liste.getText().equals("Ingrédients")){
 			
