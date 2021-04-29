@@ -30,4 +30,9 @@ public class SListeControleur extends Observable {
 	public void clic_recette_liste() throws IOException{ // Affichage de la recette correspondante
 		Vue.getModele().passageListeVersRecette();
 	}
+	
+	public void clic_impression() throws IOException {
+		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
+		Vue.getAppStage().setScene(new Scene(page));
+	}
 }
