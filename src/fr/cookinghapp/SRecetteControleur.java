@@ -91,7 +91,7 @@ public class SRecetteControleur extends Observable{
 		// si texte == "ajouter à la liste"
 		// else : texte == "ingrédients"
 
-		if(ajouter_liste.getText() == "Ajouter à la liste") {
+		if(ajouter_liste.getText().equals("Ajouter à la liste")) {
 			
 			TreeSet<Ingredient> ingredientsSelectionnes = new TreeSet<Ingredient>();
 			Recette r = Vue.getModele().getRecetteVisionnee();
@@ -112,7 +112,7 @@ public class SRecetteControleur extends Observable{
 			}
 			Vue.getLmodele().ajoutIngredient(r.getNom(), ingredientsSelectionnes);
 		}
-		else if (ajouter_liste.getText() == "Ingrédients"){
+		else if (ajouter_liste.getText().equals("Ingrédients")){
 			
 			Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));
 			Vue.getAppStage().setScene(new Scene(page));
