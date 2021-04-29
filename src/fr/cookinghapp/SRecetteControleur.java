@@ -86,6 +86,11 @@ public class SRecetteControleur extends Observable{
 		
 	}
 	
+	public void retour_menu_principal() throws IOException {
+		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
+		Vue.getAppStage().setScene(new Scene(page));
+	}
+	
 	public void clic_ajouter_liste() throws IOException{ // Ajout des ingrédients à la liste de course
 		
 		// si texte == "ajouter à la liste"

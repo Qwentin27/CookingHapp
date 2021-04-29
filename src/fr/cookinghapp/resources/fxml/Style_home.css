@@ -5,6 +5,7 @@
 
 .Title {
     -fx-font-size : 30px;
+    -fx-background-color: rgb(187, 185, 185);
     -fx-font-family: "Segoe UI Semibold";
 }
 
