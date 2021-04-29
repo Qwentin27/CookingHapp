@@ -18,6 +18,10 @@ public class SListeModele extends Observable{
 	
 	TreeMap<String, TreeSet<Ingredient>> listeIngredients;
 	
+	public TreeMap<String, TreeSet<Ingredient>> getListeIngredients() {
+		return listeIngredients;
+	}
+
 	public SListeModele() {
 		listeIngredients = new TreeMap<String, TreeSet<Ingredient>>();
 	}

@@ -1,7 +1,10 @@
 package fr.cookinghapp;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import fr.cookinghapp.resources.Resources;
 import javafx.fxml.FXML;
@@ -9,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class SListeControleur extends Observable {
 	
@@ -32,7 +37,23 @@ public class SListeControleur extends Observable {
 	}
 	
 	public void clic_impression() throws IOException {
-		new Impression(Vue.getAppStage(), "Liste de courses");
+		TreeMap<String, TreeSet<Ingredient>> listeRecettes = Vue.getLmodele().getListeIngredients();
+		ArrayList<Text> listeAImprimer = new ArrayList<Text>();
+		for(String nom : listeRecettes.keySet()) {
+			Text txt = new Text(nom + ":\n");
+			for(Ingredient ing : listeRecettes.get(nom)) {
+				txt.setText(txt.getText() + "\t" + ing.toString() + "\n");
+			}
+			listeAImprimer.add(txt);
+		}
+		Text[] lAImprimer = new Text[listeAImprimer.size()];
+		for (int i=0; i<listeAImprimer.size(); i++) {
+			lAImprimer[i]=listeAImprimer.get(i);
+		}
+		VBox hb = new VBox(lAImprimer);
+		Scene scene = new Scene(hb);
+		
+		new Impression(scene.getRoot(), "Liste de courses");
 		
 	}
 }
