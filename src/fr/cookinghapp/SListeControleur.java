@@ -32,7 +32,7 @@ public class SListeControleur extends Observable {
 	}
 	
 	public void clic_impression() throws IOException {
-		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
-		Vue.getAppStage().setScene(new Scene(page));
+		new Impression(Vue.getAppStage(), "Liste de courses");
+		
 	}
 }
