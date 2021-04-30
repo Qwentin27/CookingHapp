@@ -23,6 +23,9 @@ public class SListeControleur extends Observable {
 	@FXML
 	public Button button_recette;
 	
+	@FXML
+	public Button button_supprimer;
+	
 	// Faire le bouton supprimer 
 	
 	public void clic_menu() throws IOException{
@@ -34,6 +37,10 @@ public class SListeControleur extends Observable {
 	
 	public void clic_recette_liste() throws IOException{ // Affichage de la recette correspondante
 		Vue.getModele().passageListeVersRecette();
+	}
+	
+	public void clic_supprimer() {
+		
 	}
 	
 	public void clic_impression() throws IOException {
