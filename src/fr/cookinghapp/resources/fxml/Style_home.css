@@ -64,3 +64,8 @@ Button {
     -fx-font-size : 20px;
     -fx-font-family: "Segoe UI Semibold";
 }
+
+.button_ajoutRecette {
+	-fx-background-color : rgb(209, 208, 208);
+    -fx-background-radius: 10 ;
+}

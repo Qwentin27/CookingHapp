@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.Controleur">
+<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.Controleur">
    <children>
       <HBox id="four_top" layoutY="-2.0" prefHeight="460.0" prefWidth="1000.0" styleClass="four_top" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,12 +30,12 @@
                      <stops>
                         <Stop>
                            <color>
-                              <Color blue="1.0" green="1.0" red="1.0" />
+                              <Color red="1.0" green="1.0" blue="1.0" />
                            </color>
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color blue="1.0" green="1.0" red="1.0" />
+                              <Color red="1.0" green="1.0" blue="1.0" />
                            </color>
                         </Stop>
                      </stops>
@@ -65,11 +65,16 @@
                   </MenuButton>
                   <Button id="defile_choice_button" fx:id="chngmnt_sens" alignment="CENTER" mnemonicParsing="false" onAction="#clic_changement_sens" prefHeight="30.0" prefWidth="30.0" styleClass="choice_button" text="▲">
                      <HBox.margin>
-                        <Insets left="100.0" top="10.0" />
+                        <Insets left="50.0" top="10.0" />
                      </HBox.margin></Button>
+                  <Button mnemonicParsing="false" onAction="#clic_ajoutRecettes" styleClass="choice_button" text="Ajouter une recette">
+                     <HBox.margin>
+                        <Insets left="50.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
                <VBox.margin>
-                  <Insets bottom="20.0" top="10.0" />
+                  <Insets bottom="20.0" top="15.0" />
                </VBox.margin>
             </HBox>
             <ScrollPane prefHeight="200.0" prefWidth="508.0" styleClass="four_bottom">
