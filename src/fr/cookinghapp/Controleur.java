@@ -35,6 +35,9 @@ public class Controleur extends Observable {
 	
 	@FXML
 	public Button button_list;
+	
+	@FXML
+	public Button button_ajout_recette;
 
 	private static boolean antiDoubleClic;
 	
@@ -98,6 +101,10 @@ public class Controleur extends Observable {
 		Vue.getLmodele().ouvertureListeIngredients();
 	}
 	
+	public void clic_ajout_recettes() throws IOException {
+		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ajoutRecettes.fxml"));
+		Vue.getAppStage().setScene(new Scene(page));
+	}
 	
 	
 }
