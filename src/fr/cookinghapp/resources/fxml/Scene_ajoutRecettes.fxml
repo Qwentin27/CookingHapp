@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SListeControleur">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SAjoutRecettesControleur">
    <children>
       <HBox id="four_top" layoutX="10.0" layoutY="8.0" prefHeight="460.0" prefWidth="1000.0" styleClass="four_top" stylesheets="@Style_home.css" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -33,7 +33,7 @@
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button id="button_menu" mnemonicParsing="false" onAction="#clic_menu" styleClass="button_list" text="Menu">
+            <Button id="button_menu" fx:id="button_menu" mnemonicParsing="false" onAction="#clic_menu" styleClass="button_list" text="Menu">
                <HBox.margin>
                   <Insets left="210.0" top="18.0" />
                </HBox.margin>
@@ -71,7 +71,7 @@
                               <Insets bottom="10.0" left="45.0" right="45.0" top="10.0" />
                            </HBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" onAction="#ajout_ingredient" styleClass="button_ajoutRecette" text="Ajouter" />
+                        <Button fx:id="button_rajouter_ing" mnemonicParsing="false" onAction="#clic_ajout_ing" styleClass="button_ajoutRecette" text="Ajouter" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="83.0" prefWidth="200.0">
@@ -82,7 +82,7 @@
                               <Insets bottom="10.0" left="45.0" right="45.0" top="10.0" />
                            </HBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" onAction="#ajout_instruction" styleClass="button_ajoutRecette" text="Ajouter" />
+                        <Button fx:id="button_ajouter_inst" mnemonicParsing="false" onAction="#clic_ajout_inst" styleClass="button_ajoutRecette" text="Ajouter" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="83.0" prefWidth="200.0">
@@ -93,7 +93,7 @@
                               <Insets bottom="10.0" left="45.0" right="45.0" top="10.0" />
                            </HBox.margin>
                         </TextArea>
-                        <Button mnemonicParsing="false" onAction="#valider_ajout_recette" prefHeight="31.0" prefWidth="100.0" styleClass="button_ajoutRecette" text="Ajouter recette" />
+                        <Button fx:id="button_ajouter_recette" mnemonicParsing="false" onAction="#valider_ajout_recette" prefHeight="31.0" prefWidth="100.0" styleClass="button_ajoutRecette" text="Ajouter recette" />
                      </children>
                   </HBox>
                </children>
