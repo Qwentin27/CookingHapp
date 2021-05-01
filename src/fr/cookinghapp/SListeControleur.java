@@ -38,12 +38,11 @@ public class SListeControleur extends Observable {
 		Vue.getModele().passageListeVersRecette();
 	}
 	
-	public void clic_supprimer() {
-		Scene scene = Vue.getAppStage().getScene();
-		VBox liste = (VBox) scene.lookup("#liste_courses_recettes");
-		liste.getChildren().clear();
-		VBox panneau = (VBox) scene.lookup("#liste_courses_ingredients");
-		panneau.getChildren().clear();
+	public void clic_supprimer() throws IOException {
+		Vue.getLmodele().clearListeIngredients();
+		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_Liste.fxml"));
+		Vue.getAppStage().setScene(new Scene(page));
+		Vue.getLmodele().ouvertureListeIngredients();
 		
 	}
 	

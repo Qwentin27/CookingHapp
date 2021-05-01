@@ -21,6 +21,10 @@ public class SListeModele extends Observable{
 	public TreeMap<String, TreeSet<Ingredient>> getListeIngredients() {
 		return listeIngredients;
 	}
+	
+	public void clearListeIngredients() {
+		listeIngredients.clear();
+	}
 
 	public SListeModele() {
 		listeIngredients = new TreeMap<String, TreeSet<Ingredient>>();
@@ -68,17 +72,17 @@ public class SListeModele extends Observable{
 		this.notifyObservers(buttons);
 	}
 	
-	public void reactListeIngredients(String nomRecette) {
-		if(listeIngredients.containsKey(nomRecette)) {
+	public void reactListeIngredients(String k2) {
+		if(listeIngredients.containsKey(k2)) {
 			Iterator<String> it = listeIngredients.keySet().iterator();
 			ArrayList<Ingredient> liste = null;
 			if(it.hasNext()) {
 				do {
 					String k = it.next();
-					if(k.equals(nomRecette))
+					if(k.equals(k2))
 						liste = new ArrayList<Ingredient>(listeIngredients.get(k));
 				}while(it.hasNext() && liste == null);
-				System.out.println(nomRecette + ":");
+				System.out.println(k2 + ":");
 				for(Ingredient ing : liste)
 					System.out.println("\t" + ing.toString());
 				this.setChanged();
