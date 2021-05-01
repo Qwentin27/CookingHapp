@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -26,8 +27,6 @@ public class SListeControleur extends Observable {
 	@FXML
 	public Button button_supprimer;
 	
-	// Faire le bouton supprimer 
-	
 	public void clic_menu() throws IOException{
 		
 		// Changement de scene lors du clic -> vers Liste
@@ -40,6 +39,11 @@ public class SListeControleur extends Observable {
 	}
 	
 	public void clic_supprimer() {
+		Scene scene = Vue.getAppStage().getScene();
+		VBox liste = (VBox) scene.lookup("#liste_courses_recettes");
+		liste.getChildren().clear();
+		VBox panneau = (VBox) scene.lookup("#liste_courses_ingredients");
+		panneau.getChildren().clear();
 		
 	}
 	
