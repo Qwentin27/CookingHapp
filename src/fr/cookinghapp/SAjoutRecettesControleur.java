@@ -40,6 +40,12 @@ public class SAjoutRecettesControleur {
 	
 	@FXML
 	public TextArea retour_ajout_recette;
+	
+	@FXML
+	public TextArea instruction_ajout_recette1;
+	
+	@FXML
+	public Button button_ajouter_inst1;
 
 	
 	public void clic_menu() throws IOException{
@@ -49,17 +55,28 @@ public class SAjoutRecettesControleur {
 	}
 	
 	public void clic_ajout_ing() {
-		String inst = ingredient_ajout_recette.getText();
-		System.out.println(inst);
+		
+		String ing = ingredient_ajout_recette.getText();
+		System.out.println(ing);
 	}
 	
 	public void clic_ajout_inst(){
+		
 		String inst = instruction_ajout_recette.getText();
 		System.out.println(inst);
 	}
 	
 	public void valider_ajout_recette() {
+		
+		// Y ajouter la validation du nombre de personnes
+		
 		String nom = retour_ajout_recette.getText();
 		System.out.println(nom);
+	}
+	
+	public void clic_ajout_url(){
+		
+		String url = retour_ajout_recette.getText();
+		System.out.println(url);
 	}
 }
