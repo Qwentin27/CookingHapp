@@ -63,8 +63,17 @@ public class SAjoutRecettesControleur {
 	public void clic_ajout_inst(){
 		
 		String inst = instruction_ajout_recette.getText();
+		
+		if (inst.isEmpty()) {
+			
+			Vue.getAjmodele().retourMessage("Saisie d'instructions incorrecte");
+		}
+		else {
+			
+			Vue.getAjmodele().ajoutEtape(inst);
+		}
 		//System.out.println(inst);
-		Vue.getAjmodele().ajoutEtape(inst);
+
 	}
 	
 	public void valider_ajout_recette() {
@@ -79,10 +88,19 @@ public class SAjoutRecettesControleur {
 		catch (NumberFormatException e) {}
 		
 		if (nb <= 0) {
+			
 			Vue.getAjmodele().retourMessage("Nombre incorrect");
 		}
 		else {
-			Vue.getAjmodele().ajouterRecette(nom, nb);
+			if (nom.isEmpty()) {
+				
+				Vue.getAjmodele().retourMessage("Saisie du nom incorrecte");
+			}
+			else {
+				
+				Vue.getAjmodele().ajouterRecette(nom, nb);
+			}
+			
 		}
 		//System.out.println(nom);
 
@@ -91,8 +109,16 @@ public class SAjoutRecettesControleur {
 	public void clic_ajout_url(){
 		
 		String url = retour_ajout_recette.getText();
+		
+		if (url.isEmpty()) {
+			
+			Vue.getAjmodele().retourMessage("Saisie de l'url incorrecte");
+		}
+		else {
+			
+			Vue.getAjmodele().ajoutUrl(url);
+		}
 		//System.out.println(url);
-		Vue.getAjmodele().ajoutUrl(url);
 
 	}
 }
