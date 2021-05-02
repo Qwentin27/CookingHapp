@@ -135,7 +135,7 @@ public class Vue extends Application implements Observer {
 		}
 		else if(arg instanceof String) {
 			if (o instanceof SAjoutRecettesModele) {
-				Text text = (Text) scene.lookup("#retour_textAjout");
+				Label text = (Label) scene.lookup("#retour_textAjout");
 				text.setText((String) arg);
 			}
 			else {

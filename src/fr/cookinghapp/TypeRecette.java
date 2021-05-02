@@ -1,6 +1,7 @@
 package fr.cookinghapp;
 
 public enum TypeRecette {
+	Aucun(-1),
 	Entrée(0),
 	Plat(1),
 	Dessert(2),

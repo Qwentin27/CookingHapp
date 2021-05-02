@@ -48,9 +48,9 @@
                      <children>
                         <MenuButton fx:id="type_ajout_recette" mnemonicParsing="false" text="Type de recette">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Entrée" />
-                            <MenuItem mnemonicParsing="false" text="Plat" />
-                              <MenuItem mnemonicParsing="false" text="Dessert" />
+                            <MenuItem fx:id="ajout_recette_select_entrees" mnemonicParsing="false" onAction="#ajout_recette_entrees" text="Entrée" />
+                            <MenuItem fx:id="ajout_recette_select_plats" mnemonicParsing="false" onAction="#ajout_recette_plats" text="Plat" />
+                              <MenuItem fx:id="ajout_recette_select_desserts" mnemonicParsing="false" onAction="#ajout_recette_desserts" text="Dessert" />
                           </items>
                         </MenuButton>
                         <TextArea fx:id="nb_personne_ajout_recette" prefHeight="39.0" prefWidth="50.0">

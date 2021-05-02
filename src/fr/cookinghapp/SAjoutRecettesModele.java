@@ -10,8 +10,19 @@ public class SAjoutRecettesModele extends Observable {
 	private ArrayList<Ingredient> ingredients;
 	private String urlImage;
 	
+	public SAjoutRecettesModele() {
+		type = TypeRecette.Aucun;
+		etapes = new ArrayList<String>();
+		ingredients = new ArrayList<Ingredient>();
+		urlImage = "";
+	}
+	
 	public void setType(TypeRecette type) {
 		this.type = type;
+	}
+	
+	public boolean typeEstSet() {
+		return this.type != TypeRecette.Aucun;
 	}
 
 	public void ajoutIngredient(Ingredient ingredient) {
@@ -20,6 +31,14 @@ public class SAjoutRecettesModele extends Observable {
 	
 	public void ajoutEtape(String etape) {
 		etapes.add(etape);
+	}
+	
+	public boolean etapesEstVide() {
+		return etapes.isEmpty();
+	}
+	
+	public boolean ingredientsEstVide() {
+		return ingredients.isEmpty();
 	}
 	
 	public void ajoutUrl(String urlImage) {
