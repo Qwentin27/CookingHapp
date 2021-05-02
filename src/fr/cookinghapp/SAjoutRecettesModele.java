@@ -28,11 +28,13 @@ public class SAjoutRecettesModele extends Observable {
 	
 	public void ajouterRecette(String nom, int nbPersonnes) {
 		SQL.ajoutRecette(nom, type, nbPersonnes, ingredients, etapes, urlImage);
+		this.setChanged();
+		this.notifyObservers("Recette ajouté");
 	}
 
-	public void retourMessage(String string) {
-		
-		
+	public void retourMessage(String message) {
+		this.setChanged();
+		this.notifyObservers(message);
 	}
 
 }
