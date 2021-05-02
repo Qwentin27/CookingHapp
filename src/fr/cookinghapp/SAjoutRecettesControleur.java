@@ -12,7 +12,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 
 public class SAjoutRecettesControleur {
-
 	
 	@FXML
 	public Button button_menu;
@@ -57,26 +56,32 @@ public class SAjoutRecettesControleur {
 	public void clic_ajout_ing() {
 		
 		String ing = ingredient_ajout_recette.getText();
-		System.out.println(ing);
+		//System.out.println(ing);
+		//Vue.getAjmodele().ajoutIngredient(ingredient);
 	}
 	
 	public void clic_ajout_inst(){
 		
 		String inst = instruction_ajout_recette.getText();
-		System.out.println(inst);
+		//System.out.println(inst);
+		Vue.getAjmodele().ajoutEtape(inst);
 	}
 	
 	public void valider_ajout_recette() {
 		
-		// Y ajouter la validation du nombre de personnes
+		// Y ajouter la validation du nombre de personnes et le type de la recette
 		
 		String nom = retour_ajout_recette.getText();
-		System.out.println(nom);
+		String nb = nb_personne_ajout_recette.getText();
+		//System.out.println(nom);
+		Vue.getAjmodele().ajouterRecette(nom, Integer.parseInt(nb));
 	}
 	
 	public void clic_ajout_url(){
 		
 		String url = retour_ajout_recette.getText();
-		System.out.println(url);
+		//System.out.println(url);
+		Vue.getAjmodele().ajoutUrl(url);
+
 	}
 }
