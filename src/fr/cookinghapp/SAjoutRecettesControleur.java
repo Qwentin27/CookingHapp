@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextArea;
 
 public class SAjoutRecettesControleur {
 
@@ -28,6 +29,19 @@ public class SAjoutRecettesControleur {
 	@FXML
 	public MenuButton type_ajout_recette;
 	
+	@FXML 
+	public TextArea instruction_ajout_recette;
+	
+	@FXML
+	public TextArea ingredient_ajout_recette;
+	
+	@FXML
+	public TextArea	nb_personne_ajout_recette;
+	
+	@FXML
+	public TextArea retour_ajout_recette;
+
+	
 	public void clic_menu() throws IOException{
 		
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
@@ -35,14 +49,17 @@ public class SAjoutRecettesControleur {
 	}
 	
 	public void clic_ajout_ing() {
-		
+		String inst = ingredient_ajout_recette.getText();
+		System.out.println(inst);
 	}
 	
 	public void clic_ajout_inst(){
-		
+		String inst = instruction_ajout_recette.getText();
+		System.out.println(inst);
 	}
 	
 	public void valider_ajout_recette() {
-		
+		String nom = retour_ajout_recette.getText();
+		System.out.println(nom);
 	}
 }
