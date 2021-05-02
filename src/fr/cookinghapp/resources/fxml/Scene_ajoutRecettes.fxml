@@ -58,6 +58,7 @@
                               <Insets bottom="10.0" left="45.0" right="45.0" top="10.0" />
                            </HBox.margin>
                         </TextArea>
+                        <Label fx:id="retour_textAjout" alignment="CENTER" prefHeight="32.0" prefWidth="195.0" styleClass="button_addList" />
                      </children>
                      <VBox.margin>
                         <Insets />

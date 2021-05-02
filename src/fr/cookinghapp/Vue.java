@@ -132,13 +132,19 @@ public class Vue extends Application implements Observer {
 			noteTexte.setText(arg+""); // concaténer avec un "/5"
 		}
 		else if(arg instanceof String) {
-			VBox liste = (VBox) scene.lookup("#recettes_vbox");
-			if(liste != null) {
-				liste.getChildren().clear();
-				Text t = new Text((String) arg);
-				t.setFocusTraversable(false);
-				t.getStyleClass().add("grille_four");
-				liste.getChildren().add(t);
+			if (o instanceof SAjoutRecettesModele) {
+				Text text = (Text) scene.lookup("#retour_textAjout");
+				text.setText((String) arg);
+			}
+			else {
+				VBox liste = (VBox) scene.lookup("#recettes_vbox");
+				if(liste != null) {
+					liste.getChildren().clear();
+					Text t = new Text((String) arg);
+					t.setFocusTraversable(false);
+					t.getStyleClass().add("grille_four");
+					liste.getChildren().add(t);
+				}
 			}
 		}
 		else if(arg instanceof Recette) {
