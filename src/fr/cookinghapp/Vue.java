@@ -85,6 +85,8 @@ public class Vue extends Application implements Observer {
 		smodele.addObserver(this);
 		lmodele = new SListeModele();
 		lmodele.addObserver(this);
+		ajmodele = new SAjoutRecettesModele();
+		ajmodele.addObserver(this);
 	}
 
 	@Override
