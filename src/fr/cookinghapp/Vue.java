@@ -33,6 +33,7 @@ public class Vue extends Application implements Observer {
 	private static Modele modele;
 	private static SRecetteModele smodele;
 	private static SListeModele lmodele;
+	private static SAjoutRecettesModele ajmodele;
 	private static Stage appStage;
 	private static DecimalFormat df;
 
@@ -46,6 +47,10 @@ public class Vue extends Application implements Observer {
 
 	public static SRecetteModele getSmodele() {
 		return smodele;
+	}
+	
+	public static SAjoutRecettesModele getAjmodele() {
+		return ajmodele;
 	}
 
 	public static SListeModele getLmodele() {
