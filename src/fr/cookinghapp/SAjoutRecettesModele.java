@@ -30,4 +30,9 @@ public class SAjoutRecettesModele extends Observable {
 		SQL.ajoutRecette(nom, type, nbPersonnes, ingredients, etapes, urlImage);
 	}
 
+	public void retourMessage(String string) {
+		
+		
+	}
+
 }

@@ -69,12 +69,23 @@ public class SAjoutRecettesControleur {
 	
 	public void valider_ajout_recette() {
 		
-		// Y ajouter la validation du nombre de personnes et le type de la recette
+		// Y ajouter la validation du nombre de personnes
 		
+		int nb = -1;
 		String nom = retour_ajout_recette.getText();
-		String nb = nb_personne_ajout_recette.getText();
+		try {
+			nb = Integer.parseInt(nb_personne_ajout_recette.getText());
+		}
+		catch (NumberFormatException e) {}
+		
+		if (nb <= 0) {
+			Vue.getAjmodele().retourMessage("Nombre incorrect");
+		}
+		else {
+			Vue.getAjmodele().ajouterRecette(nom, nb);
+		}
 		//System.out.println(nom);
-		Vue.getAjmodele().ajouterRecette(nom, Integer.parseInt(nb));
+
 	}
 	
 	public void clic_ajout_url(){
