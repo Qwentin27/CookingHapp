@@ -21,8 +21,8 @@ public class SAjoutRecettesModele extends Observable {
 		this.type = type;
 	}
 	
-	public boolean typeEstSet() {
-		return this.type != TypeRecette.Aucun;
+	public boolean typePasSet() {
+		return this.type == TypeRecette.Aucun;
 	}
 
 	public void ajoutIngredient(Ingredient ingredient) {

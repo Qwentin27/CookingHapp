@@ -88,7 +88,6 @@ public class SAjoutRecettesControleur {
 	}
 	
 	public void clic_menu() throws IOException{
-		
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
 	}
@@ -136,15 +135,12 @@ public class SAjoutRecettesControleur {
 		
 		String inst = instruction_ajout_recette.getText();
 		
-		if (inst.isEmpty()) {
-			
+		if (inst.isEmpty())
 			Vue.getAjmodele().retourMessage("Saisie d'instructions incorrecte");
-		}
 		else {
-			
 			Vue.getAjmodele().ajoutEtape(inst);
+			Vue.getAjmodele().retourMessage("Etape ajoutée");
 		}
-		//System.out.println(inst);
 
 	}
 	
@@ -163,7 +159,7 @@ public class SAjoutRecettesControleur {
 			Vue.getAjmodele().retourMessage("Nombre incorrect");
 		else if (nom.isEmpty())
 			Vue.getAjmodele().retourMessage("Saisie du nom incorrecte");
-		else if (Vue.getAjmodele().typeEstSet())
+		else if (Vue.getAjmodele().typePasSet())
 			Vue.getAjmodele().retourMessage("Aucun type sélectionné");
 		else if (Vue.getAjmodele().ingredientsEstVide())
 			Vue.getAjmodele().retourMessage("Aucun ingrédients ajoutés");
@@ -177,15 +173,9 @@ public class SAjoutRecettesControleur {
 		
 		String url = retour_ajout_recette.getText();
 		
-		if (url.isEmpty()) {
-			
+		if (url.isEmpty())
 			Vue.getAjmodele().retourMessage("Saisie de l'url incorrecte");
-		}
-		else {
-			
+		else
 			Vue.getAjmodele().ajoutUrl(url);
-		}
-		//System.out.println(url);
-
 	}
 }
