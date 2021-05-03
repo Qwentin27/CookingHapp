@@ -12,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -28,10 +27,10 @@ public class SListeControleur extends Observable {
 	public Button button_supprimer;
 	
 	public void clic_menu() throws IOException{
-		
 		// Changement de scene lors du clic -> vers Liste
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
+		Vue.getModele().chargementRecettes();
 	}
 	
 	public void clic_recette_liste() throws IOException{ // Affichage de la recette correspondante
@@ -43,7 +42,6 @@ public class SListeControleur extends Observable {
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_Liste.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
 		Vue.getLmodele().ouvertureListeIngredients();
-		
 	}
 	
 	public void clic_impression() throws IOException {
@@ -64,6 +62,5 @@ public class SListeControleur extends Observable {
 		Scene scene = new Scene(hb);
 		
 		new Impression(scene.getRoot(), "Liste de courses");
-		
 	}
 }

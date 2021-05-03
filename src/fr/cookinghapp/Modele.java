@@ -26,6 +26,7 @@ import javafx.scene.text.TextAlignment;
 public class Modele extends Observable {
 	
 	private Recette recetteVisionnee;
+	private TypeRecette type;
 	
 	public Recette getRecetteVisionnee() {
 		return recetteVisionnee;
@@ -46,6 +47,9 @@ public class Modele extends Observable {
 
 	public void selectionType(TypeRecette type) {
 		Modele m = Vue.getModele();
+		this.type = type;
+		m.setChanged();
+		m.notifyObservers(type);
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() {
@@ -117,6 +121,13 @@ public class Modele extends Observable {
         new Thread(task).start();
 		m.setChanged();
 		m.notifyObservers("Chargement des recettes en cours...");
+	}
+	
+	public void chargementRecettes() {
+		this.setChanged();
+		this.notifyObservers(type);
+		this.setChanged();
+		this.notifyObservers(liste);
 	}
 	
 	public void setSens() {

@@ -3,6 +3,7 @@ package fr.cookinghapp;
 import java.beans.XMLEncoder;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
@@ -109,7 +111,6 @@ public class Vue extends Application implements Observer {
 			Vue.getLmodele().getListeIngredients();
 		});
 	}
-
 	@Override
 	public void update(Observable o, Object arg) {
 		Scene scene = Vue.getAppStage().getScene();
@@ -170,6 +171,25 @@ public class Vue extends Application implements Observer {
 				}
 			}
 		}
+		else if(arg instanceof TypeRecette) {
+			TypeRecette type = (TypeRecette) arg;
+			String text = "";
+			if(type == TypeRecette.Entrée)
+				text = "Les Entrées";
+			else if(type == TypeRecette.Plat)
+				text = "Les Plats";
+			else if(type == TypeRecette.Dessert)
+				text = "Les Desserts";
+			MenuButton main_menu = (MenuButton) scene.lookup("#choice_button");
+			try {
+				ImageView img = new ImageView(new Image(new FileInputStream(Resources.getResource("images/main_select/"+type.getImage()).getFile())));
+		        img.setFitHeight(24);
+		        img.setFitWidth(24);
+				main_menu.setGraphic(img);
+				main_menu.setText(text);
+			} catch (FileNotFoundException e) {
+			}
+		}
 		else if(arg instanceof Recette) {
 			Recette r = (Recette) arg;
 			if(o instanceof SRecetteModele) {
@@ -190,9 +210,7 @@ public class Vue extends Application implements Observer {
 					t.getStyleClass().add("box_ingredients");
 					liste.getChildren().add(t);
 				}
-				
 			}
-			
 			else {
 				try {
 					Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ingredientsRecettes.fxml"));

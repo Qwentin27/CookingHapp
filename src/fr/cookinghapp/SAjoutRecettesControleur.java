@@ -90,6 +90,7 @@ public class SAjoutRecettesControleur {
 	public void clic_menu() throws IOException{
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/AppliCookingHapp.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
+		Vue.getModele().chargementRecettes();
 	}
 	
 	public void clic_ajout_ing() {
