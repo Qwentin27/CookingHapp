@@ -122,6 +122,7 @@ public class SRecetteControleur extends Observable{
 				Vue.getLmodele().ajoutIngredient(r.getNom(), new TreeSet<Ingredient>(ingredients));
 			else
 				Vue.getLmodele().ajoutIngredient(r.getNom(), ingredientsSelectionnes);
+			Vue.getLmodele().animationAjoutIngredient();
 		}
 		else if (ajouter_liste.getText().equals("Ingrédients")){
 			

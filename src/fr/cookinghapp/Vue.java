@@ -160,6 +160,10 @@ public class Vue extends Application implements Observer {
 				Label text = (Label) scene.lookup("#retour_textAjout");
 				text.setText((String) arg);
 			}
+			else if(o instanceof SListeModele) {
+				Button b = (Button) scene.lookup("#button_menu");
+				b.setText("Liste" + (String) arg);
+			}
 			else {
 				VBox liste = (VBox) scene.lookup("#recettes_vbox");
 				if(liste != null) {

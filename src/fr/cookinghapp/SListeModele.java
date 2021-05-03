@@ -11,6 +11,7 @@ import java.util.Observable;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import javafx.concurrent.Task;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -122,6 +123,26 @@ public class SListeModele extends Observable implements Serializable {
 				this.notifyObservers(liste);
 			}
 		}
+	}
+
+	public void animationAjoutIngredient() {
+		this.setChanged();
+		this.notifyObservers(" +");
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() {
+    			try {
+    				Thread.sleep(1000);
+    			} catch (InterruptedException e) {
+    			}
+    			return null;
+            }
+        };
+        task.setOnSucceeded(taskFinishEvent -> {
+			Vue.getLmodele().setChanged();
+			Vue.getLmodele().notifyObservers("");
+        });
+        new Thread(task).start();
 	}
 	
 }
