@@ -1,22 +1,22 @@
 /* Style général du site */
 .Main {
-    -fx-background-color: rgb(187, 185, 185);
+    -fx-background-color: rgb(66, 54, 54);
 }
 
 .Title {
     -fx-font-size : 30px;
-    -fx-background-color: rgb(187, 185, 185);
+    -fx-background-color: black;
     -fx-font-family: "Segoe UI Semibold";
 }
 
 
 
 .four_top {
-    -fx-background-color : rgb(187, 185, 185);
+    -fx-background-color : rgb(66, 54, 54);
 }
 
 .four_bottom {
-    -fx-background-color : rgb(170, 32, 78);
+    -fx-background-color : rgb(190, 69, 100);
     -fx-background-radius: 30 30 0 0 ;
 }
 

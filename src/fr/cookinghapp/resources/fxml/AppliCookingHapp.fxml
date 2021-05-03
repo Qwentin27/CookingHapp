@@ -5,51 +5,40 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.Controleur">
    <children>
-      <HBox id="four_top" layoutY="-2.0" prefHeight="460.0" prefWidth="1000.0" styleClass="four_top" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="177.0" prefWidth="606.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Title" text="CookingHapp.">
-               <font>
-                  <Font size="30.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="70.0" top="8.0" />
-               </HBox.margin>
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color blue="1.0" green="1.0" red="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color blue="1.0" green="1.0" red="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Text>
-            <Button id="button_list" mnemonicParsing="false" onAction="#clic_liste_menu" styleClass="button_list" text="Liste">
-               <HBox.margin>
-                  <Insets left="235.0" top="18.0" />
-               </HBox.margin>
-            </Button>
+            <HBox id="four_top" prefHeight="79.0" prefWidth="600.0" styleClass="four_top">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="90.0" prefWidth="247.0" styleClass="four_top">
+                     <graphic>
+                        <ImageView fitHeight="68.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/main_select/logo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="button_list" mnemonicParsing="false" onAction="#clic_liste_menu" styleClass="button_list" text="Liste">
+                     <HBox.margin>
+                        <Insets left="235.0" top="25.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </HBox>
-      <VBox id="four_bottom" prefHeight="200.0" prefWidth="100.0" styleClass="four_bottom" stylesheets="@Style_home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      </VBox>
+      <VBox id="four_bottom" layoutX="-7.0" layoutY="79.0" prefHeight="321.0" prefWidth="606.0" styleClass="four_bottom" stylesheets="@Style_home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="602.0">
                <children>
@@ -66,7 +55,8 @@
                   <Button id="defile_choice_button" fx:id="chngmnt_sens" alignment="CENTER" mnemonicParsing="false" onAction="#clic_changement_sens" prefHeight="30.0" prefWidth="30.0" styleClass="choice_button" text="▲">
                      <HBox.margin>
                         <Insets left="50.0" top="10.0" />
-                     </HBox.margin></Button>
+                     </HBox.margin>
+                  </Button>
                   <Button id="button_ajout_recette" fx:id="button_ajout_recette" mnemonicParsing="false" onAction="#clic_ajout_recettes" styleClass="choice_button" text="Ajouter une recette">
                      <HBox.margin>
                         <Insets left="50.0" top="10.0" />
@@ -78,12 +68,12 @@
                </VBox.margin>
             </HBox>
             <ScrollPane prefHeight="200.0" prefWidth="508.0" styleClass="four_bottom">
-               <content>
-                  <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="206.0" prefWidth="555.0" styleClass="grille_four" />
-               </content>
                <VBox.margin>
                   <Insets left="15.0" right="15.0" top="20.0" />
                </VBox.margin>
+               <content>
+                  <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="198.0" prefWidth="574.0" styleClass="grille_four" />
+               </content>
             </ScrollPane>
          </children>
       </VBox>

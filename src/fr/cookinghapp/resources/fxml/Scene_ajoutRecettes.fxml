@@ -12,105 +12,97 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SAjoutRecettesControleur">
+<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SAjoutRecettesControleur">
    <children>
-      <HBox id="four_top" layoutX="10.0" layoutY="8.0" prefHeight="460.0" prefWidth="1000.0" styleClass="four_top" stylesheets="@Style_home.css" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="71.0" prefWidth="600.0" AnchorPane.bottomAnchor="329.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#clic_menu" prefHeight="62.0" prefWidth="60.0" styleClass="Title">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <graphic>
-                  <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true" styleClass="Title">
-                     <image>
-                        <Image url="@../images/main_select/pot-chaud.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#clic_menu" prefHeight="65.0" prefWidth="238.0" styleClass="Title" text="CookingHapp." textFill="WHITE">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-            <Button id="button_menu" fx:id="button_menu" mnemonicParsing="false" onAction="#clic_menu" styleClass="button_list" text="Menu">
-               <HBox.margin>
-                  <Insets left="210.0" top="18.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="four_bottom" stylesheets="@Style_home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
-         <children>
-            <VBox prefHeight="340.0" prefWidth="631.0">
+            <HBox id="four_top" prefHeight="79.0" prefWidth="600.0" styleClass="four_top">
                <children>
-                  <HBox alignment="CENTER" prefHeight="59.0" prefWidth="600.0">
-                     <children>
-                        <MenuButton fx:id="type_ajout_recette" mnemonicParsing="false" text="Type de recette">
-                          <items>
-                            <MenuItem fx:id="ajout_recette_select_entrees" mnemonicParsing="false" onAction="#ajout_recette_entrees" text="Entrée" />
-                            <MenuItem fx:id="ajout_recette_select_plats" mnemonicParsing="false" onAction="#ajout_recette_plats" text="Plat" />
-                              <MenuItem fx:id="ajout_recette_select_desserts" mnemonicParsing="false" onAction="#ajout_recette_desserts" text="Dessert" />
-                          </items>
-                        </MenuButton>
-                        <TextArea fx:id="nb_personne_ajout_recette" prefHeight="39.0" prefWidth="50.0">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="45.0" right="45.0" top="10.0" />
-                           </HBox.margin>
-                        </TextArea>
-                        <Label fx:id="retour_textAjout" alignment="CENTER" prefHeight="32.0" prefWidth="195.0" styleClass="button_addList" />
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="83.0" prefWidth="200.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text="Vos Ingrédients : " />
-                        <TextArea fx:id="ingredient_ajout_recette" prefHeight="24.0" prefWidth="200.0">
-                           <HBox.margin>
-                              <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
-                           </HBox.margin>
-                        </TextArea>
-                        <Button fx:id="button_rajouter_ing" mnemonicParsing="false" onAction="#clic_ajout_ing" styleClass="button_ajoutRecette" text="Ajouter" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text=" Vos Instructions :" />
-                        <TextArea fx:id="instruction_ajout_recette" prefHeight="200.0" prefWidth="200.0">
-                           <HBox.margin>
-                              <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
-                           </HBox.margin>
-                        </TextArea>
-                        <Button fx:id="button_ajouter_inst" mnemonicParsing="false" onAction="#clic_ajout_inst" styleClass="button_ajoutRecette" text="Ajouter" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text="URL d'une photo :" />
-                        <TextArea fx:id="instruction_ajout_recette1" prefHeight="50.0" prefWidth="200.0">
-                           <HBox.margin>
-                              <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
-                           </HBox.margin>
-                        </TextArea>
-                        <Button fx:id="button_ajouter_inst1" mnemonicParsing="false" onAction="#clic_ajout_url" styleClass="button_ajoutRecette" text="Ajouter" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="86.0" prefWidth="600.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text=" Nom de votre Recette :" />
-                        <TextArea fx:id="retour_ajout_recette" prefHeight="63.0" prefWidth="200.0">
-                           <HBox.margin>
-                              <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
-                           </HBox.margin>
-                        </TextArea>
-                        <Button fx:id="button_ajouter_recette" mnemonicParsing="false" onAction="#valider_ajout_recette" styleClass="button_ajoutRecette" text="Ajouter recette" />
-                     </children>
-                  </HBox>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#clic_menu" prefHeight="90.0" prefWidth="247.0" styleClass="four_top">
+                     <graphic>
+                        <ImageView fitHeight="68.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/main_select/logo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="button_list" mnemonicParsing="false" onAction="#clic_menu" styleClass="button_list" text="Menu">
+                     <HBox.margin>
+                        <Insets left="235.0" top="25.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
-            </VBox>
+            </HBox>
          </children>
-      </HBox>
+      </VBox>
+      <VBox layoutX="130.0" layoutY="112.0" prefHeight="200.0" prefWidth="100.0" styleClass="four_bottom" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="59.0" prefWidth="600.0">
+               <children>
+                  <MenuButton fx:id="type_ajout_recette" mnemonicParsing="false" text="Type de recette">
+                     <items>
+                        <MenuItem fx:id="ajout_recette_select_entrees" mnemonicParsing="false" onAction="#ajout_recette_entrees" text="Entrée" />
+                        <MenuItem fx:id="ajout_recette_select_plats" mnemonicParsing="false" onAction="#ajout_recette_plats" text="Plat" />
+                        <MenuItem fx:id="ajout_recette_select_desserts" mnemonicParsing="false" onAction="#ajout_recette_desserts" text="Dessert" />
+                     </items>
+                  </MenuButton>
+                  <TextArea fx:id="nb_personne_ajout_recette" prefHeight="39.0" prefWidth="50.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="45.0" right="45.0" top="10.0" />
+                     </HBox.margin>
+                  </TextArea>
+                  <Label fx:id="retour_textAjout" alignment="CENTER" prefHeight="32.0" prefWidth="195.0" styleClass="button_addList" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="83.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text="Vos Ingrédients : " />
+                  <TextArea fx:id="ingredient_ajout_recette" prefHeight="24.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
+                     </HBox.margin>
+                  </TextArea>
+                  <Button fx:id="button_rajouter_ing" mnemonicParsing="false" onAction="#clic_ajout_ing" styleClass="button_ajoutRecette" text="Ajouter" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text=" Vos Instructions :" />
+                  <TextArea fx:id="instruction_ajout_recette" prefHeight="200.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
+                     </HBox.margin>
+                  </TextArea>
+                  <Button fx:id="button_ajouter_inst" mnemonicParsing="false" onAction="#clic_ajout_inst" styleClass="button_ajoutRecette" text="Ajouter" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text="URL d'une photo :" />
+                  <TextArea fx:id="instruction_ajout_recette1" prefHeight="50.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
+                     </HBox.margin>
+                  </TextArea>
+                  <Button fx:id="button_ajouter_inst1" mnemonicParsing="false" onAction="#clic_ajout_url" styleClass="button_ajoutRecette" text="Ajouter" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="86.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text=" Nom de votre Recette :" />
+                  <TextArea fx:id="retour_ajout_recette" prefHeight="63.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
+                     </HBox.margin>
+                  </TextArea>
+                  <Button fx:id="button_ajouter_recette" mnemonicParsing="false" onAction="#valider_ajout_recette" styleClass="button_ajoutRecette" text="Ajouter recette" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

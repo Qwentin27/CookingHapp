@@ -13,35 +13,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SRecetteControleur">
+<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SRecetteControleur">
    <children>
-      <HBox id="four_top" layoutX="20.0" layoutY="18.0" prefHeight="460.0" prefWidth="1000.0" styleClass="four_top" stylesheets="@Style_home.css" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="71.0" prefWidth="600.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#retour_menu_principal" prefHeight="62.0" prefWidth="60.0" styleClass="Title">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <graphic>
-                  <ImageView fitHeight="36.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" styleClass="Title">
-                     <image>
-                        <Image url="@../images/main_select/pot-chaud.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#retour_menu_principal" prefHeight="53.0" prefWidth="238.0" styleClass="Title" text="CookingHapp." textFill="WHITE">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-            <Button id="button_menu" mnemonicParsing="false" onAction="#clic_liste_recette" styleClass="button_list" text="Liste">
-               <HBox.margin>
-                  <Insets left="210.0" top="18.0" />
-               </HBox.margin>
-            </Button>
+            <HBox id="four_top" prefHeight="79.0" prefWidth="600.0" styleClass="four_top">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#retour_menu_principal" prefHeight="90.0" prefWidth="247.0" styleClass="four_top">
+                     <graphic>
+                        <ImageView fitHeight="68.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/main_select/logo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="button_list" mnemonicParsing="false" onAction="#clic_liste_recette" styleClass="button_list" text="Liste">
+                     <HBox.margin>
+                        <Insets left="235.0" top="25.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="four_bottom" stylesheets="@Style_home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      </VBox>
+      <HBox layoutX="14.0" layoutY="150.0" prefHeight="100.0" prefWidth="200.0" styleClass="four_bottom" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <VBox prefHeight="340.0" prefWidth="335.0">
                <children>
@@ -61,7 +60,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="223.0" prefWidth="329.0">
+                  <HBox prefHeight="223.0" prefWidth="294.0">
                      <children>
                         <ScrollPane fx:id="scroll_ingredients" prefHeight="223.0" prefWidth="241.0" styleClass="four_bottom">
                            <content>
@@ -91,6 +90,9 @@
                      </VBox.margin>
                   </HBox>
                </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" />
+               </HBox.margin>
             </VBox>
             <VBox alignment="CENTER" prefHeight="340.0" prefWidth="265.0">
                <children>
