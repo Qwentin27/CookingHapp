@@ -1,7 +1,10 @@
 package fr.cookinghapp;
 
-
+import java.beans.XMLEncoder;
+import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -83,10 +86,28 @@ public class Vue extends Application implements Observer {
 		modele.addObserver(this);
 		smodele = new SRecetteModele();
 		smodele.addObserver(this);
-		lmodele = new SListeModele();
+		String fileName = "./liste_courses.xml";
+		lmodele = new SListeModele(fileName);
 		lmodele.addObserver(this);
 		ajmodele = new SAjoutRecettesModele();
 		ajmodele.addObserver(this);
+		primaryStage.setOnCloseRequest((event) -> {
+			XMLEncoder encoder = null;
+			try {
+				FileOutputStream fos = new FileOutputStream(new File(fileName));
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				encoder = new XMLEncoder(bos);
+				
+				encoder.writeObject(lmodele.getListeIngredients());
+				encoder.flush();
+				System.out.println("Sauvegarde effectuée!");
+			} catch(IOException e) {
+				System.out.println("Sauvegarde impossible!");
+			} finally {
+				if(encoder != null) encoder.close();
+			}
+			Vue.getLmodele().getListeIngredients();
+		});
 	}
 
 	@Override

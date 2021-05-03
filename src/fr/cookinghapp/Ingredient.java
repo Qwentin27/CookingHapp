@@ -1,9 +1,21 @@
 package fr.cookinghapp;
 
-public class Ingredient implements Comparable<Ingredient> {
+import java.io.Serializable;
+
+public class Ingredient implements Comparable<Ingredient>, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2139027795620988106L;
 	private String nom, mesure;
 	private float quantite;
+	
+	public Ingredient() {
+		this.nom = "";
+		this.mesure = "";
+		this.quantite = 0;
+	}
 	
 	public Ingredient(String nom, float quantite) {
 		this.nom = nom;

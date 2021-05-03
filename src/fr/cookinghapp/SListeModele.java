@@ -1,5 +1,10 @@
 package fr.cookinghapp;
 
+import java.beans.XMLDecoder;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
@@ -14,10 +19,19 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
-public class SListeModele extends Observable{
+public class SListeModele extends Observable implements Serializable {
 	
-	TreeMap<String, TreeSet<Ingredient>> listeIngredients;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6630493009588856177L;
 	
+	private TreeMap<String, TreeSet<Ingredient>> listeIngredients;
+	
+	public void setListeIngredients(TreeMap<String, TreeSet<Ingredient>> listeIngredients) {
+		this.listeIngredients = listeIngredients;
+	}
+
 	public TreeMap<String, TreeSet<Ingredient>> getListeIngredients() {
 		return listeIngredients;
 	}
@@ -26,8 +40,27 @@ public class SListeModele extends Observable{
 		listeIngredients.clear();
 	}
 
-	public SListeModele() {
-		listeIngredients = new TreeMap<String, TreeSet<Ingredient>>();
+	@SuppressWarnings("unchecked")
+	public SListeModele(String fileName) {
+		XMLDecoder decoder = null;
+		try {
+			FileInputStream fis = new FileInputStream(fileName);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			decoder = new XMLDecoder(bis);
+			
+			Object in = decoder.readObject();
+			if(in != null) {
+				listeIngredients = (TreeMap<String, TreeSet<Ingredient>>) in;
+				System.out.println("Chargement effectuée!");
+			}
+			else
+				listeIngredients = new TreeMap<String, TreeSet<Ingredient>>();
+		} catch(IOException e) {
+			listeIngredients = new TreeMap<String, TreeSet<Ingredient>>();
+			System.out.println("Chargement impossible!");
+		} finally {
+			if(decoder != null) decoder.close();
+		}
 	}
 	
 	public void ajoutIngredient(String nomRecette, TreeSet<Ingredient> ingredients) {
