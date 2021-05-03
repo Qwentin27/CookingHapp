@@ -3,6 +3,8 @@ package fr.cookinghapp;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import javafx.concurrent.Task;
+
 public class SAjoutRecettesModele extends Observable {
 
 	private TypeRecette type;
@@ -49,11 +51,31 @@ public class SAjoutRecettesModele extends Observable {
 		SQL.ajoutRecette(nom, type, nbPersonnes, ingredients, etapes, urlImage);
 		this.setChanged();
 		this.notifyObservers("Recette ajouté");
+		clearRetourMessage();
 	}
 
 	public void retourMessage(String message) {
 		this.setChanged();
 		this.notifyObservers(message);
+		clearRetourMessage();
+	}
+	
+	private void clearRetourMessage() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() {
+    			try {
+    				Thread.sleep(1000);
+    			} catch (InterruptedException e) {
+    			}
+    			return null;
+            }
+        };
+        task.setOnSucceeded(taskFinishEvent -> {
+			Vue.getAjmodele().setChanged();
+			Vue.getAjmodele().notifyObservers("");
+        });
+        new Thread(task).start();
 	}
 
 }
