@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SRecetteControleur">
+<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SRecetteControleur">
    <children>
       <VBox prefHeight="177.0" prefWidth="606.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -64,7 +64,7 @@
                      <children>
                         <ScrollPane fx:id="scroll_ingredients" prefHeight="223.0" prefWidth="241.0" styleClass="four_bottom">
                            <content>
-                              <VBox fx:id="box_ingredients" alignment="TOP_CENTER" prefHeight="267.0" prefWidth="239.0" styleClass="box_ingredients" />
+                              <VBox fx:id="box_ingredients" prefHeight="267.0" prefWidth="239.0" styleClass="box_ingredients" />
                            </content>
                         </ScrollPane>
                      </children>

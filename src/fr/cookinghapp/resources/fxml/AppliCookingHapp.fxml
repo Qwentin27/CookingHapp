@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.Controleur">
+<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.Controleur">
    <children>
       <VBox prefHeight="177.0" prefWidth="606.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -67,12 +67,12 @@
                   <Insets bottom="20.0" top="15.0" />
                </VBox.margin>
             </HBox>
-            <ScrollPane prefHeight="200.0" prefWidth="508.0" styleClass="four_bottom">
+            <ScrollPane prefHeight="200.0" prefWidth="508.0" styleClass="four_bottom" vbarPolicy="ALWAYS">
                <VBox.margin>
                   <Insets left="15.0" right="15.0" top="20.0" />
                </VBox.margin>
                <content>
-                  <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="198.0" prefWidth="574.0" styleClass="grille_four" />
+                  <VBox fx:id="recettes_vbox" alignment="TOP_CENTER" prefHeight="198.0" prefWidth="555.0" styleClass="grille_four" />
                </content>
             </ScrollPane>
          </children>

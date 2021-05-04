@@ -220,7 +220,6 @@ public class Vue extends Application implements Observer {
 				Button ajouterListe = (Button) scene.lookup("#ajouter_liste");
 				ajouterListe.setText("Ingrédients");
 				VBox liste = (VBox) scene.lookup("#box_ingredients");
-				liste.setAlignment(Pos.TOP_LEFT);
 				liste.getChildren().clear();
 				for(String e : r.getEtapes()) {
 					Text t = new Text(e + "\n");
