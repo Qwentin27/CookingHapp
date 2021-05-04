@@ -215,7 +215,12 @@ public class SAjoutRecettesControleur {
 				Vue.getAjmodele().retourMessage("Saisie de l'url incorrecte");
 			}
 			if (img != null) {
-				Vue.getAjmodele().ajoutUrl(url);
+				if(img.getImage().isError())
+					Vue.getAjmodele().retourMessage("Saisie de l'url incorrecte");
+				else {
+					Vue.getAjmodele().ajoutUrl(url);
+					url_ajout_recette.setText("");
+				}
 			}
 
 			
