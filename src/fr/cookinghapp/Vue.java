@@ -161,7 +161,7 @@ public class Vue extends Application implements Observer {
 				text.setText((String) arg);
 			}
 			else if(o instanceof SListeModele) {
-				Button b = (Button) scene.lookup("#button_menu");
+				Button b = (Button) scene.lookup("#button_list");
 				b.setText("Liste" + (String) arg);
 			}
 			else {
