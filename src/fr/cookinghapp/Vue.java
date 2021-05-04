@@ -237,7 +237,6 @@ public class Vue extends Application implements Observer {
 					Label nom = (Label) scene.lookup("#nom_recette");
 					nom.setText(r.getNom());
 					VBox liste = (VBox) scene.lookup("#box_ingredients");
-					liste.setAlignment(Pos.TOP_LEFT); //TODO A rajouter dans le fichier Scene_ingredientsRecettes.fxml
 					liste.getChildren().clear(); //Facultatif, mais permet d'être sûr que la liste d'ingrédients est vide au départ
 					ScrollPane sp = (ScrollPane) scene.lookup("#scroll_ingredients");
 					sp.setHbarPolicy(ScrollBarPolicy.NEVER);
