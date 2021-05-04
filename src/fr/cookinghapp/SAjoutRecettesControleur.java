@@ -98,39 +98,59 @@ public class SAjoutRecettesControleur {
 	
 	public void clic_ajout_ing() {
 		String ing = ingredient_ajout_recette.getText();
-		//System.out.println(ing);
 		//Vue.getAjmodele().ajoutIngredient(ingredient);
 		if(ing.isEmpty()) Vue.getAjmodele().retourMessage("Aucun ingrédient");
 		else {
+			int nIngAjoute = 0;
 			String[] ingredients = ing.split("\n");
-			for(int j=1; j<ingredients.length; j++) {
-				String[] ingList = ingredients[0].split(" ");
-				float quantite = 0;
-				try {
-					quantite = Float.parseFloat(ingList[0]);
-				}
-				catch (NumberFormatException e) {
-				}
-				String mesure = "";
-				boolean separateur = false;
-				String nom = "";
-				for(int i=1; i<ingList.length; i++) {
-					if(separateur || (quantite <= 0)) {
-						nom = nom + ingList[i] + ((i==ingList.length-1)?"":" ");
+			for(int j=0; j<ingredients.length; j++) {
+				//System.out.println(ingredients[j]);
+				if(!ingredients[j].isEmpty()) {
+					String[] ingList = ingredients[j].split(" ");
+					float quantite = 0;
+					int i = 1;
+					try {
+						quantite = Float.parseFloat(ingList[0]);
 					}
-					else {
-						if(ingList[i].substring(0, 1).equals("d'") || ingList[i].equals("de"))
+					catch (NumberFormatException e) {
+						i = 0;
+					}
+					String mesure = "";
+					boolean separateur = false;
+					String nom = "";
+					for(; i<ingList.length; i++) {
+						if(separateur || (quantite <= 0.0))
+							nom = nom + ingList[i] + ((i==ingList.length-1)?"":" ");
+						else if(ingList[i].length()>=2 && ingList[i].substring(0, 2).equals("d'")) {
+							separateur = true;
+							nom = nom + ingList[i].substring(2, ingList[i].length());
+						}
+						else if(ingList[i].equals("de"))
 							separateur = true;
 						else
 							mesure = mesure + ingList[i] + ((i==ingList.length-1)?"":" ");
 					}
+					if(!mesure.isEmpty())
+						while(mesure.charAt(mesure.length()-1) == ' ') mesure = mesure.substring(0, mesure.length()-1);
+					if(!nom.isEmpty())
+						while(nom.charAt(nom.length()-1) == ' ') nom = nom.substring(0, nom.length()-1);
+					if(!separateur) {
+						nom = mesure;
+						mesure = "";
+					}
+					if(quantite <= 0) {
+						quantite = 0;
+						if(mesure.isEmpty() && nom.isEmpty())
+							nom = ingredients[j];
+					}
+					Ingredient in = new Ingredient(nom, quantite, mesure);
+					Vue.getAjmodele().ajoutIngredient(in);
+					nIngAjoute++;
 				}
-				if((separateur == false) || (quantite <= 0))
-					Vue.getAjmodele().ajoutIngredient(new Ingredient(nom, 0));
-				else
-					Vue.getAjmodele().ajoutIngredient(new Ingredient(nom, quantite, mesure));
 			}
-			if(ingredients.length == 1)
+			if(nIngAjoute == 0)
+				Vue.getAjmodele().retourMessage("Aucun ingrédient");
+			else if(nIngAjoute == 1)
 				Vue.getAjmodele().retourMessage("Ingrédient ajouté");
 			else
 				Vue.getAjmodele().retourMessage("Ingrédients ajoutés");
@@ -145,7 +165,7 @@ public class SAjoutRecettesControleur {
 			Vue.getAjmodele().retourMessage("Saisie d'instructions incorrecte");
 		else {
 			String[] instructions = inst.split(";");
-			for(int i=1; i<instructions.length; i++) {
+			for(int i=0; i<instructions.length; i++) {
 				Vue.getAjmodele().ajoutEtape(instructions[i]);
 			}
 			if(instructions.length == 1)
