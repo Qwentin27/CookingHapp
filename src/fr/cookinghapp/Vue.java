@@ -251,8 +251,6 @@ public class Vue extends Application implements Observer {
 					e1.printStackTrace();
 				}
 			}
-		
-			
 		}
 		else if(arg instanceof String[]) {
 			String[] n = (String []) arg;
