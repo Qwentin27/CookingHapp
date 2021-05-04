@@ -52,6 +52,9 @@ public class SAjoutRecettesControleur {
 	public TextArea	nb_personne_ajout_recette;
 	
 	@FXML
+	public TextArea url_ajout_recette;
+	
+	@FXML
 	public TextArea retour_ajout_recette;
 	
 	@FXML
@@ -99,36 +102,38 @@ public class SAjoutRecettesControleur {
 		//Vue.getAjmodele().ajoutIngredient(ingredient);
 		if(ing.isEmpty()) Vue.getAjmodele().retourMessage("Aucun ingrédient");
 		else {
-			//13 cL de café
-			String[] ingList = ing.split(" ");
-			float quantite = 0;
-			try {
-				quantite = Float.parseFloat(ingList[0]);
-			}
-			catch (NumberFormatException e) {
-			}
-			String mesure = "";
-			boolean separateur = false;
-			String nom = "";
-			for(int i=1; i<ingList.length; i++) {
-				if(separateur || (quantite <= 0)) {
-					nom = nom + ingList[i] + ((i==ingList.length-1)?"":" ");
+			String[] ingredients = ing.split("\n");
+			for(int j=1; j<ingredients.length; j++) {
+				String[] ingList = ingredients[0].split(" ");
+				float quantite = 0;
+				try {
+					quantite = Float.parseFloat(ingList[0]);
 				}
-				else {
-					if(ingList[i].substring(0, 1).equals("d'") || ingList[i].equals("de"))
-						separateur = true;
-					else
-						mesure = mesure + ingList[i] + ((i==ingList.length-1)?"":" ");
+				catch (NumberFormatException e) {
 				}
+				String mesure = "";
+				boolean separateur = false;
+				String nom = "";
+				for(int i=1; i<ingList.length; i++) {
+					if(separateur || (quantite <= 0)) {
+						nom = nom + ingList[i] + ((i==ingList.length-1)?"":" ");
+					}
+					else {
+						if(ingList[i].substring(0, 1).equals("d'") || ingList[i].equals("de"))
+							separateur = true;
+						else
+							mesure = mesure + ingList[i] + ((i==ingList.length-1)?"":" ");
+					}
+				}
+				if((separateur == false) || (quantite <= 0))
+					Vue.getAjmodele().ajoutIngredient(new Ingredient(nom, 0));
+				else
+					Vue.getAjmodele().ajoutIngredient(new Ingredient(nom, quantite, mesure));
 			}
-			if((separateur == false) || (quantite <= 0)) {
-				Vue.getAjmodele().ajoutIngredient(new Ingredient(nom, 0));
+			if(ingredients.length == 1)
 				Vue.getAjmodele().retourMessage("Ingrédient ajouté");
-			}
-			else {
-				Vue.getAjmodele().ajoutIngredient(new Ingredient(nom, quantite, mesure));
-				Vue.getAjmodele().retourMessage("Ingrédient ajouté");
-			}
+			else
+				Vue.getAjmodele().retourMessage("Ingrédients ajoutés");
 		}
 	}
 	
@@ -139,8 +144,14 @@ public class SAjoutRecettesControleur {
 		if (inst.isEmpty())
 			Vue.getAjmodele().retourMessage("Saisie d'instructions incorrecte");
 		else {
-			Vue.getAjmodele().ajoutEtape(inst);
-			Vue.getAjmodele().retourMessage("Etape ajoutée");
+			String[] instructions = inst.split("\n");
+			for(int i=1; i<instructions.length; i++) {
+				Vue.getAjmodele().ajoutEtape(instructions[i]);
+			}
+			if(instructions.length == 1)
+				Vue.getAjmodele().retourMessage("Etape ajoutée");
+			else
+				Vue.getAjmodele().retourMessage("Etapes ajoutées");
 		}
 
 	}
@@ -172,7 +183,7 @@ public class SAjoutRecettesControleur {
 	
 	public void clic_ajout_url(){
 		
-		String url = retour_ajout_recette.getText();
+		String url = url_ajout_recette.getText();
 		
 		if (url.isEmpty())
 			Vue.getAjmodele().retourMessage("Saisie de l'url incorrecte");

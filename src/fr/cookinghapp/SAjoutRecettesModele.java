@@ -44,7 +44,10 @@ public class SAjoutRecettesModele extends Observable {
 	}
 	
 	public void ajoutUrl(String urlImage) {
-		this.urlImage =urlImage;
+		this.urlImage = urlImage;
+		this.setChanged();
+		this.notifyObservers("URL d'une photo définie!");
+		clearRetourMessage();
 	}
 	
 	public void ajouterRecette(String nom, int nbPersonnes) {

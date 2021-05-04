@@ -83,7 +83,7 @@
             <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text="URL d'une photo :" />
-                  <TextArea fx:id="instruction_ajout_recette1" prefHeight="50.0" prefWidth="200.0">
+                  <TextArea fx:id="url_ajout_recette" prefHeight="50.0" prefWidth="200.0">
                      <HBox.margin>
                         <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
                      </HBox.margin>
