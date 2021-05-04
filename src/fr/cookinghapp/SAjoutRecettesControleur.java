@@ -150,10 +150,13 @@ public class SAjoutRecettesControleur {
 			}
 			if(nIngAjoute == 0)
 				Vue.getAjmodele().retourMessage("Aucun ingrédient");
-			else if(nIngAjoute == 1)
-				Vue.getAjmodele().retourMessage("Ingrédient ajouté");
-			else
-				Vue.getAjmodele().retourMessage("Ingrédients ajoutés");
+			else {
+				ingredient_ajout_recette.setText("");
+				if(nIngAjoute == 1)
+					Vue.getAjmodele().retourMessage("Ingrédient ajouté");
+				else
+					Vue.getAjmodele().retourMessage("Ingrédients ajoutés");
+			}
 		}
 	}
 	
@@ -168,6 +171,7 @@ public class SAjoutRecettesControleur {
 			for(int i=0; i<instructions.length; i++) {
 				Vue.getAjmodele().ajoutEtape(instructions[i]);
 			}
+			instruction_ajout_recette.setText("");
 			if(instructions.length == 1)
 				Vue.getAjmodele().retourMessage("Etape ajoutée");
 			else
@@ -197,8 +201,10 @@ public class SAjoutRecettesControleur {
 			Vue.getAjmodele().retourMessage("Aucun ingrédients ajoutés");
 		else if (Vue.getAjmodele().etapesEstVide())
 			Vue.getAjmodele().retourMessage("Aucune étapes ajoutés");
-		else
+		else {
+			retour_ajout_recette.setText("");
 			Vue.getAjmodele().ajouterRecette(nom, nb);
+		}
 	}
 	
 	public void clic_ajout_url(){
