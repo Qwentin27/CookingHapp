@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SAjoutRecettesControleur">
+<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SAjoutRecettesControleur">
    <children>
       <VBox prefHeight="177.0" prefWidth="606.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -50,7 +50,7 @@
                         <MenuItem fx:id="ajout_recette_select_desserts" mnemonicParsing="false" onAction="#ajout_recette_desserts" text="Dessert" />
                      </items>
                   </MenuButton>
-                  <TextArea fx:id="nb_personne_ajout_recette" prefHeight="39.0" prefWidth="50.0">
+                  <TextArea fx:id="nb_personne_ajout_recette" prefHeight="37.0" prefWidth="79.0" text="nombre de personnes par recette">
                      <HBox.margin>
                         <Insets bottom="10.0" left="45.0" right="45.0" top="10.0" />
                      </HBox.margin>
@@ -61,7 +61,7 @@
             <HBox alignment="CENTER" prefHeight="83.0" prefWidth="200.0">
                <children>
                   <Label alignment="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text="Vos Ingrédients : " />
-                  <TextArea fx:id="ingredient_ajout_recette" prefHeight="24.0" prefWidth="200.0">
+                  <TextArea fx:id="ingredient_ajout_recette" prefHeight="24.0" prefWidth="200.0" text="Un ingrédient avec sa quantité par ligne. Sauter une ligne pour ajouter un nouvel ingrédient">
                      <HBox.margin>
                         <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
                      </HBox.margin>
@@ -72,7 +72,7 @@
             <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text=" Vos Instructions :" />
-                  <TextArea fx:id="instruction_ajout_recette" prefHeight="200.0" prefWidth="200.0">
+                  <TextArea fx:id="instruction_ajout_recette" prefHeight="200.0" prefWidth="200.0" text="Insérer un &quot;;&quot; à la fin de vos instructions pour créer une nouvelle étape">
                      <HBox.margin>
                         <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
                      </HBox.margin>
@@ -83,7 +83,7 @@
             <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="146.0" styleClass="button_addList" text="URL d'une photo :" />
-                  <TextArea fx:id="url_ajout_recette" prefHeight="50.0" prefWidth="200.0">
+                  <TextArea fx:id="url_ajout_recette" prefHeight="50.0" prefWidth="200.0" text="Insérer l'url d'une photo ">
                      <HBox.margin>
                         <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
                      </HBox.margin>

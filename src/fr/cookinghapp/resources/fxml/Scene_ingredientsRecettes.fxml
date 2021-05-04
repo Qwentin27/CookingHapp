@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SRecetteControleur">
+<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SRecetteControleur">
    <children>
       <VBox prefHeight="177.0" prefWidth="606.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -98,7 +98,7 @@
                <children>
                   <ImageView fx:id="image_recette" fitHeight="237.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true" styleClass="img">
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets right="15.0" top="20.0" />
                      </VBox.margin>
                      <image>
                         <Image url="@../images/main_select/karp.png" />
