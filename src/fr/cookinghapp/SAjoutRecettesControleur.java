@@ -207,7 +207,19 @@ public class SAjoutRecettesControleur {
 		
 		if (url.isEmpty())
 			Vue.getAjmodele().retourMessage("Saisie de l'url incorrecte");
-		else
-			Vue.getAjmodele().ajoutUrl(url);
+		else {
+			ImageView img = null;
+			try {
+				img = new ImageView(url);
+			}catch(IllegalArgumentException|NullPointerException e ){
+				Vue.getAjmodele().retourMessage("Saisie de l'url incorrecte");
+			}
+			if (img != null) {
+				Vue.getAjmodele().ajoutUrl(url);
+			}
+
+			
+		}
+
 	}
 }
