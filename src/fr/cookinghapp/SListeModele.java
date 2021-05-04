@@ -47,9 +47,7 @@ public class SListeModele extends Observable implements Serializable {
 			listeIngredients.remove(nomR);
 			nomRecetteAct = "";
 		}
-
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	public SListeModele(String fileName) {
