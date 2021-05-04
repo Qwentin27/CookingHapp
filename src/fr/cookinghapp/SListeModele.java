@@ -28,6 +28,7 @@ public class SListeModele extends Observable implements Serializable {
 	private static final long serialVersionUID = -6630493009588856177L;
 	
 	private TreeMap<String, TreeSet<Ingredient>> listeIngredients;
+	private String nomRecetteAct;
 	
 	public void setListeIngredients(TreeMap<String, TreeSet<Ingredient>> listeIngredients) {
 		this.listeIngredients = listeIngredients;
@@ -40,6 +41,15 @@ public class SListeModele extends Observable implements Serializable {
 	public void clearListeIngredients() {
 		listeIngredients.clear();
 	}
+	
+	public void clearListeIngredients(String nomR) {
+		if (listeIngredients.containsKey(nomR)) {
+			listeIngredients.remove(nomR);
+			nomRecetteAct = "";
+		}
+
+	}
+	
 
 	@SuppressWarnings("unchecked")
 	public SListeModele(String fileName) {
@@ -62,6 +72,7 @@ public class SListeModele extends Observable implements Serializable {
 		} finally {
 			if(decoder != null) decoder.close();
 		}
+		nomRecetteAct = "";
 	}
 	
 	public void ajoutIngredient(String nomRecette, TreeSet<Ingredient> ingredients) {
@@ -99,12 +110,14 @@ public class SListeModele extends Observable implements Serializable {
 			b.setBorder(new Border(new BorderStroke(Color.rgb(187, 185, 185), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 			b.setOnAction((e) -> {
 				reactListeIngredients(k);
+				nomRecetteAct = k;
 			});
 			buttons.add(b);
 		}
 		this.setChanged();
 		this.notifyObservers(buttons);
 	}
+	
 	
 	public void reactListeIngredients(String k2) {
 		if(listeIngredients.containsKey(k2)) {
@@ -144,5 +157,14 @@ public class SListeModele extends Observable implements Serializable {
         });
         new Thread(task).start();
 	}
-	
+
+	public String getNomRecetteAct() {
+		return nomRecetteAct;
+	}
+
+	public void setNomRecetteAct(String nomRecetteAct) {
+		this.nomRecetteAct = nomRecetteAct;
+	}
+
+
 }

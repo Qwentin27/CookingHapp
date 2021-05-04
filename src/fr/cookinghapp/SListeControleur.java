@@ -38,7 +38,11 @@ public class SListeControleur extends Observable {
 	}
 	
 	public void clic_supprimer() throws IOException {
-		Vue.getLmodele().clearListeIngredients();
+		String nomR = Vue.getLmodele().getNomRecetteAct();
+		if (nomR.isEmpty()) 
+			Vue.getLmodele().clearListeIngredients();
+		else
+			Vue.getLmodele().clearListeIngredients(nomR);
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_Liste.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
 		Vue.getLmodele().ouvertureListeIngredients();
