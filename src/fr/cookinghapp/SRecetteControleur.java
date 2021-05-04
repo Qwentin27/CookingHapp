@@ -72,12 +72,8 @@ public class SRecetteControleur extends Observable{
 	}
 	
 	public void clic_valider() { // Validation de la note
-		
-		//TODO envoyer à l'SQL
-		
 		Vue.getModele().getRecetteVisionnee().addNote(Vue.getSmodele().getMain_note());
 		Vue.getSmodele().reactuNote(Vue.getModele().getRecetteVisionnee());
-		
 	}
 	
 	public void clic_recette_recette() throws IOException{ // Affichage de la recette associée

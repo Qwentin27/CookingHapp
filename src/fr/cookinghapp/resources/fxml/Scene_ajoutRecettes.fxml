@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SAjoutRecettesControleur">
+<AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SAjoutRecettesControleur">
    <children>
       <VBox prefHeight="177.0" prefWidth="606.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,7 +30,7 @@
                         <Insets left="40.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="button_list" mnemonicParsing="false" onAction="#clic_menu" styleClass="button_list" text="Menu">
+                  <Button mnemonicParsing="false" onAction="#clic_menu" styleClass="button_list" text="Menu">
                      <HBox.margin>
                         <Insets left="235.0" top="25.0" />
                      </HBox.margin>
@@ -88,7 +88,7 @@
                         <Insets bottom="15.0" left="45.0" right="45.0" top="15.0" />
                      </HBox.margin>
                   </TextArea>
-                  <Button fx:id="button_ajouter_inst1" mnemonicParsing="false" onAction="#clic_ajout_url" styleClass="button_ajoutRecette" text="Ajouter" />
+                  <Button fx:id="button_ajouter_url" mnemonicParsing="false" onAction="#clic_ajout_url" styleClass="button_ajoutRecette" text="Ajouter" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="86.0" prefWidth="600.0">

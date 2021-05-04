@@ -83,7 +83,8 @@ public class Ingredient implements Comparable<Ingredient>, Serializable {
 	public String toString() {
 		if(quantite == 0) return nom;
 		if(mesure.isEmpty()) return formatQuantite() + " " + nom;
-		if(nom.charAt(0) == 'h') return formatQuantite() + " " + mesure + " d'" + nom;
+		if(nom.isEmpty()) return formatQuantite();
+		if(nom.charAt(0) == 'h' || nom.charAt(0) == 'a') return formatQuantite() + " " + mesure + " d'" + nom;
 		return formatQuantite() + " " + mesure + " de " + nom;
 	}
 	
