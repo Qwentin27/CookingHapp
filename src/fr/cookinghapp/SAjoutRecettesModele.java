@@ -81,4 +81,9 @@ public class SAjoutRecettesModele extends Observable {
         new Thread(task).start();
 	}
 
+	public void setTransparentText() {
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 }

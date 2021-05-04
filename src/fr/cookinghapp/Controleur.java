@@ -84,6 +84,7 @@ public class Controleur extends Observable {
 	public void clic_ajout_recettes() throws IOException {
 		Parent page = FXMLLoader.load(Resources.getResource("fxml/Scene_ajoutRecettes.fxml"));
 		Vue.getAppStage().setScene(new Scene(page));
+		Vue.getAjmodele().setTransparentText();
 	}
 	
 	

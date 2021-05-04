@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -114,7 +115,21 @@ public class Vue extends Application implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		Scene scene = Vue.getAppStage().getScene();
-		if(arg instanceof ArrayList) {
+		if(arg == null) {
+			if (o instanceof SAjoutRecettesModele) {
+				TextArea text = (TextArea) scene.lookup("#nb_personne_ajout_recette");
+				text.setPromptText("Nombre de personnes");
+				text = (TextArea) scene.lookup("#ingredient_ajout_recette");
+				text.setPromptText("Sautez une ligne entre chaque ingrédient");
+				text = (TextArea) scene.lookup("#instruction_ajout_recette");
+				text.setPromptText("Insérer un ; à chaque nouvelle étape");
+				text = (TextArea) scene.lookup("#url_ajout_recette");
+				text.setPromptText("URL de votre image. Stockez-les sur: https://fr.imgbb.com/");
+				text = (TextArea) scene.lookup("#retour_ajout_recette");
+				text.setPromptText("Nom de votre recette");
+			}
+		}
+		else if(arg instanceof ArrayList) {
 			if (o instanceof SListeModele) {
 				if(!((ArrayList<?>)arg).isEmpty()) {
 					if(((ArrayList<?>)arg).get(0) instanceof Button) {
