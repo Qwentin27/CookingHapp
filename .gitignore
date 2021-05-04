@@ -3,5 +3,6 @@
 /.classpath
 /.gitignore
 /.classpath
+/site/
 /site/edit_recettes.php
 /site/liste_recettes.php
