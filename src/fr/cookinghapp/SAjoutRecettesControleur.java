@@ -19,9 +19,6 @@ import javafx.scene.image.ImageView;
 public class SAjoutRecettesControleur {
 	
 	@FXML
-	public Button button_menu;
-	
-	@FXML
 	public Button button_rajouter_ing;
 	
 	@FXML
@@ -58,10 +55,7 @@ public class SAjoutRecettesControleur {
 	public TextArea retour_ajout_recette;
 	
 	@FXML
-	public TextArea instruction_ajout_recette1;
-	
-	@FXML
-	public Button button_ajouter_inst1;
+	public Button button_ajouter_url;
 
 	private void setSelectionImage(String image) {
 		try {
