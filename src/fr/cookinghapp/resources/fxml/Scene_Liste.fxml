@@ -14,7 +14,7 @@
 
 <AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SListeControleur">
    <children>
-      <VBox prefHeight="71.0" prefWidth="600.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="177.0" prefWidth="606.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox id="four_top" prefHeight="79.0" prefWidth="600.0" styleClass="four_top">
                <children>
@@ -53,7 +53,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="246.0" prefWidth="292.0" styleClass="grille_four" stylesheets="@Style_home.css">
+                        <Pane prefHeight="246.0" prefWidth="292.0" styleClass="grille_four">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="5.0" />
                            </VBox.margin>
@@ -67,12 +67,12 @@
                         </Pane>
                         <HBox prefHeight="46.0" prefWidth="196.0">
                            <children>
-                              <Button id="button_recette" fx:id="button_recette" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clic_recette_liste" styleClass="button_addList" stylesheets="@Style_home.css" text="Ingrédients">
+                              <Button id="button_recette" fx:id="button_recette" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clic_recette_liste" styleClass="button_addList" text="Ingrédients">
                                  <HBox.margin>
                                     <Insets left="30.0" top="8.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button_recette" fx:id="button_supprimer" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clic_supprimer" styleClass="button_addList" stylesheets="@Style_home.css" text="Supprimer ">
+                              <Button id="button_recette" fx:id="button_supprimer" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clic_supprimer" styleClass="button_addList" text="Supprimer ">
                                  <HBox.margin>
                                     <Insets left="20.0" top="8.0" />
                                  </HBox.margin>
@@ -98,7 +98,7 @@
                   </VBox>
                </children>
             </HBox>
-            <Pane prefHeight="272.0" prefWidth="260.0" styleClass="grille_four" stylesheets="@../../../../../../../../Downloads/CookingHapp-dev/CookingHapp-dev/src/fr/cookinghapp/resources/fxml/Style_home.css">
+            <Pane prefHeight="272.0" prefWidth="260.0" styleClass="grille_four">
                <children>
                   <VBox fx:id="liste_courses_ingredients" prefHeight="310.0" prefWidth="260.0">
                      <children>

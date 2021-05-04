@@ -14,7 +14,7 @@
 
 <AnchorPane id="Main" prefHeight="400.0" prefWidth="600.0" styleClass="Main" stylesheets="@Style_home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cookinghapp.SAjoutRecettesControleur">
    <children>
-      <VBox prefHeight="71.0" prefWidth="600.0" AnchorPane.bottomAnchor="329.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="177.0" prefWidth="606.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox id="four_top" prefHeight="79.0" prefWidth="600.0" styleClass="four_top">
                <children>
