@@ -144,7 +144,7 @@ public class SAjoutRecettesControleur {
 		if (inst.isEmpty())
 			Vue.getAjmodele().retourMessage("Saisie d'instructions incorrecte");
 		else {
-			String[] instructions = inst.split("\n");
+			String[] instructions = inst.split(";");
 			for(int i=1; i<instructions.length; i++) {
 				Vue.getAjmodele().ajoutEtape(instructions[i]);
 			}
